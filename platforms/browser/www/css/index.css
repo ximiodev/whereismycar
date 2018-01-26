@@ -11,12 +11,17 @@ body {
     width:100%;
 }
 
+.elcontenido {
+	height: 100vh;
+	overflow: hidden;
+    position: relative;
+}
 
 .barra {
 	height: 60px;
 	background: #72D822;
 	padding: 15px;
-	color: #666;
+	color: #FFF;
 }
 
 #contenido {
@@ -34,13 +39,13 @@ body {
 }
 
 .btnMenu {
-	background: url(../images/btnMenu.png) center center no-repeat;
-	background-size: cover;
 	width: 30px;
 	height: 30px;
 	position: relative;
 	float: left;
 	border: 0;
+	background: none;
+	font-size: 20px;
 }
 
 .titleApp {
@@ -80,13 +85,23 @@ body {
 
 .modalVentana {
 	position: absolute;
-	top: 100vh;
+	top: 120vh;
 	width: 90%;
 	left: 5%;
-    height: 60vh;
+    height: 400px;
 	background: #FFF;
 	border-radius: 20px;
 	overflow: hidden;
+	border: 1px solid #666;
+	-webkit-box-shadow: 0px 0px 50px 5px rgba(128,128,128,1);
+	-moz-box-shadow: 0px 0px 50px 5px rgba(128,128,128,1);
+	box-shadow: 0px 0px 50px 5px rgba(128,128,128,1);
+}
+
+.modalPie {
+    background: #72d822;
+    height: 80px;
+    text-align: center;
 }
 
 .modalTitulo {
@@ -96,4 +111,40 @@ body {
     font-size: 16px;
     font-weight: bold;
     text-align: center;
+    height: 40px;
+}
+
+.modalCuerpo {
+	width: 100%;
+	height: 280px;
+}
+
+#captureMod {
+	width: 100%;
+	height: 230px;
+}
+
+.infoEsta {
+    padding: 5px;
+    font-size: 13px;
+    color: #333;
+    font-weight: bold;
+}
+
+.botonerPie {
+	height: 100%;
+}
+
+.botonerPie button {
+    height: 100%;
+    border: 0;
+    width: 33.333%;
+    background: #72d822;
+    border-right: 1px solid #FFF;
+    color: #FFF;
+    font-size: 24px;
+}
+
+.botonerPie button:last-child {
+    border-right: 0;
 }

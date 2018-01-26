@@ -1,6 +1,9 @@
 var map;
+var mapmini;
 var marker;
+var markermini;
 var pictureSource;   // picture source
+var geocoder = new google.maps.Geocoder;
 var destinationType; // sets the format of returned value 
 var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
 if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
@@ -84,6 +87,24 @@ function mostrarModal(titulo, cuerpo, pie) {
 }
 
 
+function setCalle(latlng, callback) {
+	geocoder.geocode({'location': latlng}, function(results, status) {
+	  if (status === 'OK') {
+		if (results[1]) {
+		  callback(results[0].formatted_address);
+		} else {
+		  callback('');
+		}
+	  } else {
+		callback('');
+	  }
+	});
+}
+
+function setModalCalle(nombreCa) {
+	$('.infoEsta').html(nombreCa);
+}
+
 function onDeviceReady() {
 	pictureSource=navigator.camera.PictureSourceType;
 	destinationType=navigator.camera.DestinationType;
@@ -96,42 +117,52 @@ function onPhotoDataSuccess(imageData) {
   smallImage.src = "data:image/jpeg;base64," + imageData;
 }
 
-function useCurrentPos() {
-	if(app) {
-		navigator.geolocation.getCurrentPosition(function (position) {
-			marker.setMap(null);
-			var myLatLng = {lat: position.coords.latitude, lng: position.coords.longitude};
-			marker = new google.maps.Marker({
-				position: myLatLng,
-				map: map,
-				title: 'Estacionaste acá'
-			});
-		}
-		, onErrorPos);
-	} else {
-		marker.setMap(null);
-		var myLatLng = {lat: -34.541946, lng: -58.491228};
-		marker = new google.maps.Marker({
-			position: myLatLng,
-			map: map,
-			title: 'Estacionaste acá'
-		});
-	}
+function ponerPinMapa(elmapa, elmarker,lat,lng, mensaje) {
+	var myLatLng = {lat: lat, lng: lng};
 	
-    $('.modalVentana').animate( {top: "150px"},500 );
-	var cuerpo = '<div id="captureMod"></div>';
-	var pie = '<div class="botonerPie"><button onclick="guardarCurrentEst()"></button></div>';
-	mostrarModal('Guardar Estacionamiento', cuerpo, pie)
-	html2canvas(document.querySelector("#map_canvas")).then(canvas => {
-		var centana = document.getElementById('captureMod');
-		centana.appendChild(canvas)
+	elmarker = new google.maps.Marker({
+		position: myLatLng,
+		map: elmapa,
+		title: mensaje
 	});
 }
 
+function ponermodalPos(lat,lng) {
+    $('.modalVentana').animate( {top: "150px"},500, function () {
+		mapmini = new google.maps.Map(document.getElementById('captureMod'), {
+		  center: {lat: lat, lng: lng},
+		  disableDefaultUI: true,
+		  draggable: false,
+		  zoom: 18
+		});
+		ponerPinMapa(mapmini, markermini,lat, lng);
+	} );
+	var cuerpo = '<div id="captureMod"></div><div class="infoEsta"></div>';
+	var pie = '<div class="botonerPie"><button onclick="mostrarCajaTexto()"><i class="fa fa-pencil" aria-hidden="true"></i></button><button onclick="guardarCurrentEst()"><i class="fa fa-map-marker" aria-hidden="true"></i></button><button onclick="ponerFotoExtra()"><i class="fa fa-camera" aria-hidden="true"></i></button></div>';
+	mostrarModal('Guardar Estacionamiento', cuerpo, pie);
+	setCalle({lat: lat, lng: lng}, setModalCalle)
+}
+
+function useCurrentPos() {
+	var lat, lng;
+	if(app) {
+		navigator.geolocation.getCurrentPosition(function (position) {
+			marker.setMap(null);
+			ponerPinMapa(map, marker,position.coords.latitude, position.coords.longitude, 'Estacionaste acá!');
+			ponermodalPos(position.coords.latitude, position.coords.longitude)
+		}
+		, onErrorPos);
+	} else {
+		if(marker) marker.setMap(null);
+		ponerPinMapa(map, marker,-34.541946,-58.491228);
+		ponermodalPos(-34.541946,-58.491228);
+	}
+}
+
 function onPhotoFileSuccess(imageData) {
-  var smallImage = document.getElementById('smallImage');
-  smallImage.style.display = 'block';
-  smallImage.src = imageData;
+  //~ var smallImage = document.getElementById('smallImage');
+  //~ smallImage.style.display = 'block';
+  //~ smallImage.src = imageData;
   getCoordOfImg(imageData);
 }
 

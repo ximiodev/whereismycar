@@ -31,12 +31,6 @@
     <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2" />
     <plugin name="cordova-plugin-vibration" source="npm" spec="~2.1.0" />
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
-    <plugin name="cordova-plugin-googlemaps" spec="2.1.1">
-		<variable name="API_KEY_FOR_ANDROID" value="AIzaSyDq3easw3XnKS9m3nvsJdMs7UEZm5QhBV4" />
-		<variable name="API_KEY_FOR_IOS" value="YOUR_IOS_API_KEY_IS_HERE" />
-		<variable name="LOCATION_WHEN_IN_USE_DESCRIPTION" value="My custom when in use message" />
-		<variable name="LOCATION_ALWAYS_USAGE_DESCRIPTION" value="My custom always usage message" />
-	</plugin>
     <platform name="android">
         <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="www/res/icon/android/drawable-mdpi-icon.png" />

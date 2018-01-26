@@ -138,7 +138,7 @@ function ponermodalPos(lat,lng) {
 		ponerPinMapa(mapmini, markermini,lat, lng);
 	} );
 	var cuerpo = '<div id="captureMod"></div><div class="infoEsta"></div>';
-	var pie = '<div class="botonerPie"><button onclick="mostrarCajaTexto()"><i class="fa fa-pencil" aria-hidden="true"></i></button><button onclick="guardarCurrentEst()"><i class="fa fa-map-marker" aria-hidden="true"></i></button><button onclick="ponerFotoExtra()"><i class="fa fa-camera" aria-hidden="true"></i></button></div>';
+	var pie = '<div class="botonerPie"><button onclick="guardarCurrentEst()"></button></div>';
 	mostrarModal('Guardar Estacionamiento', cuerpo, pie);
 	setCalle({lat: lat, lng: lng}, setModalCalle)
 }
@@ -160,9 +160,9 @@ function useCurrentPos() {
 }
 
 function onPhotoFileSuccess(imageData) {
-  //~ var smallImage = document.getElementById('smallImage');
-  //~ smallImage.style.display = 'block';
-  //~ smallImage.src = imageData;
+  var smallImage = document.getElementById('smallImage');
+  smallImage.style.display = 'block';
+  smallImage.src = imageData;
   getCoordOfImg(imageData);
 }
 
