@@ -235,10 +235,10 @@ function findCar() {
 }
 
 function discardEst() {
-	lastPosition= {};
-	localStorage.setItem('ultimoest', JSON.stringify(lastPosition));
 	ocultarControlesBuscar();
 	mostrarControlesNuevo();
+	lastPosition= {};
+	localStorage.setItem('ultimoest', JSON.stringify(lastPosition));
 }
 
 function useCurrentPos() {
