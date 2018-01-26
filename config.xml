@@ -31,8 +31,6 @@
     <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2" />
     <plugin name="cordova-plugin-vibration" source="npm" spec="~2.1.0" />
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
-    <plugin name="ionic-mobile-versions" source="npm" />
-    <plugin name="khmap" source="npm" />
     <plugin name="cordova-plugin-googlemaps" spec="2.1.1">
 		<variable name="API_KEY_FOR_ANDROID" value="AIzaSyDq3easw3XnKS9m3nvsJdMs7UEZm5QhBV4" />
 		<variable name="API_KEY_FOR_IOS" value="YOUR_IOS_API_KEY_IS_HERE" />

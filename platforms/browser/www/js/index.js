@@ -77,6 +77,11 @@ function getCoordOfImg(img) {
 	});
 }
 
+function mostrarModal(titulo, cuerpo, pie) {
+	$('.modalTitulo').html(titulo);
+	$('.modalCuerpo').html(cuerpo);
+	$('.modalPie').html(pie);
+}
 
 
 function onDeviceReady() {
@@ -105,13 +110,22 @@ function useCurrentPos() {
 		, onErrorPos);
 	} else {
 		marker.setMap(null);
-		var myLatLng = {lat: position.coords.latitude, lng: position.coords.longitude};
+		var myLatLng = {lat: -34.541946, lng: -58.491228};
 		marker = new google.maps.Marker({
 			position: myLatLng,
 			map: map,
 			title: 'Estacionaste acá'
 		});
 	}
+	
+    $('.modalVentana').animate( {top: "150px"},500 );
+	var cuerpo = '<div id="captureMod"></div>';
+	var pie = '<div class="botonerPie"><button onclick="guardarCurrentEst()"></button></div>';
+	mostrarModal('Guardar Estacionamiento', cuerpo, pie)
+	html2canvas(document.querySelector("#map_canvas")).then(canvas => {
+		var centana = document.getElementById('captureMod');
+		centana.appendChild(canvas)
+	});
 }
 
 function onPhotoFileSuccess(imageData) {
