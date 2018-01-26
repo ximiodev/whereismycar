@@ -2,17 +2,17 @@ var map;
 var mapmini;
 var marker;
 var markermini;
-var lastPosition = {};
+var lastPosition;
 var pictureSource;   // picture source
-var geocoder;
-var directionsService;
-var directionsDisplay;
+var geocoder = new google.maps.Geocoder;
 var destinationType; // sets the format of returned value 
-
 var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
-
-if (app) {
+if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
 	document.addEventListener("deviceready",onDeviceReady,false);
+} else {
+    initMap(-34.541946, -58.491228);
+    
+    $('.modalVentana').animate( {top: "150px"},500 );
 }
 
 function ponerTexto(texto) {
@@ -21,7 +21,7 @@ function ponerTexto(texto) {
 }
 
 
-function initMapa(lat, lng) {
+function initMap(lat, lng) {
 	var myLatLng = {lat: lat, lng: lng};
 	map = new google.maps.Map(document.getElementById('map_canvas'), {
 	  center: myLatLng,
@@ -32,8 +32,6 @@ function initMapa(lat, lng) {
 	  zoom: 18
 	});
 	
-	directionsDisplay.setMap(map);
-	
 	marker = new google.maps.Marker({
 		position: myLatLng,
 		map: map,
@@ -42,9 +40,15 @@ function initMapa(lat, lng) {
 }
 
 var onSuccessPos = function(position) {
-   initMapa(position.coords.latitude, position.coords.longitude);
-	lastPosition['lat'] = position.coords.latitude;
-	lastPosition['lng'] = position.coords.longitude;
+    //~ ponerTexto('Latitude: '          + position.coords.latitude          + '\n' +
+          //~ 'Longitude: '         + position.coords.longitude         + '\n' +
+          //~ 'Altitude: '          + position.coords.altitude          + '\n' +
+          //~ 'Accuracy: '          + position.coords.accuracy          + '\n' +
+          //~ 'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+          //~ 'Heading: '           + position.coords.heading           + '\n' +
+          //~ 'Speed: '             + position.coords.speed             + '\n' +
+          //~ 'Timestamp: '         + new Date(position.timestamp)      + '\n');
+          initMap(position.coords.latitude, position.coords.longitude);
 };
 
 function getCoordOfImg(img) {
@@ -100,37 +104,9 @@ function setCalle(latlng, callback) {
 
 function setModalCalle(nombreCa) {
 	$('.infoEsta').html(nombreCa);
-	lastPosition['Calle'] = nombreCa;
 }
 
-function initMap() {
-	geocoder = new google.maps.Geocoder;
-	directionsService = new google.maps.DirectionsService;
-	directionsDisplay = new google.maps.DirectionsRenderer;
-}
-
-$(document).ready(function() {
-	initMap();	
-    initMapa(-34.541946, -58.491228);
-		
-	if(localStorage.getItem('ultimoest')!='') {
-		lastPosition = JSON.parse(localStorage.getItem('ultimoest'));
-	}
-	
-	var count = 0;
-	for (var k in lastPosition) {
-		if (lastPosition.hasOwnProperty(k)) {
-		   ++count;
-		}
-	}
-	if(count>0) {
-		mostrarControlesBuscar();
-	} else {
-		mostrarControlesNuevo();
-	}
-});
 function onDeviceReady() {
-	
 	pictureSource=navigator.camera.PictureSourceType;
 	destinationType=navigator.camera.DestinationType;
 	navigator.geolocation.getCurrentPosition(onSuccessPos, onErrorPos);
@@ -152,18 +128,8 @@ function ponerPinMapa(elmapa, elmarker,lat,lng, mensaje) {
 	});
 }
 
-function guardarNotasExtra() {
-    lastPosition['notasExtra'] = $('#textoextra').val();
-    $('.notasExtra').html(lastPosition['notasExtra']);
-    $('.ventanaparatexto').animate( {left: "-105%"},300);
-}
-
 function mostrarCajaTexto() {
-    $('.ventanaparatexto').animate( {left: "5%"},500);
-}
-
-function cerrarModal(quien) {
-   $(quien).animate( {top: "-120vh"},300);
+    $('.ventanaparatexto').animate( {left: "5%"},500, function () {
 }
 
 function ponermodalPos(lat,lng) {
@@ -176,78 +142,21 @@ function ponermodalPos(lat,lng) {
 		});
 		ponerPinMapa(mapmini, markermini,lat, lng);
 	} );
-	var cuerpo = '<div id="captureMod"></div><div class="infoEsta"></div><div class="notasExtra"></div><div class="fotoExtra"></div><div class="ventanaparatexto"><textarea id="textoextra"></textarea><buton class="butonGenerico" onclick="guardarNotasExtra()">Guardar</button></div>';
+	var cuerpo = '<div id="captureMod"></div><div class="infoEsta"></div><div class="ventanaparatexto"><textarea id="textoextra"></textarea><buton class="butonGenerico" onclick="guardarNotasExtra()">Guardar</button></div>';
 	var pie = '<div class="botonerPie"><button onclick="mostrarCajaTexto()"><i class="fa fa-pencil" aria-hidden="true"></i></button><button onclick="guardarCurrentEst()"><i class="fa fa-map-marker" aria-hidden="true"></i></button><button onclick="ponerFotoExtra()"><i class="fa fa-camera" aria-hidden="true"></i></button></div>';
-	mostrarModal('Guardar Estacionamiento <button onclick="cerrarModal(\'.modalVentana\')" class="butonClose"><i class="fa fa-times" aria-hidden="true"></i></button>', cuerpo, pie);
-	setCalle({lat: lat, lng: lng}, setModalCalle);
-	lastPosition['lat'] = lat;
-	lastPosition['lng'] = lng;
-}
-
-function guardarCurrentEst() {
-	localStorage.setItem('ultimoest', JSON.stringify(lastPosition));
-	ocultarControlesNuevo();
-	mostrarControlesBuscar();
-	cerrarModal('.modalVentana');
-}
-
-function ocultarControlesNuevo() {
-	$('#usePosition').animate( {bottom: "-250px"},500);
-	$('#takePhotoPos').animate( {bottom: "-100px"},500);
-}
-
-function mostrarControlesNuevo() {
-	directionsDisplay.setMap(null);
-	marker.setMap(null);
-	$('#usePosition').animate( {bottom: "20px"},500);
-	$('#takePhotoPos').animate( {bottom: "40px"},500);
-}
-
-function ocultarControlesBuscar() {
-	$('#findCar').animate( {bottom: "-250px"},500);
-	$('#discardEst').animate( {bottom: "-100px"},500);
-}
-
-function mostrarControlesBuscar() {
-	$('#findCar').animate( {bottom: "20px"},500);
-	$('#discardEst').animate( {bottom: "40px"},500);
-}
-
-function findCar() {
-	//~ directionsDisplay.setMap(null);
-	marker.setMap(null);
-	//~ directionsDisplay.setMap(map);
-	navigator.geolocation.getCurrentPosition(function (position) {
-		marker.setMap(null);
-		directionsService.route({
-		  origin: ''+position.coords.latitude+','+position.coords.longitude,
-		  destination: ''+lastPosition['lat']+','+lastPosition['lng'],
-		  optimizeWaypoints: true,
-		  travelMode: 'WALKING'
-		}, function(response, status) {
-		  if (status === 'OK') {
-			directionsDisplay.setDirections(response);
-		  } else {
-			alert('Directions request failed due to ' + status);
-		  }
-		});
-	});
-}
-
-function discardEst() {
-	lastPosition= {};
-	localStorage.setItem('ultimoest', JSON.stringify(lastPosition));
-	ocultarControlesBuscar();
-	mostrarControlesNuevo();
+	mostrarModal('Guardar Estacionamiento', cuerpo, pie);
+	setCalle({lat: lat, lng: lng}, setModalCalle)
 }
 
 function useCurrentPos() {
 	var lat, lng;
 	if(app) {
-		marker.setMap(null);
-		
-		ponerPinMapa(map, marker,lastPosition['lat'], lastPosition['lng'], 'Estacionaste acá!');
-		ponermodalPos(lastPosition['lat'], lastPosition['lng']);
+		navigator.geolocation.getCurrentPosition(function (position) {
+			marker.setMap(null);
+			ponerPinMapa(map, marker,position.coords.latitude, position.coords.longitude, 'Estacionaste acá!');
+			ponermodalPos(position.coords.latitude, position.coords.longitude)
+		}
+		, onErrorPos);
 	} else {
 		if(marker) marker.setMap(null);
 		ponerPinMapa(map, marker,-34.541946,-58.491228);
@@ -262,17 +171,8 @@ function onPhotoFileSuccess(imageData) {
   getCoordOfImg(imageData);
 }
 
-function ponerFotoExtra() {
-	navigator.camera.getPicture(ponerMiniFotoExtra, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI,correctOrientation: true });
-}
-
-function ponerMiniFotoExtra(imageData) {
-  $('.fotoExtra').html('<img src="'+imageData+'" class="imgSmallExtra">');
-  lastPosition['img'] = imageData;
-}
-
 function capturePhotoWithFile() {
-	navigator.camera.getPicture(onPhotoFileSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI,correctOrientation: true });
+	navigator.camera.getPicture(onPhotoFileSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
 }
 
 // onError Callback receives a PositionError object

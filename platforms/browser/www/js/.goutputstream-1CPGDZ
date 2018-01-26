@@ -2,17 +2,17 @@ var map;
 var mapmini;
 var marker;
 var markermini;
-var lastPosition = {};
+var lastPosition= {};
 var pictureSource;   // picture source
-var geocoder;
-var directionsService;
-var directionsDisplay;
+var geocoder = new google.maps.Geocoder;
 var destinationType; // sets the format of returned value 
-
 var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
-
 if (app) {
 	document.addEventListener("deviceready",onDeviceReady,false);
+} else {
+    initMap(-34.541946, -58.491228);
+    
+    $('.modalVentana').animate( {top: "150px"},500 );
 }
 
 function ponerTexto(texto) {
@@ -21,7 +21,7 @@ function ponerTexto(texto) {
 }
 
 
-function initMapa(lat, lng) {
+function initMap(lat, lng) {
 	var myLatLng = {lat: lat, lng: lng};
 	map = new google.maps.Map(document.getElementById('map_canvas'), {
 	  center: myLatLng,
@@ -32,8 +32,6 @@ function initMapa(lat, lng) {
 	  zoom: 18
 	});
 	
-	directionsDisplay.setMap(map);
-	
 	marker = new google.maps.Marker({
 		position: myLatLng,
 		map: map,
@@ -42,9 +40,7 @@ function initMapa(lat, lng) {
 }
 
 var onSuccessPos = function(position) {
-   initMapa(position.coords.latitude, position.coords.longitude);
-	lastPosition['lat'] = position.coords.latitude;
-	lastPosition['lng'] = position.coords.longitude;
+   initMap(position.coords.latitude, position.coords.longitude);
 };
 
 function getCoordOfImg(img) {
@@ -103,36 +99,10 @@ function setModalCalle(nombreCa) {
 	lastPosition['Calle'] = nombreCa;
 }
 
-function initMap() {
-	geocoder = new google.maps.Geocoder;
-	directionsService = new google.maps.DirectionsService;
-	directionsDisplay = new google.maps.DirectionsRenderer;
-}
-
-$(document).ready(function() {
-	initMap();	
-    initMapa(-34.541946, -58.491228);
-		
-	if(localStorage.getItem('ultimoest')!='') {
-		lastPosition = JSON.parse(localStorage.getItem('ultimoest'));
-	}
-	
-	var count = 0;
-	for (var k in lastPosition) {
-		if (lastPosition.hasOwnProperty(k)) {
-		   ++count;
-		}
-	}
-	if(count>0) {
-		mostrarControlesBuscar();
-	} else {
-		mostrarControlesNuevo();
-	}
-});
 function onDeviceReady() {
-	
 	pictureSource=navigator.camera.PictureSourceType;
 	destinationType=navigator.camera.DestinationType;
+	mostrarControlesNuevo();
 	navigator.geolocation.getCurrentPosition(onSuccessPos, onErrorPos);
 }
 
@@ -185,7 +155,7 @@ function ponermodalPos(lat,lng) {
 }
 
 function guardarCurrentEst() {
-	localStorage.setItem('ultimoest', JSON.stringify(lastPosition));
+	.setItem('ultimoest', JSON.stringify(lastPosition));
 	ocultarControlesNuevo();
 	mostrarControlesBuscar();
 	cerrarModal('.modalVentana');
@@ -197,8 +167,6 @@ function ocultarControlesNuevo() {
 }
 
 function mostrarControlesNuevo() {
-	directionsDisplay.setMap(null);
-	marker.setMap(null);
 	$('#usePosition').animate( {bottom: "20px"},500);
 	$('#takePhotoPos').animate( {bottom: "40px"},500);
 }
@@ -213,27 +181,6 @@ function mostrarControlesBuscar() {
 	$('#discardEst').animate( {bottom: "40px"},500);
 }
 
-function findCar() {
-	//~ directionsDisplay.setMap(null);
-	marker.setMap(null);
-	//~ directionsDisplay.setMap(map);
-	navigator.geolocation.getCurrentPosition(function (position) {
-		marker.setMap(null);
-		directionsService.route({
-		  origin: ''+position.coords.latitude+','+position.coords.longitude,
-		  destination: ''+lastPosition['lat']+','+lastPosition['lng'],
-		  optimizeWaypoints: true,
-		  travelMode: 'WALKING'
-		}, function(response, status) {
-		  if (status === 'OK') {
-			directionsDisplay.setDirections(response);
-		  } else {
-			alert('Directions request failed due to ' + status);
-		  }
-		});
-	});
-}
-
 function discardEst() {
 	lastPosition= {};
 	localStorage.setItem('ultimoest', JSON.stringify(lastPosition));
@@ -244,10 +191,12 @@ function discardEst() {
 function useCurrentPos() {
 	var lat, lng;
 	if(app) {
-		marker.setMap(null);
-		
-		ponerPinMapa(map, marker,lastPosition['lat'], lastPosition['lng'], 'Estacionaste acá!');
-		ponermodalPos(lastPosition['lat'], lastPosition['lng']);
+		navigator.geolocation.getCurrentPosition(function (position) {
+			marker.setMap(null);
+			ponerPinMapa(map, marker,position.coords.latitude, position.coords.longitude, 'Estacionaste acá!');
+			ponermodalPos(position.coords.latitude, position.coords.longitude)
+		}
+		, onErrorPos);
 	} else {
 		if(marker) marker.setMap(null);
 		ponerPinMapa(map, marker,-34.541946,-58.491228);

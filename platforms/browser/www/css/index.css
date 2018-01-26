@@ -61,12 +61,28 @@ body {
 	height: 150px;
 	border-radius: 50%;
 	background: #72D822;
-	bottom: 20px;
+	bottom: -250px;
 	left: 50%;
 	margin-left: -75px;
 	border: 0;
 	color: #FFF;
 	font-size: 80px;
+    box-sizing: unset;
+}
+
+#findCar {
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	background: #72D822;
+	bottom: -250px;
+	left: 50%;
+	margin-left: -75px;
+	border: 0;
+	color: #FFF;
+	font-size: 80px;
+    box-sizing: unset;
 }
 
 #takePhotoPos {
@@ -75,11 +91,26 @@ body {
 	height: 50px;
 	border-radius: 50%;
 	background: transparent;
-	bottom: 40px;
+	bottom: -100px;
 	right: 20px;
 	border: 0;
 	color: #72D822;
 	font-size: 35px;
+    box-sizing: unset;
+}
+
+#discardEst {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background: transparent;
+	bottom: -100px;
+	right: 20px;
+	border: 0;
+	color: #72D822;
+	font-size: 35px;
+    box-sizing: unset;
 }
 
 
@@ -117,11 +148,13 @@ body {
 .modalCuerpo {
 	width: 100%;
 	height: 280px;
+	position: relative;
+	overflow-y: auto;
 }
 
 #captureMod {
 	width: 100%;
-	height: 230px;
+	height: 180px;
 }
 
 .infoEsta {
@@ -129,6 +162,29 @@ body {
     font-size: 13px;
     color: #333;
     font-weight: bold;
+}
+
+.notasExtra {
+    padding: 5px;
+    font-size: 11px;
+    color: #999;
+}
+
+.fotoExtra {
+    padding: 5px;
+    font-size: 11px;
+    color: #999;
+}
+
+.butonClose {
+    color: #FFF;
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    background: none;
+    border: 0;
+	box-sizing: unset;
 }
 
 .botonerPie {
@@ -147,4 +203,43 @@ body {
 
 .botonerPie button:last-child {
     border-right: 0;
+}
+
+.ventanaparatexto {
+	width: 90%;
+	height: 180px;
+	position: absolute;
+	top: 20px;
+	left: -105%;
+	-webkit-box-shadow: 0px 0px 50px 5px rgba(128,128,128,1);
+	-moz-box-shadow: 0px 0px 50px 5px rgba(128,128,128,1);
+	box-shadow: 0px 0px 50px 5px rgba(128,128,128,1);
+}
+
+#textoextra {
+	width: 100%;
+	height: 120px;
+	resize: none;
+    margin: 0;
+    position: relative;
+    display: block;
+}
+
+.butonGenerico {
+	display: block;
+	width: 100%;
+	height: 60px;
+    border: 0;
+	position: relative;
+	margin: 0;
+    background: #72d822;
+    border-top: 1px solid #FFF;
+    color: #FFF;
+    text-align: center;
+    font-size: 24px;
+}
+
+.imgSmallExtra {
+	width: 60px;
+	height: auto;
 }

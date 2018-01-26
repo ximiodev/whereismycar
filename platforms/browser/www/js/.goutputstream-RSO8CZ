@@ -223,7 +223,7 @@ function findCar() {
 		  origin: ''+position.coords.latitude+','+position.coords.longitude,
 		  destination: ''+lastPosition['lat']+','+lastPosition['lng'],
 		  optimizeWaypoints: true,
-		  travelMode: 'WALKING'
+		  travelMode: 'DRIVING'
 		}, function(response, status) {
 		  if (status === 'OK') {
 			directionsDisplay.setDirections(response);

@@ -61,28 +61,12 @@ body {
 	height: 150px;
 	border-radius: 50%;
 	background: #72D822;
-	bottom: -250px;
+	bottom: 20px;
 	left: 50%;
 	margin-left: -75px;
 	border: 0;
 	color: #FFF;
 	font-size: 80px;
-    box-sizing: unset;
-}
-
-#findCar {
-	position: absolute;
-	width: 150px;
-	height: 150px;
-	border-radius: 50%;
-	background: #72D822;
-	bottom: -250px;
-	left: 50%;
-	margin-left: -75px;
-	border: 0;
-	color: #FFF;
-	font-size: 80px;
-    box-sizing: unset;
 }
 
 #takePhotoPos {
@@ -91,26 +75,11 @@ body {
 	height: 50px;
 	border-radius: 50%;
 	background: transparent;
-	bottom: -100px;
+	bottom: 40px;
 	right: 20px;
 	border: 0;
 	color: #72D822;
 	font-size: 35px;
-    box-sizing: unset;
-}
-
-#discardEst {
-	position: absolute;
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	background: transparent;
-	bottom: -100px;
-	right: 20px;
-	border: 0;
-	color: #72D822;
-	font-size: 35px;
-    box-sizing: unset;
 }
 
 
@@ -174,17 +143,6 @@ body {
     padding: 5px;
     font-size: 11px;
     color: #999;
-}
-
-.butonClose {
-    color: #FFF;
-    font-size: 12px;
-    position: absolute;
-    right: 10px;
-    top: 5px;
-    background: none;
-    border: 0;
-	box-sizing: unset;
 }
 
 .botonerPie {
