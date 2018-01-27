@@ -113,9 +113,9 @@ $(document).ready(function() {
 	initMap();	
     initMapa(-34.541946, -58.491228);
 		
-	if(localStorage.getItem('ultimoest')!='') {
-		lastPosition = JSON.parse(localStorage.getItem('ultimoest'));
-	}
+	//~ if(localStorage.getItem('ultimoest')!='') {
+		//~ lastPosition = JSON.parse(localStorage.getItem('ultimoest'));
+	//~ }
 	
 	var count = 0;
 	for (var k in lastPosition) {
@@ -185,7 +185,7 @@ function ponermodalPos(lat,lng) {
 }
 
 function guardarCurrentEst() {
-	localStorage.setItem('ultimoest', JSON.stringify(lastPosition));
+	//~ localStorage.setItem('ultimoest', JSON.stringify(lastPosition));
 	ocultarControlesNuevo();
 	mostrarControlesBuscar();
 	cerrarModal('.modalVentana');
@@ -238,7 +238,7 @@ function discardEst() {
 	ocultarControlesBuscar();
 	mostrarControlesNuevo();
 	lastPosition= {};
-	localStorage.setItem('ultimoest', JSON.stringify(lastPosition));
+	//~ localStorage.setItem('ultimoest', JSON.stringify(lastPosition));
 }
 
 function useCurrentPos() {
