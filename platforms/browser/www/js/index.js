@@ -15,11 +15,46 @@ if (app) {
 	document.addEventListener("deviceready",onDeviceReady,false);
 }
 
-function ponerTexto(texto) {
-	var parentElement = document.getElementById('contenido');
-	parentElement.innerHTML = texto;
+
+function onDeviceReady() {
+	pictureSource=navigator.camera.PictureSourceType;
+	destinationType=navigator.camera.DestinationType;
+	navigator.geolocation.getCurrentPosition(onSuccessPos, onErrorPos);
+	initMap();
 }
 
+
+var onSuccessPos = function(position) {
+	initMapa(position.coords.latitude, position.coords.longitude);
+	lastPosition['lat'] = position.coords.latitude;
+	lastPosition['lng'] = position.coords.longitude;
+};
+
+var inicioSinLoc = function() {
+    initMapa(-34.541946, -58.491228);
+		
+	//~ if(localStorage.getItem('ultimoest')!='') {
+		//~ lastPosition = JSON.parse(localStorage.getItem('ultimoest'));
+	//~ } {
+};
+
+function initMap() {
+	geocoder = new google.maps.Geocoder;
+	directionsService = new google.maps.DirectionsService;
+	directionsDisplay = new google.maps.DirectionsRenderer;
+}
+
+function placeMarker(location) {
+	if(marker) marker.setMap(null);
+	
+	lastPosition['lat'] = location.lat;
+	lastPosition['lng'] = location.lng;
+    marker = new google.maps.Marker({
+        position: location, 
+        map: map,
+		title: 'Estacionaste acá!'
+    });
+}
 
 function initMapa(lat, lng) {
 	var myLatLng = {lat: lat, lng: lng};
@@ -32,6 +67,9 @@ function initMapa(lat, lng) {
 	  zoom: 18
 	});
 	
+	google.maps.event.addListener(map, 'click', function(event) {
+	   placeMarker(event.latLng);
+	});
 	directionsDisplay.setMap(map);
 	
 	marker = new google.maps.Marker({
@@ -39,16 +77,21 @@ function initMapa(lat, lng) {
 		map: map,
 		title: 'Estacionaste acá!'
 	});
+	var count = 0;
+	for (var k in lastPosition) {
+		if (lastPosition.hasOwnProperty(k)) {
+		   ++count;
+		}
+	}
+	if(count>0) {
+		mostrarControlesBuscar();
+	} else {
+		mostrarControlesNuevo();
+	}
 }
 
-var onSuccessPos = function(position) {
-   initMapa(position.coords.latitude, position.coords.longitude);
-	lastPosition['lat'] = position.coords.latitude;
-	lastPosition['lng'] = position.coords.longitude;
-};
-
 function getCoordOfImg(img) {
-	
+	ponerMiniFotoExtra(img);
 	window.resolveLocalFileSystemURL(img,
 		function(entry) {
 			entry.file(function(file) {
@@ -63,6 +106,9 @@ function getCoordOfImg(img) {
 					lon = (lon[0] + lon[1]/60 + lon[2]/3600) * (lonRef == "W" ? -1 : 1); 
 					marker.setMap(null);
 					var myLatLng = {lat: lat, lng: lon};
+					ponermodalPos(lat,lng);
+					lastPosition['lat'] = lat;
+					lastPosition['lng'] = lng;
 					marker = new google.maps.Marker({
 						position: myLatLng,
 						map: map,
@@ -101,39 +147,6 @@ function setCalle(latlng, callback) {
 function setModalCalle(nombreCa) {
 	$('.infoEsta').html(nombreCa);
 	lastPosition['Calle'] = nombreCa;
-}
-
-function initMap() {
-	geocoder = new google.maps.Geocoder;
-	directionsService = new google.maps.DirectionsService;
-	directionsDisplay = new google.maps.DirectionsRenderer;
-}
-
-$(document).ready(function() {
-	initMap();	
-    initMapa(-34.541946, -58.491228);
-		
-	//~ if(localStorage.getItem('ultimoest')!='') {
-		//~ lastPosition = JSON.parse(localStorage.getItem('ultimoest'));
-	//~ }
-	
-	var count = 0;
-	for (var k in lastPosition) {
-		if (lastPosition.hasOwnProperty(k)) {
-		   ++count;
-		}
-	}
-	if(count>0) {
-		mostrarControlesBuscar();
-	} else {
-		mostrarControlesNuevo();
-	}
-});
-function onDeviceReady() {
-	
-	pictureSource=navigator.camera.PictureSourceType;
-	destinationType=navigator.camera.DestinationType;
-	navigator.geolocation.getCurrentPosition(onSuccessPos, onErrorPos);
 }
 
 function onPhotoDataSuccess(imageData) {
@@ -284,4 +297,10 @@ function onErrorPos(error) {
 
 function onFail(message) {
   alert('Failed because: ' + message);
+}
+
+
+function ponerTexto(texto) {
+	var parentElement = document.getElementById('contenido');
+	parentElement.innerHTML = texto;
 }

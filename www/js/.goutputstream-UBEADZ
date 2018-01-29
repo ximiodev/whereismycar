@@ -20,7 +20,18 @@ function onDeviceReady() {
 	pictureSource=navigator.camera.PictureSourceType;
 	destinationType=navigator.camera.DestinationType;
 	navigator.geolocation.getCurrentPosition(onSuccessPos, onErrorPos);
-	initMap();
+	
+	var count = 0;
+	for (var k in lastPosition) {
+		if (lastPosition.hasOwnProperty(k)) {
+		   ++count;
+		}
+	}
+	if(count>0) {
+		mostrarControlesBuscar();
+	} else {
+		mostrarControlesNuevo();
+	}
 }
 
 
@@ -28,6 +39,7 @@ var onSuccessPos = function(position) {
 	initMapa(position.coords.latitude, position.coords.longitude);
 	lastPosition['lat'] = position.coords.latitude;
 	lastPosition['lng'] = position.coords.longitude;
+	initMap();	
 };
 
 var inicioSinLoc = function() {
@@ -77,22 +89,10 @@ function initMapa(lat, lng) {
 		map: map,
 		title: 'Estacionaste acá!'
 	});
-	
-	var count = 0;
-	for (var k in lastPosition) {
-		if (lastPosition.hasOwnProperty(k)) {
-		   ++count;
-		}
-	}
-	if(count>0) {
-		mostrarControlesBuscar();
-	} else {
-		mostrarControlesNuevo();
-	}
 }
 
 function getCoordOfImg(img) {
-	ponerMiniFotoExtra(img);
+	
 	window.resolveLocalFileSystemURL(img,
 		function(entry) {
 			entry.file(function(file) {
@@ -107,7 +107,7 @@ function getCoordOfImg(img) {
 					lon = (lon[0] + lon[1]/60 + lon[2]/3600) * (lonRef == "W" ? -1 : 1); 
 					marker.setMap(null);
 					var myLatLng = {lat: lat, lng: lon};
-					ponermodalPos(lat,lng);
+					
 					lastPosition['lat'] = lat;
 					lastPosition['lng'] = lng;
 					marker = new google.maps.Marker({
