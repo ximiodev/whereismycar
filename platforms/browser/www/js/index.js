@@ -19,6 +19,11 @@ if (app) {
 function onDeviceReady() {
 	pictureSource=navigator.camera.PictureSourceType;
 	destinationType=navigator.camera.DestinationType;
+	
+	if(window.localStorage.getItem('ultimoest')!='' && window.localStorage.getItem('ultimoest')!=null) {
+		lastPosition = JSON.parse(window.localStorage.getItem('ultimoest'));
+	}
+	
 	navigator.geolocation.getCurrentPosition(onSuccessPos, onErrorPos);
 	initMap();
 }
@@ -33,9 +38,9 @@ var onSuccessPos = function(position) {
 var inicioSinLoc = function() {
     initMapa(-34.541946, -58.491228);
 		
-	//~ if(localStorage.getItem('ultimoest')!='') {
-		//~ lastPosition = JSON.parse(localStorage.getItem('ultimoest'));
-	//~ } {
+	if(window.localStorage.getItem('ultimoest')!='' && window.localStorage.getItem('ultimoest')!=null) {
+		lastPosition = JSON.parse(window.localStorage.getItem('ultimoest'));
+	}
 };
 
 function initMap() {
@@ -77,6 +82,8 @@ function initMapa(lat, lng) {
 		map: map,
 		title: 'Estacionaste acá!'
 	});
+	
+	
 	var count = 0;
 	for (var k in lastPosition) {
 		if (lastPosition.hasOwnProperty(k)) {
@@ -91,7 +98,7 @@ function initMapa(lat, lng) {
 }
 
 function getCoordOfImg(img) {
-	ponerMiniFotoExtra(img);
+	lastPosition['img'] = img;
 	window.resolveLocalFileSystemURL(img,
 		function(entry) {
 			entry.file(function(file) {
@@ -104,16 +111,22 @@ function getCoordOfImg(img) {
 					var lonRef = EXIF.getTag(this, "GPSLongitudeRef") || "W";  
 					lat = (lat[0] + lat[1]/60 + lat[2]/3600) * (latRef == "N" ? 1 : -1);  
 					lon = (lon[0] + lon[1]/60 + lon[2]/3600) * (lonRef == "W" ? -1 : 1); 
-					marker.setMap(null);
-					var myLatLng = {lat: lat, lng: lon};
-					ponermodalPos(lat,lng);
-					lastPosition['lat'] = lat;
-					lastPosition['lng'] = lng;
-					marker = new google.maps.Marker({
-						position: myLatLng,
-						map: map,
-						title: 'Estacionaste acá!'
-					});
+					
+					try {
+						if(marker) marker.setMap(null);
+					
+						var myLatLng = {lat: lat, lng: lon};
+						lastPosition['lat'] = lat;
+						lastPosition['lng'] = lon;
+						ponermodalPos(lat,lon);
+						marker = new google.maps.Marker({
+							position: myLatLng,
+							map: map,
+							title: 'Estacionaste acá!'
+						});
+					} catch(e) {
+						alert(e.message);
+					}
 				});
 			}, onFail);
 		},
@@ -180,7 +193,11 @@ function cerrarModal(quien) {
 }
 
 function ponermodalPos(lat,lng) {
+	var cuerpo = '<div id="captureMod"></div><div class="infoEsta"></div><div class="notasExtra"></div><div class="fotoExtra"></div><div class="ventanaparatexto"><textarea id="textoextra"></textarea><buton class="butonGenerico" onclick="guardarNotasExtra()">Guardar</button></div>';
+	var pie = '<div class="botonerPie"><button onclick="mostrarCajaTexto()"><i class="fa fa-pencil" aria-hidden="true"></i></button><button onclick="guardarCurrentEst()"><i class="fa fa-map-marker" aria-hidden="true"></i></button><button onclick="ponerFotoExtra()"><i class="fa fa-camera" aria-hidden="true"></i></button></div>';
+	mostrarModal('Guardar Estacionamiento <button onclick="cerrarModal(\'.modalVentana\')" class="butonClose"><i class="fa fa-times" aria-hidden="true"></i></button>', cuerpo, pie);
     $('.modalVentana').animate( {top: "150px"},500, function () {
+		$('#captureMod').html('');
 		mapmini = new google.maps.Map(document.getElementById('captureMod'), {
 		  center: {lat: lat, lng: lng},
 		  disableDefaultUI: true,
@@ -189,16 +206,14 @@ function ponermodalPos(lat,lng) {
 		});
 		ponerPinMapa(mapmini, markermini,lat, lng);
 	} );
-	var cuerpo = '<div id="captureMod"></div><div class="infoEsta"></div><div class="notasExtra"></div><div class="fotoExtra"></div><div class="ventanaparatexto"><textarea id="textoextra"></textarea><buton class="butonGenerico" onclick="guardarNotasExtra()">Guardar</button></div>';
-	var pie = '<div class="botonerPie"><button onclick="mostrarCajaTexto()"><i class="fa fa-pencil" aria-hidden="true"></i></button><button onclick="guardarCurrentEst()"><i class="fa fa-map-marker" aria-hidden="true"></i></button><button onclick="ponerFotoExtra()"><i class="fa fa-camera" aria-hidden="true"></i></button></div>';
-	mostrarModal('Guardar Estacionamiento <button onclick="cerrarModal(\'.modalVentana\')" class="butonClose"><i class="fa fa-times" aria-hidden="true"></i></button>', cuerpo, pie);
 	setCalle({lat: lat, lng: lng}, setModalCalle);
+	if(lastPosition['img']) ponerMiniFotoExtra(lastPosition['img']);
 	lastPosition['lat'] = lat;
 	lastPosition['lng'] = lng;
 }
 
 function guardarCurrentEst() {
-	//~ localStorage.setItem('ultimoest', JSON.stringify(lastPosition));
+	window.localStorage.setItem('ultimoest', JSON.stringify(lastPosition));
 	ocultarControlesNuevo();
 	mostrarControlesBuscar();
 	cerrarModal('.modalVentana');
@@ -210,8 +225,6 @@ function ocultarControlesNuevo() {
 }
 
 function mostrarControlesNuevo() {
-	directionsDisplay.setMap(null);
-	marker.setMap(null);
 	$('#usePosition').animate( {bottom: "20px"},500);
 	$('#takePhotoPos').animate( {bottom: "40px"},500);
 }
@@ -228,10 +241,11 @@ function mostrarControlesBuscar() {
 
 function findCar() {
 	//~ directionsDisplay.setMap(null);
-	marker.setMap(null);
+	if(marker) marker.setMap(null);
 	//~ directionsDisplay.setMap(map);
+	directionsDisplay.setMap(map);
 	navigator.geolocation.getCurrentPosition(function (position) {
-		marker.setMap(null);
+		if(marker) marker.setMap(null);
 		directionsService.route({
 		  origin: ''+position.coords.latitude+','+position.coords.longitude,
 		  destination: ''+lastPosition['lat']+','+lastPosition['lng'],
@@ -239,7 +253,12 @@ function findCar() {
 		  travelMode: 'WALKING'
 		}, function(response, status) {
 		  if (status === 'OK') {
-			directionsDisplay.setDirections(response);
+			  
+			try {
+				directionsDisplay.setDirections(response);
+			} catch(e) {
+				alert(e.message);
+			}
 		  } else {
 			alert('Directions request failed due to ' + status);
 		  }
@@ -249,9 +268,12 @@ function findCar() {
 
 function discardEst() {
 	ocultarControlesBuscar();
+	directionsDisplay.setMap(null);
+	marker.setMap(null);
 	mostrarControlesNuevo();
 	lastPosition= {};
-	//~ localStorage.setItem('ultimoest', JSON.stringify(lastPosition));
+	navigator.geolocation.getCurrentPosition(onSuccessPos, onErrorPos);
+	window.localStorage.setItem('ultimoest', JSON.stringify(lastPosition));
 }
 
 function useCurrentPos() {

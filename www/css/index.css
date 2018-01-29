@@ -67,7 +67,8 @@ body {
 	border: 0;
 	color: #FFF;
 	font-size: 80px;
-    box-sizing: unset;
+    box-sizing: unset!important;
+    outline: none!important;
 }
 
 #findCar {
@@ -82,7 +83,8 @@ body {
 	border: 0;
 	color: #FFF;
 	font-size: 80px;
-    box-sizing: unset;
+    box-sizing: unset!important;
+    outline: none!important;
 }
 
 #takePhotoPos {
@@ -96,7 +98,8 @@ body {
 	border: 0;
 	color: #72D822;
 	font-size: 35px;
-    box-sizing: unset;
+    box-sizing: unset!important;
+    outline: none!important;
 }
 
 #discardEst {
@@ -110,7 +113,8 @@ body {
 	border: 0;
 	color: #72D822;
 	font-size: 35px;
-    box-sizing: unset;
+    box-sizing: unset!important;
+    outline: none!important;
 }
 
 
@@ -184,7 +188,8 @@ body {
     top: 5px;
     background: none;
     border: 0;
-	box-sizing: unset;
+    box-sizing: unset!important;
+    outline: none!important;
 }
 
 .botonerPie {
