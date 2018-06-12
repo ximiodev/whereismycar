@@ -28,6 +28,12 @@ function onDeviceReady() {
 	} catch(e) {
 		alert(e);
 	}
+	try {
+		admob.initAdmob("ca-app-pub-4910383278905451/9199602365","ca-app-pub-4910383278905451~8517076084");
+		admob.showBanner(admob.BannerSize.BANNER,admob.Position.TOP_APP);
+	} catch(e) {
+		alert(e);
+	}
 	connectionStatus = navigator.onLine;
 	
 	if(window.localStorage.getItem('ultimoest')!='' && window.localStorage.getItem('ultimoest')!=null) {
