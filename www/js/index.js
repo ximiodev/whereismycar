@@ -390,6 +390,10 @@ function iniciarConFotoCo() {
 	navigator.camera.getPicture(onSacaFotoCo, onFailSincoFo, { quality: 50, destinationType: Camera.DestinationType.FILE_URI,correctOrientation: true });
 }
 
+function cancelarSinco() {
+	sacarModalVent();
+}
+
 function guardarCo() {
 	lastPosition['tipo'] = 'C';
 	lastPosition['osbervaciones'] = $('#osbervacionesC').val();
