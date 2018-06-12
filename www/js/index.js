@@ -26,6 +26,7 @@ function onDeviceReady() {
 		pictureSource=navigator.camera.PictureSourceType;
 		destinationType=navigator.camera.DestinationType;
 	} catch(e) {
+		alert(e);
 	}
 	connectionStatus = navigator.onLine;
 	
