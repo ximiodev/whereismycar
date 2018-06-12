@@ -190,5 +190,53 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "phonegap-plugin-media-stream": {
+        "source": {
+            "type": "registry",
+            "id": "phonegap-plugin-media-stream"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "es6-promise-plugin": {
+        "source": {
+            "type": "registry",
+            "id": "es6-promise-plugin"
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "phonegap-plugin-media-recorder": {
+        "source": {
+            "type": "registry",
+            "id": "phonegap-plugin-media-recorder"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "nl.x-services.plugins.videocaptureplus": {
+        "source": {
+            "type": "registry",
+            "id": "video-capture-plus-phonegap-plugin"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova.plugins.diagnostic": {
+        "source": {
+            "type": "registry",
+            "id": "cordova.plugins.diagnostic"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-request-location-accuracy": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-request-location-accuracy@~2.2.3"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

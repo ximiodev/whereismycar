@@ -72,6 +72,21 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.whereismycar"
+        },
+        "phonegap-plugin-media-stream": {
+            "PACKAGE_NAME": "com.whereismycar"
+        },
+        "phonegap-plugin-media-recorder": {
+            "PACKAGE_NAME": "com.whereismycar"
+        },
+        "nl.x-services.plugins.videocaptureplus": {
+            "PACKAGE_NAME": "com.whereismycar"
+        },
+        "cordova.plugins.diagnostic": {
+            "PACKAGE_NAME": "com.whereismycar"
+        },
+        "cordova-plugin-request-location-accuracy": {
+            "PACKAGE_NAME": "com.whereismycar"
         }
     },
     "dependent_plugins": {
@@ -79,6 +94,9 @@
             "PACKAGE_NAME": "com.whereismycar"
         },
         "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.whereismycar"
+        },
+        "es6-promise-plugin": {
             "PACKAGE_NAME": "com.whereismycar"
         }
     }

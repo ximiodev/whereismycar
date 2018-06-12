@@ -811,6 +811,20 @@ module.exports = [
             "cordova.plugins.Keyboard"
         ],
         "runs": true
+    },
+    {
+        "file": "plugins/es6-promise-plugin/www/promise.js",
+        "id": "es6-promise-plugin.Promise",
+        "pluginId": "es6-promise-plugin",
+        "runs": true
+    },
+    {
+        "file": "plugins/nl.x-services.plugins.videocaptureplus/www/VideoCapturePlus.js",
+        "id": "nl.x-services.plugins.videocaptureplus.VideoCapturePlus",
+        "pluginId": "nl.x-services.plugins.videocaptureplus",
+        "clobbers": [
+            "window.plugins.videocaptureplus"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -839,7 +853,13 @@ module.exports.metadata =
     "cordova-plugin-statusbar": "2.1.3",
     "cordova-plugin-vibration": "2.1.6",
     "cordova-plugin-whitelist": "1.2.2",
-    "ionic-plugin-keyboard": "2.2.1"
+    "ionic-plugin-keyboard": "2.2.1",
+    "es6-promise-plugin": "4.2.2",
+    "phonegap-plugin-media-stream": "1.2.1",
+    "phonegap-plugin-media-recorder": "1.1.0",
+    "nl.x-services.plugins.videocaptureplus": "1.3.0",
+    "cordova.plugins.diagnostic": "4.0.8",
+    "cordova-plugin-request-location-accuracy": "2.2.3"
 }
 // BOTTOM OF METADATA
 });

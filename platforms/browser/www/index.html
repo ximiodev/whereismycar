@@ -20,28 +20,87 @@
 
 <body id="principal">
     <div class="container elcontenido">
-		<div class="row">
-			<div class="col-md-12 barra">
-				<button type="button" class="btnMenu"><i class="fa fa-bars" aria-hidden="true"></i></button>
-				<div class="titleApp">WIMC!</div>
-			</div>
-		</div>
-		<div class="row">
+		<div class="row alt100">
 			<div class="col-md-12 mapCont">
-				<div id="map_canvas"></div>
-				<button id="usePosition" onclick="useCurrentPos();"><i class="fa fa-car" aria-hidden="true"></i></button>
-				<button id="takePhotoPos" onclick="capturePhotoWithFile();"><i class="fa fa-camera" aria-hidden="true"></i></button>
-				<button id="discardEst" onclick="discardEst();"><i class="fa fa-times" aria-hidden="true"></i></button>
-				<button id="findCar" onclick="findCar();"><i class="fa fa-location-arrow" aria-hidden="true"></i></button>
-				<div id="contenido"></div>
-				<img style="display:none;width:60px;height:auto;" id="smallImage" src="" />
+				<div id="pantallaP" class="alt100 pantallaApp">
+					<div class="barra barra2">
+						<button class="btnBarra" onclick="estConcon();"><i class="fa fa-plus-circle"></i></button>
+						<button class="btnBarra" onclick="encConcon();"><i class="fa fa-search"></i></button>
+						<button class="btnBarra" onclick="verConfig();"><i class="fa fa-cogs"></i></button>
+					</div>
+				</div>
+				<div id="pantallaConMapa" class="alt100 pantallaApp hidden">
+					<div class="titContModal">Estacionamiento guardado</div>
+					<div class="searchinfo">
+						<div id="map_canvas"></div>
+						<div class="infoEst">
+							<div class="formNuevoEstaSC">
+								<div class="porcampo">
+									<div class="titCampo">Notas</div>
+									<div class="txtCampo" id="osbervacionesSC_c"></div>
+								</div>
+							</div>
+							<div class="fotoExtraSinco_c"></div>
+						</div>
+					</div>
+					<div class="barra">
+						<button class="btnBarra btnBack" onclick="backMenu();"></button>
+						<button class="btnBarra btnBuscar" onclick="encConcon();"></button>
+						<button class="btnBarra btnTrash" onclick="borrarEstacionamiento();"></button>
+					</div>
+				</div>
+				<div id="pantalalSinCon" class="alt100 pantallaApp hidden">
+					<div class="modalBlanco">
+						<div class="iconApp"></div>
+						<div class="textBold">Ups! no hay conexión</div>
+						<button class="btnGen btnContinuarSinco" onclick="comenzarSinCon();">Continuar</button>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="modalVentana">
-			<div class="modalTitulo"></div>
-			<div class="modalCuerpo">
+		<div class="modalVent modalNuevoEstaCo">
+			<div class="barraModalCon">
+				<div class="btnVolver" onclick="sacarModalVent();"></div>
+				<div class="tituloModal">ESTACIONAR</div>
 			</div>
-			<div class="modalPie"></div>
+			<div class="contenido">
+				<div class="titContModal">Completá los datos</div>
+				<div class="contEsta">
+					<div class="minimapa"><div id="captureMod"></div></div>
+					<div class="formNuevoEstaSC">
+						<div class="porcampo">
+							<div class="titCampo">Notas</div>
+							<div class="elCampo">
+								<textarea class="inputForm" name="osbervacionesC" id="osbervacionesC"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="fotoExtraCo">
+					</div>
+				</div>
+				<div class="barraGuardar">
+					<button class="btnGen btnGen2" onclick="guardarCo();">Guardar</button>
+					<button class="btnGen btnGen2" onclick="sacarFotoCo();"><img src="images/iconcam.png"></button>
+					<button class="btnGenG btnGen2" onclick="cancelarSinco();">Cancelar</button>
+				</div>
+			</div>
+		</div>
+		<div class="modalVent modalHist">
+			<div class="barraModalCon">
+				<div class="btnVolver" onclick="sacarModalVent();"></div>
+				<div class="tituloModal">HISTORIAL</div>
+			</div>
+			<div class="contenido">
+			</div>
+			
+		</div>
+		<div class="modalVent modalConfig">
+			<div class="barraModalCon">
+				<div class="btnVolver" onclick="sacarModalVent();"></div>
+				<div class="tituloModal">CONFIGURACIÓN</div>
+			</div>
+			<div class="contenido">
+			</div>
 		</div>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
@@ -51,7 +110,8 @@
 	<script type="text/javascript" src="js/jquery.mobile-1.3.2.min.js"></script>
 -->
 	<script type="text/javascript" src="js/bootstrap.js"></script>
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDMZlT-ZRym0UiiE1fJiDP-NDsDbDLuHuw&sensor=fslse"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDMZlT-ZRym0UiiE1fJiDP-NDsDbDLuHuw"></script>
+    <script type="text/javascript" src="js/interact.min.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
     </script>
