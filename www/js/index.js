@@ -586,7 +586,7 @@ function onSacaFotoCo(img) {
 
 function checkAvailability(){
     cordova.plugins.diagnostic.isGpsLocationAvailable(function(available){
-        console.log("GPS location is " + (available ? "available" : "not available"));
+        alerta("GPS location is " + (available ? "available" : "not available"));
         if(!available){
            checkAuthorization();
         }else{
@@ -693,11 +693,17 @@ function puntuarApp() {
 					window.open('https://itunes.apple.comar/app/gran-hotel-verona/id1332669884?mt=8'); // or itms://
 					cordova.plugins.market.open('gran-hotel-verona');
 				} else if (device_android) {
-					window.open('https://details?id=com.whereismycar');
-					cordova.plugins.market.open('com.whereismycar');
+					cordova.plugins.market.open('com.ar.granhotelverona');
+					window.open('https://details?id=com.ar.granhotelverona');
 				}
-
-				this.core.rate_app = false;
+				cordova.plugins.market.open('com.ar.granhotelverona', {
+				  success: function() {
+					alerta('si');
+				  },
+				  error: function() {
+					alerta('no');
+				  }
+				})
 			} else if (button == '2') { // Later
 				//~ this.core.rate_app_counter = 0;
 			} else if (button == '3') { // No
