@@ -841,6 +841,14 @@ module.exports = [
         "clobbers": [
             "window.plugins.socialsharing"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-market/www/market.js",
+        "id": "cordova-plugin-market.Market",
+        "pluginId": "cordova-plugin-market",
+        "clobbers": [
+            "cordova.plugins.market"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -877,7 +885,8 @@ module.exports.metadata =
     "cordova.plugins.diagnostic": "4.0.8",
     "cordova-plugin-request-location-accuracy": "2.2.3",
     "com-admob-plugin": "5.5.0",
-    "cordova-plugin-x-socialsharing": "5.4.1"
+    "cordova-plugin-x-socialsharing": "5.4.1",
+    "cordova-plugin-market": "1.2.0"
 }
 // BOTTOM OF METADATA
 });

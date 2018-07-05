@@ -372,6 +372,7 @@ function backMenu() {
 /* con coneccion*/
 
 function estConcon () {
+	$('.modalVent').css({'min-height':$(window).height()}); 
 	ponerModalsB("modalNuevoEstaCo");
 
 	$('.fotoExtraCo').addClass('hidden');
@@ -689,11 +690,11 @@ function puntuarApp() {
 			// yes = 1, no = 2, later = 3
 			if (button == '1') {    // Rate Now
 				if (device_ios) {
-					//~ window.open('https://itunes.apple.comar/app/gran-hotel-verona/id1332669884?mt=8'); // or itms://
+					window.open('https://itunes.apple.comar/app/gran-hotel-verona/id1332669884?mt=8'); // or itms://
 					cordova.plugins.market.open('gran-hotel-verona');
 				} else if (device_android) {
+					window.open('https://details?id=com.whereismycar');
 					cordova.plugins.market.open('com.whereismycar');
-					//~ window.open('https://details?id=com.whereismycar');
 				}
 
 				this.core.rate_app = false;
@@ -723,5 +724,4 @@ function ponerPreguntarRes(pr,re,nu) {
 	return blohtml;
 }
 $(document).ready(function() {
-	$('.modalVent').css({'min-height':$(window).height()}); 
 });

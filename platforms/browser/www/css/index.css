@@ -709,7 +709,7 @@ ul.listcomun li:first-child {
     border-top: 1px solid #00aafc;
 }
 
-a.btnBorrarHistorial {
+button.btnBorrarHistorial {
     position: absolute;
     bottom: 0px;
     background: #15b1fd;
