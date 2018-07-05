@@ -87,6 +87,12 @@
         },
         "cordova-plugin-request-location-accuracy": {
             "PACKAGE_NAME": "com.whereismycar"
+        },
+        "com-admob-plugin": {
+            "PACKAGE_NAME": "com.whereismycar"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.whereismycar"
         }
     },
     "dependent_plugins": {

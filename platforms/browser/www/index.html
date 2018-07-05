@@ -14,6 +14,7 @@
 -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/flag-icon.min.css">
 	<link rel="stylesheet" href="css/index.css">
     <title>Where Is My Car</title>
 </head>
@@ -23,37 +24,37 @@
 		<div class="row alt100">
 			<div class="col-md-12 mapCont">
 				<div id="pantallaP" class="alt100 pantallaApp">
-					<div class="barra barra2">
-						<button class="btnBarra" onclick="estConcon();"><i class="fa fa-plus-circle"></i></button>
-						<button class="btnBarra" onclick="encConcon();"><i class="fa fa-search"></i></button>
-						<button class="btnBarra" onclick="verConfig();"><i class="fa fa-cogs"></i></button>
+					<div class="barraGuardar">
+						<button class="btnGen btnGen2" onclick="estConcon();"><img src="images/marcar.svg"><span data-textlang="t21">Marcar</span></button>
+						<button class="btnGen btnGen2 btnGen34" onclick="encConcon();"><img src="images/buscar.svg"><span data-textlang="t22">Buscar</span></button>
+						<button class="btnGen btnGen2" onclick="verConfig();"><img src="images/configurar.svg"><span data-textlang="t23">Configuración</span></button>
 					</div>
 				</div>
 				<div id="pantallaConMapa" class="alt100 pantallaApp hidden">
-					<div class="titContModal">Estacionamiento guardado</div>
+					<div class="titContModal" data-textlang="t1">Estacionamiento guardado</div>
 					<div class="searchinfo">
 						<div id="map_canvas"></div>
 						<div class="infoEst">
 							<div class="formNuevoEstaSC">
 								<div class="porcampo">
-									<div class="titCampo">Notas</div>
+									<div class="titCampo" data-textlang="t2">Notas</div>
 									<div class="txtCampo" id="osbervacionesSC_c"></div>
 								</div>
+								<div class="fotoExtraSinco_c" onclick="mostrarFoto();"></div>
 							</div>
-							<div class="fotoExtraSinco_c"></div>
 						</div>
 					</div>
-					<div class="barra">
-						<button class="btnBarra btnBack" onclick="backMenu();"></button>
-						<button class="btnBarra btnBuscar" onclick="encConcon();"></button>
-						<button class="btnBarra btnTrash" onclick="borrarEstacionamiento();"></button>
+					<div class="barraGuardar">
+						<button class="btnGen btnGen2" onclick="backMenu();"><img src="images/volver.svg"><span data-textlang="t24">Volver</span></button>
+						<button class="btnGen btnGen2 btnGen34" onclick="encConcon();"><img src="images/recorrido.svg"><span data-textlang="t25">Reccorido</span></button>
+						<button class="btnGen btnGen2" onclick="borrarEstacionamiento();"><img src="images/eliminar.svg"><span data-textlang="t26">Eliminar</span></button>
 					</div>
 				</div>
 				<div id="pantalalSinCon" class="alt100 pantallaApp hidden">
 					<div class="modalBlanco">
 						<div class="iconApp"></div>
-						<div class="textBold">Ups! no hay conexión</div>
-						<button class="btnGen btnContinuarSinco" onclick="comenzarSinCon();">Continuar</button>
+						<div class="textBold" data-textlang="t3">Ups! no hay conexión</div>
+						<button class="btnGen btnContinuarSinco" onclick="comenzarSinCon();" data-textlang="t4">Continuar</button>
 					</div>
 				</div>
 			</div>
@@ -61,15 +62,15 @@
 		<div class="modalVent modalNuevoEstaCo">
 			<div class="barraModalCon">
 				<div class="btnVolver" onclick="sacarModalVent();"></div>
-				<div class="tituloModal">ESTACIONAR</div>
+				<div class="tituloModal" data-textlang="t5">ESTACIONAR</div>
 			</div>
 			<div class="contenido">
-				<div class="titContModal">Completá los datos</div>
+				<div class="titContModal" data-textlang="t6">Completá los datos</div>
 				<div class="contEsta">
 					<div class="minimapa"><div id="captureMod"></div></div>
 					<div class="formNuevoEstaSC">
 						<div class="porcampo">
-							<div class="titCampo">Notas</div>
+							<div class="titCampo" data-textlang="t2">Notas</div>
 							<div class="elCampo">
 								<textarea class="inputForm" name="osbervacionesC" id="osbervacionesC"></textarea>
 							</div>
@@ -79,27 +80,76 @@
 					</div>
 				</div>
 				<div class="barraGuardar">
-					<button class="btnGen btnGen2" onclick="guardarCo();">Guardar</button>
-					<button class="btnGen btnGen2" onclick="sacarFotoCo();"><img src="images/iconcam.png"></button>
-					<button class="btnGenG btnGen2" onclick="cancelarSinco();">Cancelar</button>
+					<button class="btnGen btnGen2" onclick="guardarCo();"><img src="images/guardar.svg"><span data-textlang="t27">Guardar</span></button>
+					<button class="btnGen btnGen2 btnGen34" onclick="sacarFotoCo();"><img src="images/foto.svg"><span data-textlang="t28">Foto</span></button>
+					<button class="btnGen btnGen2" onclick="cancelarSinco();"><img src="images/volver.svg"><span data-textlang="t24">Volver</span></button>
 				</div>
 			</div>
 		</div>
 		<div class="modalVent modalHist">
 			<div class="barraModalCon">
-				<div class="btnVolver" onclick="sacarModalVent();"></div>
-				<div class="tituloModal">HISTORIAL</div>
+				<div class="btnVolver" onclick="volverAConf();"></div>
+				<div class="tituloModal" data-textlang="t7">HISTORIAL</div>
 			</div>
-			<div class="contenido">
+			<div class="contenido" id="historialCont">
 			</div>
-			
+			<button class="btnBorrarHistorial" onclick="borrarHistorial();" data-textlang="t8">Borrar Historial</button>
 		</div>
 		<div class="modalVent modalConfig">
 			<div class="barraModalCon">
 				<div class="btnVolver" onclick="sacarModalVent();"></div>
-				<div class="tituloModal">CONFIGURACIÓN</div>
+				<div class="tituloModal" data-textlang="t9">CONFIGURACIÓN</div>
 			</div>
 			<div class="contenido">
+				<ul class="listcomun">
+					<li><button data-textlang="t10" onclick="verHist();">Hitorial de estacionamientos</button></li>
+					<li><button data-textlang="t11" onclick="compartirApp();">Compartir App</button></li>
+					<li><button data-textlang="t12" onclick="mostrarIdiomas();">Idioma</button></li>
+					<li><button data-textlang="t13" onclick="puntuarApp();">Puntuar App</button></li>
+					<li><button data-textlang="t14" onclick="ponerTutorial();">Ayuda</button></li>
+					<li><button data-textlang="t15" onclick="infoApp();">Información</button></li>
+				</ul>
+				
+			</div>
+		</div>
+		<div class="modalVent modaIdioma">
+			<div class="barraModalCon">
+				<div class="btnVolver" onclick="volverAConf();"></div>
+				<div class="tituloModal" data-textlang="t16">IDIOMA</div>
+			</div>
+			<div class="contenido">
+				<button class="btnLang lang_en" onclick="selectLang('en');"><span class="flag-icon flag-icon-gb"></span></button>
+				<button class="btnLang lang_es" onclick="selectLang('es');"><span class="flag-icon flag-icon-es"></span></button>
+				<button class="btnLang lang_pt" onclick="selectLang('pt');"><span class="flag-icon flag-icon-br"></span></button>
+			</div>
+		</div>
+		<div class="modalVent modalAyuda">
+			<div class="barraModalCon">
+				<div class="btnVolver" onclick="volverAConf();"></div>
+				<div class="tituloModal" data-textlang="t29">AYUDA</div>
+			</div>
+			<div class="contenido">
+				<div class="panel-group" id="faqa" role="tablist" aria-multiselectable="true">
+				</div>
+			</div>
+		</div>
+		<div class="modalVent modalInfo">
+			<div class="barraModalCon">
+				<div class="btnVolver" onclick="volverAConf();"></div>
+				<div class="tituloModal" data-textlang="t34">INFORMACIÓN</div>
+			</div>
+			<div class="contenido" data-textlang="t35">
+				Where is my Car, es una aplicación simple que ayuda a los usuarios a encontrar sus vehículos de una manera más fácil.<br><br><br>Desarrollado por SOF, una empresa que desarrolla herramientas diitales.<br><br><br>V. 1.0<br><br><br>2018
+			</div>
+		</div>
+		<div class="ventanaFoto hidden" onclick="mostrarFoto();">
+		</div>
+		<div class="modalError hidden">
+			<div class="ventanaError">
+				<div class="tituloError"></div>
+				<div class="textError">
+				</div>
+				<button class="btnError" onclick="sacarError();" data-textlang="t36">Aceptar</button>
 			</div>
 		</div>
     </div>

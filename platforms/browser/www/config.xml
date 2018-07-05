@@ -15,6 +15,7 @@
     </author>
     <content src="index.html" />
     <icon src="res/icon/ios/icon-small@2x.png" />
+    <gap:plugin name="com-admob-plugin" source="npm" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

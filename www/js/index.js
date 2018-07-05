@@ -3,6 +3,11 @@ var mapmini;
 var marker;
 var markermini;
 var lastPosition = {};
+var historial = new Array();
+var defLang = 'en';
+var langArr = new Array();
+var faqArr = new Array();
+var confArr = new Array();
 var pictureSource;   // picture source
 var geocoder;
 var vhei = window.innerHeight-150;
@@ -26,58 +31,68 @@ function onDeviceReady() {
 		pictureSource=navigator.camera.PictureSourceType;
 		destinationType=navigator.camera.DestinationType;
 	} catch(e) {
-		alert(e);
+		alerta(e);
 	}
 	try {
-		admob.initAdmob("ca-app-pub-4910383278905451/9199602365","ca-app-pub-4910383278905451~8517076084");
+		admob.initAdmob("ca-app-pub-4910383278905451/9199602365","ca-app-pub-4910383278905451/5078872411");
 		admob.showBanner(admob.BannerSize.BANNER,admob.Position.TOP_APP);
 	} catch(e) {
-		alert(e);
+		//~ alert(e);
 	}
 	connectionStatus = navigator.onLine;
+	if(navigator.globalization!=undefined) {
+		navigator.globalization.getPreferredLanguage(
+			function (language) {
+				defLang = language.value.substring(0, 2);
+			},
+			function () {}
+		);
+	}
+    var applaunchCount = 0;
+	if(window.localStorage.getItem('launchCount')!='' && window.localStorage.getItem('launchCount')!=null) {
+		window.localStorage.setItem('launchCount',0); 
+		window.localStorage.setItem('config', '{"lang": "'+defLang+'","notif": "true","sounds": "true"}');
+		applaunchCount = window.localStorage.getItem('launchCount');
+	} else{
+		window.localStorage.setItem('launchCount',0); 
+		window.localStorage.setItem('config', '{"lang": "'+defLang+'","notif": "true","sounds": "true"}');
+	}
+	if(window.localStorage.getItem('config')!='' && window.localStorage.getItem('config')!=null) {
+		confArr = JSON.parse(window.localStorage.getItem('config'));
+	}
 	
 	if(window.localStorage.getItem('ultimoest')!='' && window.localStorage.getItem('ultimoest')!=null) {
 		lastPosition = JSON.parse(window.localStorage.getItem('ultimoest'));
 	}
-		
-	interact('#map_canvas')
-	  .resizable({
-		// resize from all edges and corners
-    edges: { left: false, right: false, bottom: true, top: false },
-
-    // keep the edges inside the parent
-    restrictEdges: {
-      outer: 'parent',
-      endOnly: true,
-    },
-
-    // minimum size
-    restrictSize: {
-      max: { height: vhei },
-      min: { height: 50 },
-    },
-
-    inertia: true,
-  })
-  .on('resizemove', function (event) {
-    var target = event.target,
-        x = (parseFloat(target.getAttribute('data-x')) || 0),
-        y = (parseFloat(target.getAttribute('data-y')) || 0);
-
-    // update the element's style
-    target.style.width  = event.rect.width + 'px';
-    target.style.height = event.rect.height + 'px';
-
-    // translate when resizing from top or left edges
-    x += event.deltaRect.left;
-    y += event.deltaRect.top;
-
-    target.style.webkitTransform = target.style.transform =
-        'translate(' + x + 'px,' + y + 'px)';
-
-    target.setAttribute('data-x', x);
-    target.setAttribute('data-y', y);
-  });
+	if(window.localStorage.getItem('historial')!='' && window.localStorage.getItem('historial')!=null) {
+		historial = JSON.parse(window.localStorage.getItem('historial'));
+	}
+	
+	var path = window.location.href.replace('index.html', '');
+	var jsonURL = path+"conf/langs.json";
+	
+	$.ajax({
+		url        : jsonURL,
+		dataType   : 'json',
+		success    : function(response) {
+			langArr = response;
+			cambiarIdioma();
+		},
+		error      : function(xhr, ajaxOptions, thrownError) {
+		}
+	});
+	var jsonURL = path+"conf/faqs.json";
+	
+	$.ajax({
+		url        : jsonURL,
+		dataType   : 'json',
+		success    : function(response) {
+			faqArr = response;
+		},
+		error      : function(xhr, ajaxOptions, thrownError) {
+			//~ console.log(thrownError);
+		}
+	});
 	
 	if(connectionStatus) {
 		if(hayinfoGuard()) {
@@ -86,12 +101,14 @@ function onDeviceReady() {
 		}
 		geocoder = new google.maps.Geocoder;
 		directionsService = new google.maps.DirectionsService;
-		directionsDisplay = new google.maps.DirectionsRenderer;
+		directionsDisplay = new google.maps.DirectionsRenderer({
+			polylineOptions: {
+				strokeColor: "#50a3f4"
+			}
+		});
 		try {
 			navigator.geolocation.getCurrentPosition(onSuccessPos, onErrorPos);
 		} catch(e) {
-			console.log("pasa");
-			//~ alert(e);
 			$('.minimapa').addClass('hidden');
 			$('#map_canvas').addClass('hidden');
 		}
@@ -104,28 +121,22 @@ function onDeviceReady() {
 			  zoom: 16
 			});
 		} catch(e) {
-			console.log("pasa2");
-			//~ alert(e);
 			$('.minimapa').addClass('hidden');
 			$('#map_canvas').addClass('hidden');
 		}
 		
 	} else {
 		if(hayinfoGuard()) {
-			//~ $('.btnMarcar').addClass('hidden');
-			//~ $('.btnBuscar').removeClass('hidden');
 		}
 		$('.minimapa').addClass('hidden');
 		$('#map_canvas').addClass('hidden');
 	}
-		
 
-	//~ try {
-		//~ checkAvailability(); // start the check
-	//~ } catch(e) {
-		//~ alert(e);
-	//~ }
-
+	try {
+		checkAvailability(); // start the check
+	} catch(e) {
+		alerta(e);
+	}
 }
 
 var imageIconna = {
@@ -195,6 +206,56 @@ function sacarModalVent() {
 	});
 }
 
+function alerta(mensaje,titulo=getLangByKey("t37"),accion='sacarError();') {
+	
+	$('.modalError').removeClass('hidden');
+	$('.modalError .tituloError').html(titulo);
+	$('.modalError .textError').html(mensaje);
+	$('.modalError .btnError').attr('onclick',accion);
+	$('.modalError').animate( {opacity: "1"},300, function() {
+	});
+}
+
+function sacarError() {
+	$('.modalError').animate( {opacity: "0"},300, function() {
+		$('.modalError').addClass('hidden');
+		$('.modalError .tituloError').html('');
+		$('.modalError .textError').html('');
+		$('.modalError .btnError').attr('onclick','sacarError();');
+	});
+}
+
+function volverAConf() {
+	$('.modalVent.activo').animate( {left: "100%"},300, function() {
+		$('.modalVent.activo').removeClass('activo');
+		ponerModalsB('modalConfig');
+	});
+}
+
+function selectLang(lang) {
+	confArr['lang']=lang;
+	window.localStorage.setItem('config', JSON.stringify(confArr));
+	cambiarIdioma();
+	return false;
+}
+
+function getLangByKey(key) {
+	return langArr[confArr['lang']][key];
+}
+
+function cambiarIdioma() {
+	var lkey;
+	$('[data-textlang!=""]').each(function( index ) {
+		lkey = $(this).data('textlang');
+		if(lkey!=undefined) {
+			$(this).html(getLangByKey(lkey));
+		}
+	});
+	
+	$('.btnLang').removeClass('activo');
+	$('.btnLang .lang_'+confArr['lang']).addClass('activo');
+}
+
 function ponerPantalla(pantid) {
 	$('.pantallaApp').addClass('hidden');
 	$('#'+pantid).removeClass('hidden');
@@ -239,7 +300,7 @@ function onErrorPos(error) {
 
 
 function onFail(message) {
-  alert('Failed because: ' + message);
+  alerta('Failed because: ' + message);
 }
 
 
@@ -250,8 +311,30 @@ function ponerTexto(texto) {
 
 /* Sin coneccion*/
 
+function borrarHistorial() {
+	if(confirm("¿Desea Borrar el historial?")) {
+		$('#historialCont').html('');
+		var historial = new Array();
+		window.localStorage.setItem('historial', JSON.stringify(historial));
+	}
+}
+
 function verHist() {
 	ponerModalsB('modalHist');
+	var conthist = '<ul class="listcomun">';
+	historial.forEach(function(element) {
+		//~ historialCont
+		
+		conthist += '<li class="listcomun"><b>'+element['fecha']+'</b>';
+		conthist += (element['osbervaciones']!=undefined)?' '+element['osbervaciones']:'';
+		conthist += '</li>';
+	});
+	conthist += '</ul>';
+	$('#historialCont').html(conthist);
+}
+
+function mostrarIdiomas() {
+	ponerModalsB('modaIdioma');
 }
 
 function verConfig() {
@@ -264,7 +347,11 @@ function borrarEstacionamiento() {
 	if (directionsDisplay != null) {
 		directionsDisplay.setMap(null);
 		directionsDisplay = null;
-		directionsDisplay = new google.maps.DirectionsRenderer;
+		directionsDisplay = new google.maps.DirectionsRenderer({
+			polylineOptions: {
+				strokeColor: "#50a3f4"
+			}
+		});
 	}
 	ponerPantalla("pantallaP");
 }
@@ -273,7 +360,11 @@ function backMenu() {
 	if (directionsDisplay != null) {
 		directionsDisplay.setMap(null);
 		directionsDisplay = null;
-		directionsDisplay = new google.maps.DirectionsRenderer;
+		directionsDisplay = new google.maps.DirectionsRenderer({
+			polylineOptions: {
+				strokeColor: "#50a3f4"
+			}
+		});
 	}
 	ponerPantalla("pantallaP");
 }
@@ -323,14 +414,37 @@ function estConcon () {
 	}
 }
 
-
+var mostraFoto = false;
+function mostrarFoto() {
+	if(lastPosition['img']!=undefined) {
+		if(!mostraFoto) {
+			$('.ventanaFoto').css({'background-image':'url('+lastPosition['img']+')'});
+			$('.ventanaFoto').removeClass('hidden');
+			$('.ventanaFoto').animate( {opacity: "1"},300, function() {
+				mostraFoto = true;
+			});
+		} else {
+			$('.ventanaFoto').animate( {opacity: "0"},300, function() {
+				mostraFoto = false;
+				$('.ventanaFoto').addClass('hidden');
+				$('.ventanaFoto').css({'background-image':'none'});
+			});
+		}
+	}
+}
 
 function encConcon() {
 	if(hayinfoGuard()) {
 		ponerPantalla("pantallaConMapa");
-		
+		$('.fotoExtraSinco_c').addClass('hidden');
+		$('#osbervacionesSC_').removeClass('conFoto');
+		$('.fotoExtraSinco_c').css({'background-image': 'none'});
 		$('#osbervacionesSC_c').html(lastPosition['osbervaciones']);
-		if(lastPosition['img']!=undefined) $('.fotoExtraSinco_c').html('<img src="'+lastPosition['img']+'" class="imgSmallExtra">');
+		if(lastPosition['img']!=undefined) {
+			$('.fotoExtraSinco_c').removeClass('hidden');
+			$('#osbervacionesSC_c').addClass('conFoto');
+			$('.fotoExtraSinco_c').css({'background-image': 'url('+lastPosition['img']+')'});
+		}
 		
 		if(connectionStatus) {
 			if(yamostrodir) directionsDisplay.setMap(null);
@@ -352,17 +466,17 @@ function encConcon() {
 						
 						directionsDisplay.setDirections(response);
 					} catch(e) {
-						alert(e.message);
+						alerta(e.message);
 					}
 				  } else {
-					alert('Directions request failed due to ' + status);
+					alerta('Directions request failed due to ' + status);
 				  }
 				});
 			});
 		} else {
 		}
 	} else {
-		alert("No existe un estacionamiento en curso");
+		alerta(getLangByKey("t20"));
 	}
 }
 
@@ -381,14 +495,14 @@ function hayinfoGuard() {
 }
 
 function onFailSincoFo(message) {
-  alert('Fallo. Error: ' + message);
+  alerta('FError: ' + message);
 }
 
 function sacarFotoCo() {
 	try {
 		navigator.camera.getPicture(onSacaFotoCo, onFailSincoFo, { quality: 50, destinationType: Camera.DestinationType.FILE_URI,correctOrientation: true });
 	} catch(e) {
-		alert(e);
+		alerta(e);
 	}
 }
 
@@ -401,12 +515,27 @@ function cancelarSinco() {
 	sacarModalVent();
 }
 
+Date.prototype.getMonthFormatted = function() {
+	var month = this.getMonth() + 1;
+	return month < 10 ? '0' + month : month;
+}
+Date.prototype.getDateFormatted = function() {
+	var date = this.getDate();
+	return date < 10 ? '0' + date : date;
+}
+
 function guardarCo() {
 	lastPosition['tipo'] = 'C';
+	var d = new Date();
+	var datestring = d.getDateFormatted()  + "/" + d.getMonthFormatted()+ "/" + d.getFullYear() + " " +	d.getHours() + ":" + d.getMinutes();
+	lastPosition['fecha'] = datestring;
+	lastPosition['fechaobj'] = d;
 	lastPosition['osbervaciones'] = $('#osbervacionesC').val();
 	$('#osbervacionesC').val('');
 	$('.fotoExtraSinco_c').html('');
+	historial.push(lastPosition);
 	window.localStorage.setItem('ultimoest', JSON.stringify(lastPosition));
+	window.localStorage.setItem('historial', JSON.stringify(historial));
 	$('.btnMarcar').addClass('hidden');
 	$('.btnBuscar').removeClass('hidden');
 	
@@ -431,13 +560,13 @@ function onSacaFotoCo(img) {
 					try {
 						$('.fotoExtraCo').html('<img src="'+lastPosition['img']+'" class="imgSmallExtra">');
 					} catch(e) {
-						alert(e.message);
+						alerta(e.message);
 					}
 				});
 			}, onFail);
 		},
 		function(e) {
-		alert('Unexpected error obtaining image file.');
+		alerta('Unexpected error obtaining image file.');
 		onFail(e);
 	});
 }
@@ -508,4 +637,79 @@ function checkDeviceSetting(){
     }, function(error){
         console.error("The following error occurred: "+error);
     });
+}
+
+
+
+function compartirApp() {
+	var options = {
+	  message: 'Where is My car', // not supported on some apps (Facebook, Instagram)
+	  subject: 'Where is My car', // fi. for email
+	  url: 'http://www.whereismycar.com/',
+	  chooserTitle: 'Where is My car' // Android only, you can override the default share sheet title
+	}
+	window.plugins.socialsharing.shareWithOptions(options, compSuccess, compError);
+}
+var compSuccess = function(result) {
+  console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
+  console.log("Shared to app: " + result.app); // On Android result.app is currently empty. On iOS it's empty when sharing is cancelled (result.completed=false)
+}
+
+var compError = function(msg) {
+  console.log("Sharing failed with message: " + msg);
+}
+
+function infoApp() {
+	ponerModalsB('modalInfo');
+}
+
+function ponerTutorial() {
+	
+	var count = 0;
+	for (var k in faqArr[confArr['lang']]) {
+		count++;
+		$('#faqa').append(ponerPreguntarRes(faqArr[confArr['lang']][k]["pr"], faqArr[confArr['lang']][k]["re"],count));
+	}
+	$('#faqa').collapse();
+	ponerModalsB('modalAyuda');
+}
+
+function puntuarApp() {
+	
+		navigator.notification.confirm(
+		getLangByKey("t30"),
+		function(button) {
+			// yes = 1, no = 2, later = 3
+			if (button == '1') {    // Rate Now
+				if (device_ios) {
+					window.open('itms-apps://itunes.apple.comar/app/gran-hotel-verona/id1332669884?mt=8'); // or itms://
+				} else if (device_android) {
+					window.open('market://details?id=com.whereismycar');
+				}
+
+				this.core.rate_app = false;
+			} else if (button == '2') { // Later
+				//~ this.core.rate_app_counter = 0;
+			} else if (button == '3') { // No
+				//~ this.core.rate_app = false;
+			}
+		}, getLangByKey("t31"), [getLangByKey("t31"), getLangByKey("t32"), getLangByKey("t33")]);
+
+}
+
+
+function ponerPreguntarRes(pr,re,nu) {
+	var blohtml = ''+
+				'	<div class="panel panel-default">'+
+				'		<div class="panel-heading" role="tab" id="heading'+nu+'">'+
+				'			<h4 class="panel-title">'+
+				'				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#faqa" href="#collapse'+nu+'" aria-expanded="false" aria-controls="collapse'+nu+'">'+pr+'</a>'+
+				'			</h4>'+
+				'		</div>'+
+				'		<div id="collapse'+nu+'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading'+nu+'">'+
+				'			<div class="panel-body">'+re+
+				'			</div>'+
+				'		</div>'+
+				'	</div>';
+	return blohtml;
 }

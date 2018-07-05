@@ -85,7 +85,7 @@ body {
 	background: -webkit-linear-gradient(top, #4fa5f6 0%,#693e97 100%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(to bottom, #4fa5f6 0%,#693e97 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4fa5f6', endColorstr='#693e97',GradientType=0 );
-	padding: 15px;
+	padding: 5px 15px;
 	color: #FFF;
 	position: absolute;
 	bottom: 0;
@@ -93,13 +93,18 @@ body {
 	text-align: center;
 }
 
+.btnBarra img {
+	height: 100%;
+}
+
 button.btnBarra {
     border: 0;
     width: 24%;
-    height: 60px;
+    height: 80px;
     background: transparent no-repeat center center;
 	background-size: contain;
 	outline: none;
+	
 }
 
 button.btnMarcar {
@@ -454,6 +459,20 @@ button.btnHist {
     border-bottom: 1px solid #ccc;
 }
 
+button {
+    outline: 0!important;
+}
+
+div#faqa {
+    margin-top: 15px;
+}
+
+button.btnGen span {
+    display: block;
+    margin-top: -45px;
+    font-size: 8pt;
+}
+
 .btnVolver {
     float: left;
     height: 36px;
@@ -485,8 +504,9 @@ button.btnHist {
 }
 
 .porcampo {
-    margin-bottom: 15px;
-    margin-top: 15px;
+	margin-bottom: 0;
+	margin-top: 15px;
+	height: 100%;
 }
 
 .inputForm {
@@ -503,6 +523,10 @@ button.btnHist {
 
 textarea#osbervacionesC {
     height: 120px;
+}
+
+div#osbervacionesSC_c.conFoto {
+    padding-right: 30%;
 }
 
 .txtCampo {
@@ -529,25 +553,55 @@ textarea#osbervacionesC {
     font-size: 42px;
 }
 
+.ventanaFoto {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+    background: #000 no-repeat center center;
+    background-size: contain;
+	z-index: 99999;
+}
+
+.fotoExtraSinco_c {
+    width: 30%;
+    position: absolute;
+    height: 100%;
+    right: 0;
+    top: 0;
+    background: no-repeat center center;
+    background-size: cover;
+    margin: 0;
+}
 
 #map_canvas {
 	width: 100%;
-	height: 50%;
+	height: 70%;
 	box-sizing: border-box;
 }
 
 .infoEst {
 	width: 100%;
 	padding: 15px;
-	height: 50%;
+	height: 30%;
 	overflow-y: auto;
-	padding-bottom: 30px;
+}
+
+.formNuevoEstaSC {
+    height: 100%;
+    position: relative;
 }
 
 .searchinfo {
     width: 100%;
 	height: calc(100vh - 150px);
 	display: inline-block;
+}
+
+.contenido {
+    height: 100%;
+    padding-bottom: 95px;
 }
 
 .barraGuardar .btnGen.btnGen2, .barraGuardar .btnGenG {
@@ -558,26 +612,34 @@ textarea#osbervacionesC {
     line-height: 60px;
 }
 
-.barraGuardar .btnGenG {
+.barraGuardar .btnGen.btnGen34 {
     width: 34%!important;
 }
 
 .contEsta {
     padding-bottom: 80px;
+    height: 100%;
+    overflow: auto;
 }
 
 .barraGuardar {
-    margin-left: -15px;
-    margin-right: -15px;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    height: 80px;
+	margin-left: 0;
+	margin-right: 0;
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	height: 80px;
+	left: 0;
+	background: #4fa5f6;
+    background: -moz-linear-gradient(top, #4fa5f6 0%, #693e97 100%);
+    background: -webkit-linear-gradient(top, #4fa5f6 0%,#693e97 100%);
+    background: linear-gradient(to bottom, #4fa5f6 0%,#693e97 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4fa5f6', endColorstr='#693e97',GradientType=0 );
 }
 
 div#pantallaConMapa {
     background: #FFF;
-    padding: 10px 0;
+    padding: 10px 0 80px;
 }
 
 #pantallaConMapa .titContModal {
@@ -585,4 +647,129 @@ div#pantallaConMapa {
     font-size: 16px;
     text-align: center;
     margin: 15px auto;
+}
+
+ul.listcomun {
+    padding: 0;
+    list-style: none;
+    margin: 0 -15px;
+}
+
+ul.listcomun li button {
+    font-family: 'PoppinsSemiBold';
+    font-size: 12px;
+    border: 0;
+    width: 100%;
+    height: 100%;
+    background: none;
+}
+
+ul.listcomun li {
+    padding: 10px;
+    border: 1px solid #00aafc;
+    border-top: 0;
+    text-align: center;
+}
+
+ul.listcomun li:first-child {
+    border-top: 1px solid #00aafc;
+}
+
+a.btnBorrarHistorial {
+    position: absolute;
+    bottom: 0px;
+    background: #15b1fd;
+    color: #FFF;
+    width: 100%;
+    left: 0;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+.btnLang {
+    font-family: 'PoppinsSemiBold';
+    color: #FFF;
+    border-radius: 15px;
+    font-size: 16px;
+    text-align: center;
+    padding: 10px 15px;
+    margin: 15px auto;
+    border: 0;
+    display: block;
+    width: auto;
+	outline: none;
+}
+
+.btnLang.activo {
+    background: #4fa5f6; /* Old browsers */
+	background: -moz-linear-gradient(top, #4fa5f6 0%, #693e97 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #4fa5f6 0%,#693e97 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #4fa5f6 0%,#693e97 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4fa5f6', endColorstr='#693e97',GradientType=0 );
+}
+
+.modalError {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 99999999999999;
+    top: 00;
+    left: 0;
+}
+
+.ventanaError {
+    background: #FFF;
+    width: 80%;
+    border-radius: 5px;
+    height: 240px;
+    margin: -120px auto 0;
+    top: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.tituloError {
+    width: 100%;
+    padding: 10px;
+    background: #4fa5f6;
+    background: -moz-linear-gradient(top, #4fa5f6 0%, #693e97 100%);
+    background: -webkit-linear-gradient(top, #4fa5f6 0%,#693e97 100%);
+    background: linear-gradient(to bottom, #4fa5f6 0%,#693e97 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4fa5f6', endColorstr='#693e97',GradientType=0 );
+    text-align: center;
+    color: #FFF;
+    font-family: 'PoppinsSemiBold';
+    font-size: 16px;
+}
+
+.textError {
+    font-family: 'PoppinsRegular';
+    font-size: 14px;
+    padding: 15px;
+    overflow-y: auto;
+    text-align: center;
+    height: 130px;
+}
+
+.btnError {
+    font-family: 'PoppinsRegular';
+    color: #FFF;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    padding: 5px 15px;
+    margin: 15px auto;
+    border: 0;
+    display: block;
+    width: auto;
+    background: #4fa5f6; /* Old browsers */
+	background: -moz-linear-gradient(top, #4fa5f6 0%, #693e97 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #4fa5f6 0%,#693e97 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #4fa5f6 0%,#693e97 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4fa5f6', endColorstr='#693e97',GradientType=0 );
+	outline: none;
 }

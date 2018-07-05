@@ -1,0 +1,682 @@
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+@font-face {
+    font-family: 'PoppinsBold';
+    src: url('../fonts/PoppinsBold.eot');
+    src: url('../fonts/PoppinsBold.eot') format('embedded-opentype'),
+         url('../fonts/PoppinsBold.woff2') format('woff2'),
+         url('../fonts/PoppinsBold.woff') format('woff'),
+         url('../fonts/PoppinsBold.ttf') format('truetype'),
+         url('../fonts/PoppinsBold.svg#PoppinsBold') format('svg');
+}
+
+@font-face {
+    font-family: 'PoppinsLight';
+    src: url('../fonts/PoppinsLight.eot');
+    src: url('../fonts/PoppinsLight.eot') format('embedded-opentype'),
+         url('../fonts/PoppinsLight.woff2') format('woff2'),
+         url('../fonts/PoppinsLight.woff') format('woff'),
+         url('../fonts/PoppinsLight.ttf') format('truetype'),
+         url('../fonts/PoppinsLight.svg#PoppinsLight') format('svg');
+}
+
+@font-face {
+    font-family: 'PoppinsMedium';
+    src: url('../fonts/PoppinsMedium.eot');
+    src: url('../fonts/PoppinsMedium.eot') format('embedded-opentype'),
+         url('../fonts/PoppinsMedium.woff2') format('woff2'),
+         url('../fonts/PoppinsMedium.woff') format('woff'),
+         url('../fonts/PoppinsMedium.ttf') format('truetype'),
+         url('../fonts/PoppinsMedium.svg#PoppinsMedium') format('svg');
+}
+
+@font-face {
+    font-family: 'PoppinsRegular';
+    src: url('../fonts/PoppinsRegular.eot');
+    src: url('../fonts/PoppinsRegular.eot') format('embedded-opentype'),
+         url('../fonts/PoppinsRegular.woff2') format('woff2'),
+         url('../fonts/PoppinsRegular.woff') format('woff'),
+         url('../fonts/PoppinsRegular.ttf') format('truetype'),
+         url('../fonts/PoppinsRegular.svg#PoppinsRegular') format('svg');
+}
+
+@font-face {
+    font-family: 'PoppinsSemiBold';
+    src: url('../fonts/PoppinsSemiBold.eot');
+    src: url('../fonts/PoppinsSemiBold.eot') format('embedded-opentype'),
+         url('../fonts/PoppinsSemiBold.woff2') format('woff2'),
+         url('../fonts/PoppinsSemiBold.woff') format('woff'),
+         url('../fonts/PoppinsSemiBold.ttf') format('truetype'),
+         url('../fonts/PoppinsSemiBold.svg#PoppinsSemiBold') format('svg');
+}
+
+body {
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-family: 'PoppinsRegular';
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    width:100%;
+    background-color: rgba(0,0,0,0) !important;
+}
+
+#principal {
+    background-color: rgba(0,0,0,0) !important;
+}
+
+.elcontenido {
+	height: 100vh;
+	overflow: hidden;
+    position: relative;
+    background: #4fa5f6; /* Old browsers */
+	background: -moz-linear-gradient(top, #4fa5f6 0%, #693e97 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #4fa5f6 0%,#693e97 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #4fa5f6 0%,#693e97 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4fa5f6', endColorstr='#693e97',GradientType=0 );
+}
+
+.barra {
+	height: 90px;
+    background: #4fa5f6; /* Old browsers */
+	background: -moz-linear-gradient(top, #4fa5f6 0%, #693e97 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #4fa5f6 0%,#693e97 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #4fa5f6 0%,#693e97 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4fa5f6', endColorstr='#693e97',GradientType=0 );
+	padding: 5px 15px;
+	color: #FFF;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+}
+
+.btnBarra img {
+	height: 100%;
+}
+
+button.btnBarra {
+    border: 0;
+    width: 24%;
+    height: 80px;
+    background: transparent no-repeat center center;
+	background-size: contain;
+	outline: none;
+	
+}
+
+button.btnMarcar {
+	background-image: url(../images/btnMarcar.png);
+}
+
+button.btnBuscar {
+	background-image: url(../images/pinNar.png);
+}
+
+button.btnBack {
+	background-image: url(../images/flechaAnt_m.png);
+}
+
+button.btnTrash {
+	background-image: url(../images/trasht.png);
+}
+
+button.btnFoto {
+	background-image: url(../images/btnFoto.png);
+}
+
+button.btnConfig {
+	background-image: url(../images/btnConfig.png);
+}
+
+button.btnHist {
+	background-image: url(../images/btnHist.png);
+}
+
+#contenido {
+	position: absolute;
+	bottom: 0;
+}
+
+.alt100 {
+	height: 100vh;
+}
+
+.modalVent {
+	height: 100vh;
+	width: 100%;
+	background: #FFF;
+	overflow: hidden;
+	overflow-y: auto;
+	padding: 15px;
+	position: absolute;
+	top: 0;
+	left: 100%;
+}
+
+.mapCont {
+	height: 100vh;
+	padding: 0;
+	background: url(../images/splashHome.png) center top no-repeat;
+	background-size: contain;
+}
+
+.btnMenu {
+	width: 30px;
+	height: 30px;
+	position: relative;
+	float: left;
+	border: 0;
+	background: none;
+	font-size: 20px;
+}
+
+.titleApp {
+	font-size: 20px;
+    margin-left: 10px;
+	position: relative;
+    float: left;
+}
+
+#usePosition {
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	background: #72D822;
+	bottom: -250px;
+	left: 50%;
+	margin-left: -75px;
+	border: 0;
+	color: #FFF;
+	font-size: 80px;
+    box-sizing: unset!important;
+    outline: none!important;
+}
+
+#findCar {
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	background: #72D822;
+	bottom: -250px;
+	left: 50%;
+	margin-left: -75px;
+	border: 0;
+	color: #FFF;
+	font-size: 80px;
+    box-sizing: unset!important;
+    outline: none!important;
+}
+
+#takePhotoPos {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background: transparent;
+	bottom: -100px;
+	right: 20px;
+	border: 0;
+	color: #72D822;
+	font-size: 35px;
+    box-sizing: unset!important;
+    outline: none!important;
+}
+
+#discardEst {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background: transparent;
+	bottom: -100px;
+	right: 20px;
+	border: 0;
+	color: #72D822;
+	font-size: 35px;
+    box-sizing: unset!important;
+    outline: none!important;
+}
+
+
+.modalVentana {
+	position: absolute;
+	top: 120vh;
+	width: 90%;
+	left: 5%;
+    height: 400px;
+	background: #FFF;
+	border-radius: 20px;
+	overflow: hidden;
+	border: 1px solid #666;
+	-webkit-box-shadow: 0px 0px 50px 5px rgba(128,128,128,1);
+	-moz-box-shadow: 0px 0px 50px 5px rgba(128,128,128,1);
+	box-shadow: 0px 0px 50px 5px rgba(128,128,128,1);
+}
+
+.modalPie {
+    background: #72d822;
+    height: 80px;
+    text-align: center;
+}
+
+.modalTitulo {
+    background: #72d822;
+    color: #FFF;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    height: 40px;
+}
+
+.modalCuerpo {
+	width: 100%;
+	height: 280px;
+	position: relative;
+	overflow-y: auto;
+}
+
+#captureMod {
+	width: 100%;
+	height: 180px;
+}
+
+.infoEsta {
+    padding: 5px;
+    font-size: 13px;
+    color: #333;
+    font-weight: bold;
+}
+
+.notasExtra {
+    padding: 5px;
+    font-size: 11px;
+    color: #999;
+}
+
+.fotoExtra {
+    padding: 5px;
+    font-size: 11px;
+    color: #999;
+}
+
+.butonClose {
+    color: #FFF;
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    background: none;
+    border: 0;
+    box-sizing: unset!important;
+    outline: none!important;
+}
+
+.botonerPie {
+	height: 100%;
+}
+
+.botonerPie button {
+    height: 100%;
+    border: 0;
+    width: 33.333%;
+    background: #72d822;
+    border-right: 1px solid #FFF;
+    color: #FFF;
+    font-size: 24px;
+}
+
+.botonerPie button:last-child {
+    border-right: 0;
+}
+
+.ventanaparatexto {
+	width: 90%;
+	height: 180px;
+	position: absolute;
+	top: 20px;
+	left: -105%;
+	-webkit-box-shadow: 0px 0px 50px 5px rgba(128,128,128,1);
+	-moz-box-shadow: 0px 0px 50px 5px rgba(128,128,128,1);
+	box-shadow: 0px 0px 50px 5px rgba(128,128,128,1);
+}
+
+#textoextra {
+	width: 100%;
+	height: 120px;
+	resize: none;
+    margin: 0;
+    position: relative;
+    display: block;
+}
+
+.butonGenerico {
+	display: block;
+	width: 100%;
+	height: 60px;
+    border: 0;
+	position: relative;
+	margin: 0;
+    background: #72d822;
+    border-top: 1px solid #FFF;
+    color: #FFF;
+    text-align: center;
+    font-size: 24px;
+    outline: none;
+}
+
+.hidden {
+	display: none;
+}
+
+.imgSmallExtra {
+	width: 60px;
+	height: auto;
+}
+
+.textBold {
+    font-family: 'PoppinsBold';
+    text-align: center; 
+    font-size: 18px;
+    color: #000;
+    margin: 15px auto;
+}
+
+.iconApp {
+	margin: 20px auto;
+	width: 150px;
+	height: 150px;
+	background: url(../images/iconConnect.png) center center no-repeat;
+	background-size: contain;
+}
+
+.modalBlanco {
+    background: #FFF;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 80px 15px;
+}
+
+.btnGen {
+    font-family: 'PoppinsSemiBold';
+    color: #FFF;
+    border-radius: 15px;
+    font-size: 16px;
+    text-align: center;
+    padding: 10px 15px;
+    margin: 15px auto;
+    border: 0;
+    display: block;
+    width: auto;
+    background: #4fa5f6; /* Old browsers */
+	background: -moz-linear-gradient(top, #4fa5f6 0%, #693e97 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #4fa5f6 0%,#693e97 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #4fa5f6 0%,#693e97 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4fa5f6', endColorstr='#693e97',GradientType=0 );
+	outline: none;
+}
+
+.btnGenG {
+    font-family: 'PoppinsSemiBold';
+    color: #FFF;
+    border-radius: 15px;
+    font-size: 16px;
+    text-align: center;
+    padding: 10px 15px;
+    margin: 15px auto;
+    border: 0;
+    display: block;
+    width: auto;
+    background: #c6c6c6; /* Old browsers */
+	background: -moz-linear-gradient(top, #c6c6c6 1%, #818181 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #c6c6c6 1%,#818181 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #c6c6c6 1%,#818181 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c6c6c6', endColorstr='#818181',GradientType=0 );
+	outline: none;
+}
+
+
+.btnGen.btnGen2, .btnGenG {
+	width: 75%!important;
+}
+
+.btnGen img {
+    height: 40px;
+    margin-top: -12px;
+    margin-bottom: -10px;
+}
+
+.barraModalCon {
+    height: 46px;
+    margin-left: -15px;
+    margin-right: -15px;
+    padding: 0 15px 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+button {
+    outline: 0!important;
+}
+
+div#faqa {
+    margin-top: 15px;
+}
+
+button.btnGen span {
+    display: block;
+    margin-top: -45px;
+    font-size: 8pt;
+}
+
+.btnVolver {
+    float: left;
+    height: 36px;
+    width: 10%;
+    background: url(../images/flechaAt.png) center center no-repeat;
+    background-size: contain;
+}
+
+.titContModal {
+    font-family: 'PoppinsSemiBold';
+    font-size: 26px;
+    text-align: center;
+    margin: 15px auto;
+}
+
+.tituloModal {
+    font-family: 'PoppinsMedium';
+    font-size: 16px;
+    text-align: center;
+    width: 90%;
+    float: left;
+    line-height: 36px;
+}
+
+.titCampo {
+    font-family: 'PoppinsRegular';
+    font-size: 16px;
+    color: #808080;
+}
+
+.porcampo {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.inputForm {
+    resize: none;
+    width: 100%;
+    font-size: 20px;
+    font-family: 'PoppinsSemiBold';
+    color: #000000;
+    border: 0;
+    border-bottom: 2px solid #c3c3c3;
+    outline: none;
+    margin-bottom: 0;
+}
+
+textarea#osbervacionesC {
+    height: 120px;
+}
+
+.txtCampo {
+    width: 100%;
+    font-size: 20px;
+    font-family: 'PoppinsSemiBold';
+    color: #000000;
+    outline: none;
+    margin-bottom: 0;
+}
+
+.fotoExtraSinco, .fotoExtraSinco_c, .fotoExtraCo {
+	width: 100%;
+	margin: 15px auto;
+}
+
+.fotoExtraSinco .imgSmallExtra, .fotoExtraSinco_c .imgSmallExtra, .fotoExtraCo .imgSmallExtra, .fotoExtraCo_c .imgSmallExtra {
+	width: 100%;
+	height: auto;
+}
+
+.barra2 button.btnBarra {
+    width: 32%;
+    font-size: 42px;
+}
+
+
+#map_canvas {
+	width: 100%;
+	height: 50%;
+	box-sizing: border-box;
+}
+
+.infoEst {
+	width: 100%;
+	padding: 15px;
+	height: 50%;
+	overflow-y: auto;
+	padding-bottom: 30px;
+}
+
+.searchinfo {
+    width: 100%;
+	height: calc(100vh - 150px);
+	display: inline-block;
+}
+
+.contenido {
+    height: 100%;
+    padding-bottom: 95px;
+}
+
+.barraGuardar .btnGen.btnGen2, .barraGuardar .btnGenG {
+    width: 33%!important;
+    float: left;
+    border-radius: 0;
+    margin: 0;
+    line-height: 60px;
+}
+
+.barraGuardar .btnGen.btnGen34 {
+    width: 34%!important;
+}
+
+.contEsta {
+    padding-bottom: 80px;
+    height: 100%;
+    overflow: auto;
+}
+
+.barraGuardar {
+	margin-left: 0;
+	margin-right: 0;
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	height: 80px;
+	left: 0;
+	background: #4fa5f6;
+    background: -moz-linear-gradient(top, #4fa5f6 0%, #693e97 100%);
+    background: -webkit-linear-gradient(top, #4fa5f6 0%,#693e97 100%);
+    background: linear-gradient(to bottom, #4fa5f6 0%,#693e97 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4fa5f6', endColorstr='#693e97',GradientType=0 );
+}
+
+div#pantallaConMapa {
+    background: #FFF;
+    padding: 10px 0 80px;
+}
+
+#pantallaConMapa .titContModal {
+    font-family: 'PoppinsSemiBold';
+    font-size: 16px;
+    text-align: center;
+    margin: 15px auto;
+}
+
+ul.listcomun {
+    padding: 0;
+    list-style: none;
+    margin: 0 -15px;
+}
+
+ul.listcomun li button {
+    font-family: 'PoppinsSemiBold';
+    font-size: 12px;
+    border: 0;
+    width: 100%;
+    height: 100%;
+    background: none;
+}
+
+ul.listcomun li {
+    padding: 10px;
+    border: 1px solid #00aafc;
+    border-top: 0;
+    text-align: center;
+}
+
+ul.listcomun li:first-child {
+    border-top: 1px solid #00aafc;
+}
+
+a.btnBorrarHistorial {
+    position: absolute;
+    bottom: 0px;
+    background: #15b1fd;
+    color: #FFF;
+    width: 100%;
+    left: 0;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+.btnLang {
+    font-family: 'PoppinsSemiBold';
+    color: #FFF;
+    border-radius: 15px;
+    font-size: 16px;
+    text-align: center;
+    padding: 10px 15px;
+    margin: 15px auto;
+    border: 0;
+    display: block;
+    width: auto;
+	outline: none;
+}
+
+.btnLang.activo {
+    background: #4fa5f6; /* Old browsers */
+	background: -moz-linear-gradient(top, #4fa5f6 0%, #693e97 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #4fa5f6 0%,#693e97 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #4fa5f6 0%,#693e97 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4fa5f6', endColorstr='#693e97',GradientType=0 );
+}

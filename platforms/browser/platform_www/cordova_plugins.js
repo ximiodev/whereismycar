@@ -825,6 +825,22 @@ module.exports = [
         "clobbers": [
             "window.plugins.videocaptureplus"
         ]
+    },
+    {
+        "file": "plugins/com-admob-plugin/www/admob.js",
+        "id": "com-admob-plugin.admob",
+        "pluginId": "com-admob-plugin",
+        "clobbers": [
+            "window.admob"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+        "id": "cordova-plugin-x-socialsharing.SocialSharing",
+        "pluginId": "cordova-plugin-x-socialsharing",
+        "clobbers": [
+            "window.plugins.socialsharing"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -859,7 +875,9 @@ module.exports.metadata =
     "phonegap-plugin-media-recorder": "1.1.0",
     "nl.x-services.plugins.videocaptureplus": "1.3.0",
     "cordova.plugins.diagnostic": "4.0.8",
-    "cordova-plugin-request-location-accuracy": "2.2.3"
+    "cordova-plugin-request-location-accuracy": "2.2.3",
+    "com-admob-plugin": "5.5.0",
+    "cordova-plugin-x-socialsharing": "5.4.1"
 }
 // BOTTOM OF METADATA
 });
