@@ -48,6 +48,43 @@ function onDeviceReady() {
 			function () {}
 		);
 	}
+	
+	AppRate.preferences = {
+	  displayAppName: 'My custom app title',
+	  usesUntilPrompt: 5,
+	  promptAgainForEachNewVersion: false,
+	  inAppReview: true,
+	  storeAppURL: {
+	  ios: 'id1332669884',
+	  android: 'market://details?id=com.ar.granhotelverona',
+		windows: 'ms-windows-store://pdp/?ProductId=<the apps Store ID>',
+		blackberry: 'appworld://content/[App Id]/',
+		windows8: 'ms-windows-store:Review?name=<the Package Family Name of the application>'
+	  },
+	  customLocale: {
+		title: "Would you mind rating %@?",
+		message: "It won’t take more than a minute and helps to promote our app. Thanks for your support!",
+		cancelButtonLabel: "No, Thanks",
+		laterButtonLabel: "Remind Me Later",
+		rateButtonLabel: "Rate It Now",
+		yesButtonLabel: "Yes!",
+		noButtonLabel: "Not really",
+		appRatePromptTitle: 'Do you like using %@',
+		feedbackPromptTitle: 'Mind giving us some feedback?',
+	  },
+	  callbacks: {
+		handleNegativeFeedback: function(){
+		  window.open('mailto:feedback@example.com','_system');
+		},
+		onRateDialogShow: function(callback){
+		  callback(1) // cause immediate click on 'Rate Now' button
+		},
+		onButtonClicked: function(buttonIndex){
+		  console.log("onButtonClicked -> " + buttonIndex);
+		}
+	  }
+	};
+
     var applaunchCount = 0;
 	if(window.localStorage.getItem('launchCount')!='' && window.localStorage.getItem('launchCount')!=null) {
 		applaunchCount = window.localStorage.getItem('launchCount');
@@ -719,7 +756,7 @@ function puntuarApp() {
 		//~ }, getLangByKey("t31"), [getLangByKey("t31"), getLangByKey("t32"), getLangByKey("t33")]);
 		 
 	try {
-		AppRate.promptForRating();
+		AppRate.promptForRating(false);
 	} catch(e) {
 		alerta(e);
 	}
