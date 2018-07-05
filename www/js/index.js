@@ -254,6 +254,20 @@ function cambiarIdioma() {
 	
 	$('.btnLang').removeClass('activo');
 	$('.btnLang .lang_'+confArr['lang']).addClass('activo');
+
+	
+	AppRate.preferences.customLocale = {
+	  title: getLangByKey("t31"),
+	  message: getLangByKey("t30"),
+	  cancelButtonLabel: getLangByKey("t33"),
+	  laterButtonLabel: getLangByKey("t32"),
+	  rateButtonLabel: getLangByKey("t31"),
+	  appRatePromptTitle: getLangByKey("t31")
+	};
+	AppRate.preferences.storeAppURL = {
+	  ios: 'id1332669884',
+	  android: 'market://details?id=com.ar.granhotelverona'
+	};
 }
 
 function ponerPantalla(pantid) {
@@ -703,21 +717,12 @@ function puntuarApp() {
 				//~ this.core.rate_app = false;
 			//~ }
 		//~ }, getLangByKey("t31"), [getLangByKey("t31"), getLangByKey("t32"), getLangByKey("t33")]);
-		
-		AppRate.preferences.customLocale = {
-		  title: getLangByKey("t31"),
-		  message: getLangByKey("t30"),
-		  cancelButtonLabel: getLangByKey("t33"),
-		  laterButtonLabel: getLangByKey("t32"),
-		  rateButtonLabel: getLangByKey("t31"),
-		  appRatePromptTitle: getLangByKey("t31"),
-		};
-		AppRate.preferences.storeAppURL = {
-		  ios: 'id1332669884',
-		  android: 'market://details?id=com.ar.granhotelverona'
-		};
 		 
+	try {
 		AppRate.promptForRating();
+	} catch(e) {
+		alerta(e);
+	}
 }
 
 
