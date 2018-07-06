@@ -266,7 +266,7 @@
     "cordova-plugin-apprate": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-apprate"
+            "id": "cordova-plugin-apprate2"
         },
         "is_top_level": true,
         "variables": {}

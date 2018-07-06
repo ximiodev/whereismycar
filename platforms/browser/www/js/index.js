@@ -20,8 +20,10 @@ var connectionStatus = false;
 var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
 
 if (app) {
+ document.addEventListener("deviceready", onLoad, false);
 	document.addEventListener("deviceready",onDeviceReady,false);
 } else {
+ document.addEventListener("deviceready", onLoad, false);
 	onDeviceReady();
 }
 
@@ -722,7 +724,7 @@ function puntuarApp() {
 	try {
 		AppRate.promptForRating(false);
 	} catch(e) {
-		alerta(e);
+		alert(e);
 	}
 }
 
@@ -744,14 +746,13 @@ function ponerPreguntarRes(pr,re,nu) {
 }
 $(document).ready(function() {
 	
- document.addEventListener("deviceready", onLoad, false);
 });
 
 function onLoad() {
-    var AppRate;
-    AppRate.preferences.storeAppURL = {
-        android: 'market://details?id=com.ar.granhotelverona'
-    };
-
-    AppRate.promptForRating();
+    //~ var AppRate;
+	try {
+		cordova.plugins.market.open('com.ar.granhotelverona');
+	} catch(e) {
+		alert(e);
+	}
 }

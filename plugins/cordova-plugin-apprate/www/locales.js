@@ -17,17 +17,12 @@
  * specific language governing permissions and limitations
  * under the License.
  *
- */
-;
+ */;
 var Locale, Locales;
 
-Locale = (function () {
-  function Locale(arg) {
-    for (var index in arg) {
-      if (arg.hasOwnProperty(index)) {
-        this[index] = arg[index] || '';
-      }
-    }
+Locale = (function() {
+  function Locale(_arg) {
+    this.language = _arg.language, this.title = _arg.title, this.message = _arg.message, this.cancelButtonLabel = _arg.cancelButtonLabel, this.laterButtonLabel = _arg.laterButtonLabel, this.rateButtonLabel = _arg.rateButtonLabel;
     this;
   }
 
@@ -48,28 +43,24 @@ Locales = (function() {
     return locales[localeObject.language] = localeObject;
   };
 
-  Locales.getLocale = function(language, applicationTitle, customLocale) {
+  Locales.getLocale = function(language, applicationTitle) {
     var localeObject;
     if (applicationTitle == null) {
       applicationTitle = '';
     }
-    localeObject = customLocale || locales[language] || locales[language.split(/-/)[0]] || locales[LOCALE_DEFAULT];
+    localeObject = locales[language] || locales[language.split(/-/)[0]] || locales[LOCALE_DEFAULT];
     localeObject.title = localeObject.title.replace(/%@/g, applicationTitle);
-    localeObject.appRatePromptTitle = (localeObject.appRatePromptTitle || '').replace(/%@/g, applicationTitle);
-    localeObject.feedbackPromptTitle = (localeObject.feedbackPromptTitle || '').replace(/%@/g, applicationTitle);
-    localeObject.appRatePromptMessage = (localeObject.appRatePromptMessage || '').replace(/%@/g, applicationTitle);
-    localeObject.feedbackPromptMessage = (localeObject.feedbackPromptMessage || '').replace(/%@/g, applicationTitle);
     localeObject.message = localeObject.message.replace(/%@/g, applicationTitle);
     return localeObject;
   };
 
-  Locales.getLocalesNames = function () {
-    var locale, results;
-    results = [];
+  Locales.getLocalesNames = function() {
+    var locale, _results;
+    _results = [];
     for (locale in locales) {
-      results.push(locale);
+      _results.push(locale);
     }
-    return results;
+    return _results;
   };
 
   return Locales;
@@ -79,9 +70,9 @@ Locales = (function() {
 Locales.addLocale(new Locale({
   language: 'ar',
   title: "قيِّم %@",
-  message: "إذا أعجبك برنامج %@، هل تمانع من أخذ دقيقة لتقييمه؟ شكرا لدعمك",
-  cancelButtonLabel: "لا، شكراً",
-  laterButtonLabel: "ذكرني لاحقاً",
+  message: "ذا أعجبك برنامج %@، هل تمانع من أخذ دقيقة لتقييمه؟ شكرا لدعمك!",
+  cancelButtonLabel: "لا، شكرا",
+  laterButtonLabel: "ذكرني لاحقا",
   rateButtonLabel: "قيم البرنامج الآن"
 }));
 
@@ -92,6 +83,15 @@ Locales.addLocale(new Locale({
   cancelButtonLabel: "না, ধন্যবাদ",
   laterButtonLabel: "পরে আমাকে মনে করিয়ে দিন",
   rateButtonLabel: "এখন এটি রেটিং করুন"
+}));
+
+Locales.addLocale(new Locale({
+  language: 'ar',
+  title: "قيِّم %@",
+  message: "ذا أعجبك برنامج %@، هل تمانع من أخذ دقيقة لتقييمه؟ شكرا لدعمك!",
+  cancelButtonLabel: "لا، شكرا",
+  laterButtonLabel: "ذكرني لاحقا",
+  rateButtonLabel: "قيم البرنامج الآن"
 }));
 
 Locales.addLocale(new Locale({
@@ -159,17 +159,11 @@ Locales.addLocale(new Locale({
 
 Locales.addLocale(new Locale({
   language: 'en',
-  title: "Would you mind rating %@?",
-  message: "It won’t take more than a minute and helps to promote our app. Thanks for your support!",
+  title: "Rate %@",
+  message: "If you enjoy using %@, would you mind taking a moment to rate it? It won’t take more than a minute. Thanks for your support!",
   cancelButtonLabel: "No, Thanks",
   laterButtonLabel: "Remind Me Later",
-  rateButtonLabel: "Rate It Now",
-  yesButtonLabel: "Yes!",
-  noButtonLabel: "Not really",
-  appRatePromptTitle: 'Do you like using %@',
-  feedbackPromptTitle: 'Mind giving us some feedback?',
-  appRatePromptMessage:'',
-  feedbackPromptMessage:''
+  rateButtonLabel: "Rate It Now"
 }));
 
 Locales.addLocale(new Locale({
@@ -191,15 +185,6 @@ Locales.addLocale(new Locale({
 }));
 
 Locales.addLocale(new Locale({
-  language: 'fi',
-  title: "Arvostele %@",
-  message: "Jos tykkäät %@ sovelluksesta, haluatko kirjoittaa sille arvostelun? Arvostelun kirjoittamiseen ei mene montaa minuuttia. Kiitos tuestasi!",
-  cancelButtonLabel: "Ei kiitos",
-  laterButtonLabel: "Muistuta minua myöhemmin",
-  rateButtonLabel: "Arvostele nyt"
-}));
-
-Locales.addLocale(new Locale({
   language: 'fr',
   title: "Notez %@",
   message: "Si vous aimez utiliser %@, n’oubliez pas de voter sur l’App Store. Cela ne prend qu’une minute. Merci d’avance pour votre soutien !",
@@ -211,7 +196,7 @@ Locales.addLocale(new Locale({
 Locales.addLocale(new Locale({
   language: 'he',
   title: "דרג את %@",
-  message: "אם אתה נהנה להשתמש ב- %@, אתה מוכן לקחת רגע כדי לדרג את התוכנה? זה לא ייקח יותר מדקה. תודה על התמיכה!",
+  message: "אם אתה נהנה להשתמש ב- %@, אתה מוכן לקחת רגע כדי לדרג את את התוכנה? זה לא ייקח יותר מדקה. תודה על התמיכה!",
   cancelButtonLabel: "לא, תודה",
   laterButtonLabel: "הזכר לי מאוחר יותר",
   rateButtonLabel: "דרג עכשיו"
@@ -237,11 +222,11 @@ Locales.addLocale(new Locale({
 
 Locales.addLocale(new Locale({
   language: 'it',
-  title: "Valuta %@",
-  message: "Ti piace %@? Puoi dare il tuo voto nello store. Ti basterà un minuto! Grazie!",
+  title: "Vota %@",
+  message: "Se ti piace utilizzare %@, ti dispiacerebbe darle un voto? Non ci vorrà più di un minuto. Grazie per il vostro supporto!",
   cancelButtonLabel: "No, grazie",
-  laterButtonLabel: "Più tardi",
-  rateButtonLabel: "Valuta ora"
+  laterButtonLabel: "Ricordamelo dopo",
+  rateButtonLabel: "Vota ora"
 }));
 
 Locales.addLocale(new Locale({
@@ -301,31 +286,10 @@ Locales.addLocale(new Locale({
 Locales.addLocale(new Locale({
   language: 'pt',
   title: "Avaliar %@",
-  message: "Se você gostou de usar o %@, você se importaria de avaliá-lo? Não vai demorar mais de um minuto. Obrigado por seu apoio!",
-  cancelButtonLabel: "Não, obrigado",
+  message: "Se você gosta de usar o %@, você se importaria de avaliá-lo? Não vai demorar mais de um minuto. Obrigado por seu apoio!",
+  cancelButtonLabel: "Não, Obrigado",
   laterButtonLabel: "Lembrar mais tarde",
-  rateButtonLabel: "Avaliar Agora",
-  yesButtonLabel: "Sim!",
-  noButtonLabel: "Não",
-  appRatePromptTitle: "Você gosta de usar %@",
-  feedbackPromptTitle: "Poderia nos dar um feedback?",
-  appRatePromptMessage: "",
-  feedbackPromptMessage: ""
-}));
-
-Locales.addLocale(new Locale({
-  language: 'pt-PT',
-  title: "Avaliar %@",
-  message: "Se gostou de utilizar o %@, importa-se de o avaliar? Não vai demorar mais do que um minuto. Obrigado pelo seu apoio!",
-  cancelButtonLabel: "Não, obrigado",
-  laterButtonLabel: "Lembrar mais tarde",
-  rateButtonLabel: "Avaliar agora",
-  yesButtonLabel: "Sim!",
-  noButtonLabel: "Não",
-  appRatePromptTitle: "Você gosta de utilizar %@",
-  feedbackPromptTitle: "Poderia nos dar um feedback?",
-  appRatePromptMessage: "",
-  feedbackPromptMessage: ""
+  rateButtonLabel: "Avaliar Agora"
 }));
 
 Locales.addLocale(new Locale({
@@ -362,15 +326,6 @@ Locales.addLocale(new Locale({
   cancelButtonLabel: "Nej tack",
   laterButtonLabel: "Påminn mig senare",
   rateButtonLabel: "Betygsätt nu!"
-}));
-
-Locales.addLocale(new Locale({
-  language: 'ta',
-  title: "%@ மதிப்பிடு",
-  message: "%@ பிடித்திருந்தால், நீங்கள் அதை மதிப்பிட ஒரு கணம் எடுக்க முடியுமா? அது ஒரு நிமிடம் தான் எடுக்கும். உங்கள் ஒத்துழைப்புக்கு நன்றி!",
-  cancelButtonLabel: "இல்லை, நன்றி",
-  laterButtonLabel: "பின்னர் நினைவூட்டு",
-  rateButtonLabel: "இப்போது மதிப்பிடு"
 }));
 
 Locales.addLocale(new Locale({
