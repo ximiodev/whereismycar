@@ -15,6 +15,7 @@
     <preference name="android-build-tool" value="gradle" />
     <preference name="orientation" value="portrait" />
     <icon src="res/icon/ios/icon-small@2x.png" />
+    <plugin name="cordova-plugin-market2" source="npm" />
     <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />
     <plugin name="cordova-plugin-camera" source="npm" spec="~2.4.1" />
     <plugin name="cordova-plugin-media-capture" source="npm" spec="~1.2.0" />
@@ -36,7 +37,6 @@
     <plugin name="cordova-plugin-vibration" source="npm" spec="~2.1.0" />
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
     <plugin name="cordova.plugins.diagnostic" source="npm" />
-    <plugin name="cordova-plugin-market" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" />
     <plugin name="com-admob-plugin" source="npm"/>
     <gap:plugin name="com-admob-plugin" source="npm"/>
@@ -117,6 +117,7 @@
     <allow-intent href="tel:*" />
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
+    <allow-intent href="market:*" />
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />

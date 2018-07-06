@@ -48,42 +48,6 @@ function onDeviceReady() {
 			function () {}
 		);
 	}
-	
-	AppRate.preferences = {
-	  displayAppName: 'My custom app title',
-	  usesUntilPrompt: 5,
-	  promptAgainForEachNewVersion: false,
-	  inAppReview: true,
-	  storeAppURL: {
-	  ios: 'id1332669884',
-	  android: 'market://details?id=com.ar.granhotelverona',
-		windows: 'ms-windows-store://pdp/?ProductId=<the apps Store ID>',
-		blackberry: 'appworld://content/[App Id]/',
-		windows8: 'ms-windows-store:Review?name=<the Package Family Name of the application>'
-	  },
-	  customLocale: {
-		title: "Would you mind rating %@?",
-		message: "It won’t take more than a minute and helps to promote our app. Thanks for your support!",
-		cancelButtonLabel: "No, Thanks",
-		laterButtonLabel: "Remind Me Later",
-		rateButtonLabel: "Rate It Now",
-		yesButtonLabel: "Yes!",
-		noButtonLabel: "Not really",
-		appRatePromptTitle: 'Do you like using %@',
-		feedbackPromptTitle: 'Mind giving us some feedback?',
-	  },
-	  callbacks: {
-		handleNegativeFeedback: function(){
-		  window.open('mailto:feedback@example.com','_system');
-		},
-		onRateDialogShow: function(callback){
-		  callback(1) // cause immediate click on 'Rate Now' button
-		},
-		onButtonClicked: function(buttonIndex){
-		  console.log("onButtonClicked -> " + buttonIndex);
-		}
-	  }
-	};
 
     var applaunchCount = 0;
 	if(window.localStorage.getItem('launchCount')!='' && window.localStorage.getItem('launchCount')!=null) {
@@ -293,18 +257,18 @@ function cambiarIdioma() {
 	$('.btnLang .lang_'+confArr['lang']).addClass('activo');
 
 	
-	AppRate.preferences.customLocale = {
-	  title: getLangByKey("t31"),
-	  message: getLangByKey("t30"),
-	  cancelButtonLabel: getLangByKey("t33"),
-	  laterButtonLabel: getLangByKey("t32"),
-	  rateButtonLabel: getLangByKey("t31"),
-	  appRatePromptTitle: getLangByKey("t31")
-	};
-	AppRate.preferences.storeAppURL = {
-	  ios: 'id1332669884',
-	  android: 'market://details?id=com.ar.granhotelverona'
-	};
+	//~ AppRate.preferences.customLocale = {
+	  //~ title: getLangByKey("t31"),
+	  //~ message: getLangByKey("t30"),
+	  //~ cancelButtonLabel: getLangByKey("t33"),
+	  //~ laterButtonLabel: getLangByKey("t32"),
+	  //~ rateButtonLabel: getLangByKey("t31"),
+	  //~ appRatePromptTitle: getLangByKey("t31")
+	//~ };
+	//~ AppRate.preferences.storeAppURL = {
+	  //~ ios: 'id1332669884',
+	  //~ android: 'market://details?id=com.ar.granhotelverona'
+	//~ };
 }
 
 function ponerPantalla(pantid) {
@@ -735,31 +699,31 @@ function ponerTutorial() {
 
 function puntuarApp() {
 	
-		//~ navigator.notification.confirm(
-		//~ getLangByKey("t30"),
-		//~ function(button) {
-			//~ // yes = 1, no = 2, later = 3
-			//~ var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
-			//~ if (button == '1') {    // Rate Now
-				//~ if (deviceType!="Android") {
-					//~ window.open('https://itunes.apple.comar/app/gran-hotel-verona/id1332669884?mt=8'); // or itms://
-					//~ cordova.plugins.market.open('gran-hotel-verona');
-				//~ } else if (deviceType=="Android") {
+		navigator.notification.confirm(
+		getLangByKey("t30"),
+		function(button) {
+			// yes = 1, no = 2, later = 3
+			var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
+			if (button == '1') {    // Rate Now
+				if (deviceType!="Android") {
+					window.open('https://itunes.apple.comar/app/gran-hotel-verona/id1332669884?mt=8'); // or itms://
+					cordova.plugins.market.open('gran-hotel-verona');
+				} else if (deviceType=="Android") {
 					//~ cordova.plugins.market.open('com.ar.granhotelverona');
-					//~ window.open('https://details?id=com.ar.granhotelverona');
-				//~ }
-			//~ } else if (button == '2') { // Later
-				//~ this.core.rate_app_counter = 0;
-			//~ } else if (button == '3') { // No
-				//~ this.core.rate_app = false;
-			//~ }
-		//~ }, getLangByKey("t31"), [getLangByKey("t31"), getLangByKey("t32"), getLangByKey("t33")]);
+					window.open('market://details?id=com.ar.granhotelverona');
+				}
+			} else if (button == '2') { // Later
+				this.core.rate_app_counter = 0;
+			} else if (button == '3') { // No
+				this.core.rate_app = false;
+			}
+		}, getLangByKey("t31"), [getLangByKey("t31"), getLangByKey("t32"), getLangByKey("t33")]);
 		 
-	try {
-		AppRate.promptForRating(false);
-	} catch(e) {
-		alerta(e);
-	}
+	//~ try {
+		//~ AppRate.promptForRating(false);
+	//~ } catch(e) {
+		//~ alerta(e);
+	//~ }
 }
 
 
@@ -779,4 +743,10 @@ function ponerPreguntarRes(pr,re,nu) {
 	return blohtml;
 }
 $(document).ready(function() {
+	
+	try {
+		//~ window.open('market://details?id=com.ar.granhotelverona');
+	} catch(e) {
+		alert(e);
+	}
 });
