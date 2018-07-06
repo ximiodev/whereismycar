@@ -6,6 +6,9 @@
     <feature name="Device">
         <param name="browser-package" value="Device" />
     </feature>
+    <feature name="NativeStorage">
+        <param name="browser-package" value="NativeStorage" />
+    </feature>
     <name>Where is my car</name>
     <description>
         Encontra tu auto

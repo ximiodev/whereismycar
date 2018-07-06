@@ -699,31 +699,31 @@ function ponerTutorial() {
 
 function puntuarApp() {
 	
-		navigator.notification.confirm(
-		getLangByKey("t30"),
-		function(button) {
-			// yes = 1, no = 2, later = 3
-			var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
-			if (button == '1') {    // Rate Now
-				if (deviceType!="Android") {
-					window.open('https://itunes.apple.comar/app/gran-hotel-verona/id1332669884?mt=8'); // or itms://
-					cordova.plugins.market.open('gran-hotel-verona');
-				} else if (deviceType=="Android") {
+		//~ navigator.notification.confirm(
+		//~ getLangByKey("t30"),
+		//~ function(button) {
+			//~ // yes = 1, no = 2, later = 3
+			//~ var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
+			//~ if (button == '1') {    // Rate Now
+				//~ if (deviceType!="Android") {
+					//~ window.open('https://itunes.apple.comar/app/gran-hotel-verona/id1332669884?mt=8'); // or itms://
+					//~ cordova.plugins.market.open('gran-hotel-verona');
+				//~ } else if (deviceType=="Android") {
 					//~ cordova.plugins.market.open('com.ar.granhotelverona');
-					window.open('market://details?id=com.ar.granhotelverona');
-				}
-			} else if (button == '2') { // Later
-				this.core.rate_app_counter = 0;
-			} else if (button == '3') { // No
-				this.core.rate_app = false;
-			}
-		}, getLangByKey("t31"), [getLangByKey("t31"), getLangByKey("t32"), getLangByKey("t33")]);
+					//~ window.open('market://details?id=com.ar.granhotelverona');
+				//~ }
+			//~ } else if (button == '2') { // Later
+				//~ this.core.rate_app_counter = 0;
+			//~ } else if (button == '3') { // No
+				//~ this.core.rate_app = false;
+			//~ }
+		//~ }, getLangByKey("t31"), [getLangByKey("t31"), getLangByKey("t32"), getLangByKey("t33")]);
 		 
-	//~ try {
-		//~ AppRate.promptForRating(false);
-	//~ } catch(e) {
-		//~ alerta(e);
-	//~ }
+	try {
+		AppRate.promptForRating(false);
+	} catch(e) {
+		alerta(e);
+	}
 }
 
 
@@ -744,9 +744,14 @@ function ponerPreguntarRes(pr,re,nu) {
 }
 $(document).ready(function() {
 	
-	try {
-		//~ window.open('market://details?id=com.ar.granhotelverona');
-	} catch(e) {
-		alert(e);
-	}
+ document.addEventListener("deviceready", onLoad, false);
 });
+
+function onLoad() {
+    var AppRate;
+    AppRate.preferences.storeAppURL = {
+        android: 'market://details?id=com.ar.granhotelverona'
+    };
+
+    AppRate.promptForRating();
+}

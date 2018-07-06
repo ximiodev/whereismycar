@@ -849,6 +849,44 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.market"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-nativestorage/www/mainHandle.js",
+        "id": "cordova-plugin-nativestorage.mainHandle",
+        "pluginId": "cordova-plugin-nativestorage",
+        "clobbers": [
+            "NativeStorage"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-nativestorage/www/LocalStorageHandle.js",
+        "id": "cordova-plugin-nativestorage.LocalStorageHandle",
+        "pluginId": "cordova-plugin-nativestorage"
+    },
+    {
+        "file": "plugins/cordova-plugin-nativestorage/www/NativeStorageError.js",
+        "id": "cordova-plugin-nativestorage.NativeStorageError",
+        "pluginId": "cordova-plugin-nativestorage"
+    },
+    {
+        "file": "plugins/cordova-plugin-apprate/www/AppRate.js",
+        "id": "cordova-plugin-apprate.AppRate",
+        "pluginId": "cordova-plugin-apprate",
+        "clobbers": [
+            "AppRate"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-apprate/www/locales.js",
+        "id": "cordova-plugin-apprate.locales",
+        "pluginId": "cordova-plugin-apprate",
+        "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-apprate/www/storage.js",
+        "id": "cordova-plugin-apprate.storage",
+        "pluginId": "cordova-plugin-apprate",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -886,7 +924,9 @@ module.exports.metadata =
     "cordova-plugin-request-location-accuracy": "2.2.3",
     "com-admob-plugin": "5.5.0",
     "cordova-plugin-x-socialsharing": "5.4.1",
-    "cordova-plugin-market": "1.2.0"
+    "cordova-plugin-market": "1.2.0",
+    "cordova-plugin-nativestorage": "2.3.1",
+    "cordova-plugin-apprate": "1.4.0"
 }
 // BOTTOM OF METADATA
 });

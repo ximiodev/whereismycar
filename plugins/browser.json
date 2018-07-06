@@ -96,6 +96,9 @@
         },
         "cordova-plugin-market": {
             "PACKAGE_NAME": "com.whereismycar"
+        },
+        "cordova-plugin-apprate": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
         }
     },
     "dependent_plugins": {
@@ -106,6 +109,9 @@
             "PACKAGE_NAME": "com.whereismycar"
         },
         "es6-promise-plugin": {
+            "PACKAGE_NAME": "com.whereismycar"
+        },
+        "cordova-plugin-nativestorage": {
             "PACKAGE_NAME": "com.whereismycar"
         }
     }
