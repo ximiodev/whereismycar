@@ -105,7 +105,7 @@ function onDeviceReady() {
 	var jsonURL = path+"conf/langs.json";
 	elsonido = path+"res/raw/son.mp3";
 	
-	media = new Media(elsonido, null, function (e) {});
+	//~ media = new Media(elsonido, null, function (e) {});
 	
 	$.ajax({
 		url        : jsonURL,
@@ -113,12 +113,11 @@ function onDeviceReady() {
 		success    : function(response) {
 			langArr = response;
 			cosasacargar['cargaIdioma'][0] = true;
-			console.log(confArr['lang']);
 			verficarEstadoCargaC();
 			cambiarIdioma();
 		},
 		error      : function(xhr, ajaxOptions, thrownError) {
-			alert("error 119");
+			console.log("error 119");
 		}
 	});
 	var jsonURL = path+"conf/faqs.json";
@@ -132,7 +131,7 @@ function onDeviceReady() {
 			cosasacargar['cargaFaqs'][0] = true;
 		},
 		error      : function(xhr, ajaxOptions, thrownError) {
-			alert("error 133");
+			console.log("error 133");
 		}
 	});
 	} catch(e) {
@@ -884,7 +883,6 @@ function verficarEstadoCargaC() {
 			$('.splashInicial').remove();
 		} else {
 			cargotodo = false;
-			console.log(catCar);
 		}
 	}
 }
