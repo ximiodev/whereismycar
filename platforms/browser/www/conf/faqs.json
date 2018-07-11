@@ -1,0 +1,56 @@
+{
+"en": {
+"preg1": {
+"pr": "How do I save the location of my car?",
+"re": "With two simple clicks, from the beginning press the \"Mark\"button and the application will automatically mark on the map the exact place you are and the name of the street. car to know where and in what conditions you left it. "
+},
+"preg2": {
+"pr": "How do I find my car?",
+"re": "From the beginning press the \"Search\"button, a screen will be displayed where you will be shown on the map the exact place where you left the car and the route you must take to reach it, with the reference photo and the saved notes. "
+},
+"preg3": {
+"pr": "Where can I use the application?",
+"re": "This App can be used anywhere in the world, just simply activate your GPS and go!"
+},
+"preg4": {
+"pr": "Can you have a saved history?",
+"re": "Yes, and this information that you can also delete, will help you to have a record of your locations and photographs that will be useful if you need them, as before any fact, of sinister, carry or infractions."
+}
+},
+"es": {
+"preg1":{
+"pr": "¿Cómo guardo la ubicación de mi auto?",
+"re": "Con dos simples clicks. Desde el inicio presiona el botón \"Marcar\" y la aplicación marcará automáticamente en el mapa el lugar exacto que te encuentras y nombre de la calle. También podrás obtener una foto del lugar o del auto para saber donde y en que condiciones lo dejaste."
+},
+"preg2":{
+"pr": "¿Cómo encuentro mi auto?",
+"re": "Desde el inicio presiona el botón \"Buscar\". Se desplegará una pantalla donde te mostrará en el mapa el lugar exacto donde dejaste el auto y el recorrido que debes hacer para llegar hasta él, con la foto de referencia y las notas guardadas."
+},
+"preg3":{
+"pr": "¿Dónde puedo usar la aplicación?",
+"re": "Esta App puede ser utilizada en cualquier lugar del mundo, solo basta con que actives tu GPS y listo!"
+},
+"preg4":{
+"pr": "¿Puedes tener un historial guardado?",
+"re": "Si, y esta información que puedes también eliminar, te servirá para tener un registro de tus ubicaciones y fotografía que te serán útiles en caso de necesitarlas, como prueba antes cualquier hecho, de siniestro, acarreo o de infracciones."
+}
+},
+"pt": {
+"preg1": {
+"pr": "Como faço para salvar a localização do meu carro?",
+"Re": "Com dois cliques simples desde o início pressionando o botão \"Marcar\" e o aplicativo automaticamente irá marcar no mapa o local exato que você é eo nome da rua também pode obter uma imagem do lugar ou. carro para saber onde e em que condições você deixou. "
+},
+"preg2": {
+"pr": "Como encontro meu carro?",
+"Re": "Desde o início pressionando o \"Pesquisar\" uma tela irá mostrar no mapa o local exato onde você saiu do carro e a rota que você tem que fazer para alcançá-lo com a foto de referência é exibido e as notas salvas."
+},
+"preg3": {
+"pr": "Onde posso usar o aplicativo?",
+"Re": "Este aplicativo pode ser usado em qualquer lugar do mundo, apenas o suficiente para ativar o seu GPS e ir!"
+},
+"preg4": {
+"pr": "Você pode ter um histórico salvo?",
+"Re": "Se, e esta informação você também pode remover, vai ajudá-lo a manter o controle de seus locais e fotografia que será útil em caso de necessidade como prova antes de qualquer evento, sinistro, puxar ou ofensas"
+}
+}
+}
