@@ -103,7 +103,12 @@ function onDeviceReady() {
 	var path = window.location.href.replace('index.html', '');
 	var jsonURL = path+"conf/langs.json";
 	elsonido = path+"res/raw/son.mp3";
-	media = new Media(elsonido, null, function (e) {});
+	
+	try {
+		media = new Media(elsonido, null, function (e) {});
+	} catch(e) {
+		alert(e);
+	}
 	
 	$.ajax({
 		url        : jsonURL,
@@ -170,7 +175,7 @@ function onDeviceReady() {
 		$('.minimapa').addClass('hidden');
 		$('#map_canvas').addClass('hidden');
 	}
-	checkAvailability();
+	//~ checkAvailability();
 
 	try {
 		checkAvailability(); // start the check
@@ -519,7 +524,7 @@ function encConcon() {
 					 
 					try {
 						navigator.notification.vibrate(700);
-						elsonido.play();
+						media.play();
 						directionsDisplay.setDirections(response);
 						setTimeout(mostrarPuntuarApp, 15000);
 					} catch(e) {
