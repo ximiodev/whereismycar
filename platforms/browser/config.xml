@@ -18,6 +18,7 @@
     </author>
     <content src="index.html" />
     <icon src="res/icon/ios/icon-small@2x.png" />
+    <gap:plugin name="com-admob-plugin" source="npm" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -32,4 +33,5 @@
     <preference name="StatusBarBackgroundColor" value="#50a3f4" />
     <preference name="android-build-tool" value="gradle" />
     <preference name="orientation" value="portrait" />
+    <preference name="cordova.plugins.diagnostic.modules" value="LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" />
 </widget>

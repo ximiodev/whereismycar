@@ -1,3 +1,4 @@
+
 var map;
 var mapmini;
 var marker;
@@ -206,8 +207,7 @@ var noPoi = [
 ];
 
 var onSuccessPos = function(position) {
-	var myLatLng = {lat: lat, lng: lng};
-	console.log(position);
+	var myLatLng = {lat: position.coords.latitude, lng: position.coords.longitude};
 	lastPosition['lat'] = position.coords.latitude;
 	lastPosition['lng'] = position.coords.longitude;
 };
@@ -253,12 +253,15 @@ function sacarModalVent() {
 	});
 }
 
-function alerta(mensaje,titulo=getLangByKey("t37"),accion='sacarError();') {
-	
+
+
+function alerta(mensaje,titulo,accion) {
+	var titulo2 = (titulo==undefined)?getLangByKey("t37"):titulo;
+	var accion2 = (accion==undefined)?'sacarError();':accion;
 	$('.modalError').removeClass('hidden');
-	$('.modalError .tituloError').html(titulo);
+	$('.modalError .tituloError').html(titulo2);
 	$('.modalError .textError').html(mensaje);
-	$('.modalError .btnError').attr('onclick',accion);
+	$('.modalError .btnError').attr('onclick',accion2);
 	$('.modalError').animate( {opacity: "1"},300, function() {
 	});
 }
@@ -349,7 +352,7 @@ function onErrorPos(error) {
 
 
 function onFail(message) {
-  alerta('Failed because: ' + message);
+  alert('Failed because: ' + message);
 }
 
 
@@ -529,10 +532,10 @@ function encConcon() {
 						directionsDisplay.setDirections(response);
 						setTimeout(mostrarPuntuarApp, 15000);
 					} catch(e) {
-						alerta(e.message);
+						alert(e.message);
 					}
 				  } else {
-					alerta('Directions request failed due to ' + status);
+					alert('Directions request failed due to ' + status);
 				  }
 				});
 			});
@@ -558,14 +561,14 @@ function hayinfoGuard() {
 }
 
 function onFailSincoFo(message) {
-  alerta('FError: ' + message);
+  alert('FError: ' + message);
 }
 
 function sacarFotoCo() {
 	try {
 		navigator.camera.getPicture(onSacaFotoCo, onFailSincoFo, { quality: 50, destinationType: Camera.DestinationType.FILE_URI,correctOrientation: true });
 	} catch(e) {
-		alerta(e);
+		alert(e);
 	}
 }
 
@@ -626,13 +629,13 @@ function onSacaFotoCo(img) {
 						$('#osbervacionesC').parent().addClass('conFoto');
 						$('.fotoExtraCo').css({'background-image': 'url('+lastPosition['img']+')'});
 					} catch(e) {
-						alerta(e.message);
+						alert(e.message);
 					}
 				});
 			}, onFail);
 		},
 		function(e) {
-		alerta('Unexpected error obtaining image file.');
+		alert('Unexpected error obtaining image file.');
 		onFail(e);
 	});
 }
