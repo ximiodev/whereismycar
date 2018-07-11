@@ -15,7 +15,7 @@ var directionsService;
 var cargotodo=false;
 var cosasacargar = new Array();
 var yamostrodir=false;
-var rateapp_co=false;
+var rateapp_co=2;
 var directionsDisplay;
 var destinationType; // sets the format of returned value 
 var connectionStatus = false;
@@ -240,6 +240,7 @@ function ponerModalsB(pant) {
 function sacarModalVent() {
 	$('.modalVent.activo').animate( {left: "100%"},300, function() {
 		$('.modalVent.activo').removeClass('activo');
+		secTipo = 0;
 	});
 }
 
@@ -265,6 +266,7 @@ function sacarError() {
 function volverAConf() {
 	$('.modalVent.activo').animate( {left: "100%"},300, function() {
 		$('.modalVent.activo').removeClass('activo');
+		secTipo = 2;
 		ponerModalsB('modalConfig');
 	});
 }
@@ -359,6 +361,7 @@ function borrarHistorial() {
 
 function verHist() {
 	ponerModalsB('modalHist');
+	secTipo = 1;
 	var conthist = '<ul class="listcomun">';
 	historial.forEach(function(element) {
 		//~ historialCont
@@ -372,11 +375,13 @@ function verHist() {
 }
 
 function mostrarIdiomas() {
+	secTipo = 1;
 	ponerModalsB('modaIdioma');
 }
 
 function verConfig() {
 	ponerModalsB('modalConfig');
+	secTipo = 2;
 }
 
 function borrarEstacionamiento() {
@@ -404,6 +409,7 @@ function backMenu() {
 			}
 		});
 	}
+	secTipo = 0;
 	ponerPantalla("pantallaP");
 }
 
@@ -413,6 +419,7 @@ function estConcon () {
 	$('.modalVent').css({'min-height':$(window).height()}); 
 	ponerModalsB("modalNuevoEstaCo");
 	lastPosition = {};
+	secTipo = 3;
 
 	$('.fotoExtraCo').addClass('hidden');
 	$('#osbervacionesC').parent().removeClass('conFoto');
@@ -479,6 +486,7 @@ function mostrarFoto() {
 
 function encConcon() {
 	if(hayinfoGuard()) {
+		secTipo = 4;
 		ponerPantalla("pantallaConMapa");
 		$('.fotoExtraSinco_c').addClass('hidden');
 		$('#osbervacionesSC_').removeClass('conFoto');
@@ -507,9 +515,9 @@ function encConcon() {
 				  if (status === 'OK') {
 					 
 					try {
-						
+						navigator.notification.vibrate(700);
 						directionsDisplay.setDirections(response);
-						setTimeout(mostrarPuntuarApp, 25000);
+						setTimeout(mostrarPuntuarApp, 15000);
 					} catch(e) {
 						alerta(e.message);
 					}
@@ -708,11 +716,12 @@ var compError = function(msg) {
 }
 
 function infoApp() {
+	secTipo = 1;
 	ponerModalsB('modalInfo');
 }
 
 function ponerTutorial() {
-	
+	secTipo = 1;
 	var count = 0;
 	for (var k in faqArr[confArr['lang']]) {
 		count++;
@@ -752,6 +761,8 @@ function mostrarPuntuarApp() {
 			}
 			window.localStorage.setItem('rateapp_co',rateapp_co); 
 		}, getLangByKey("t31"), [getLangByKey("t31"), getLangByKey("t32"), getLangByKey("t33")]);
+	} else {
+		alert(rateapp_co);
 	}
 }
 
@@ -864,3 +875,26 @@ function verficarEstadoCargaC() {
 		}
 	}
 }
+
+function nullac() {
+}
+
+var secTipo = 0;
+document.addEventListener("backbutton", function(e){
+    try {
+		if(secTipo==1) {
+			volverAConf();
+		}
+		if(secTipo==2) {
+			sacarModalVent();
+		}
+		if(secTipo==3) {
+			cancelarSinco();
+		}
+		if(secTipo==4) {
+			backMenu();
+		}
+	} catch(e) {
+		alert(e);
+	}
+}, false);
