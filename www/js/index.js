@@ -528,13 +528,15 @@ function encConcon() {
 				  if (status === 'OK') {
 					 
 					try {
-						navigator.notification.vibrate(700);
-						media.play();
-						directionsDisplay.setDirections(response);
-						setTimeout(mostrarPuntuarApp, 15000);
+						if(navigator.vibrate) {
+							navigator.vibrate(700);
+						}
 					} catch(e) {
 						alert(e.message);
 					}
+					media.play();
+					directionsDisplay.setDirections(response);
+					setTimeout(mostrarPuntuarApp, 15000);
 				  } else {
 					alert('Directions request failed due to ' + status);
 				  }
