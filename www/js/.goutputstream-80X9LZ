@@ -1,4 +1,4 @@
-
+var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
 var map;
 var mapmini;
 var marker;
@@ -61,7 +61,13 @@ function onDeviceReady() {
 		//~ alert(e);
 	}
 	try {
-		admob.initAdmob("ca-app-pub-4910383278905451/9199602365","ca-app-pub-4910383278905451/5078872411");
+		
+		if (deviceType!="Android") {
+			admob.initAdmob("ca-app-pub-4910383278905451/3855447740","ca-app-pub-4910383278905451/2897589292");
+		} else if (deviceType=="Android") {
+			admob.initAdmob("ca-app-pub-4910383278905451/9199602365","ca-app-pub-4910383278905451/5078872411");
+		}
+		
 		admob.showBanner(admob.BannerSize.BANNER,admob.Position.TOP_APP);
 	} catch(e) {
 		//~ alert(e);
@@ -740,7 +746,7 @@ function ponerTutorial() {
 }
 
 function puntuarApp() {
-	var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
+	
 	if (deviceType!="Android") {
 		cordova.plugins.market.open('id1332669884');
 	} else if (deviceType=="Android") {

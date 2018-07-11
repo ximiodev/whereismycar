@@ -1,4 +1,4 @@
-
+var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
 var map;
 var mapmini;
 var marker;
@@ -61,7 +61,13 @@ function onDeviceReady() {
 		//~ alert(e);
 	}
 	try {
-		admob.initAdmob("ca-app-pub-4910383278905451/9199602365","ca-app-pub-4910383278905451/5078872411");
+		
+		if (deviceType!="Android") {
+			admob.initAdmob("ca-app-pub-4910383278905451/3855447740","ca-app-pub-4910383278905451/2897589292");
+		} else if (deviceType=="Android") {
+			admob.initAdmob("ca-app-pub-4910383278905451/9199602365","ca-app-pub-4910383278905451/5078872411");
+		}
+		
 		admob.showBanner(admob.BannerSize.BANNER,admob.Position.TOP_APP);
 	} catch(e) {
 		//~ alert(e);
@@ -75,8 +81,7 @@ function onDeviceReady() {
 			function () {}
 		);
 	}
-	try {
-
+	
     var applaunchCount = 0;
 	if(window.localStorage.getItem('launchCount')!='' && window.localStorage.getItem('launchCount')!=0 && window.localStorage.getItem('launchCount')!=null) {
 		applaunchCount = window.localStorage.getItem('launchCount');
@@ -103,9 +108,9 @@ function onDeviceReady() {
 	
 	var path = window.location.href.replace('index.html', '');
 	var jsonURL = path+"conf/langs.json";
-	elsonido = path+"res/raw/son.mp3";
+	elsonido = path+"res/raw/sonar.mp3";
 	
-	//~ media = new Media(elsonido, null, function (e) {});
+	media = new Media(elsonido, null, function (e) {});
 	
 	$.ajax({
 		url        : jsonURL,
@@ -127,16 +132,13 @@ function onDeviceReady() {
 		dataType   : 'json',
 		success    : function(response) {
 			faqArr = response;
-			verficarEstadoCargaC();
 			cosasacargar['cargaFaqs'][0] = true;
+			verficarEstadoCargaC();
 		},
 		error      : function(xhr, ajaxOptions, thrownError) {
 			console.log("error 133");
 		}
 	});
-	} catch(e) {
-		console.log(e);
-	}
 	
 	if(connectionStatus) {
 		if(hayinfoGuard()) {
@@ -744,11 +746,11 @@ function ponerTutorial() {
 }
 
 function puntuarApp() {
-	var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
+	
 	if (deviceType!="Android") {
 		cordova.plugins.market.open('id1332669884');
 	} else if (deviceType=="Android") {
-		cordova.plugins.market.open('com.ar.granhotelverona');
+		cordova.plugins.market.open('com.sof.whereismycar');
 	}
 }
 

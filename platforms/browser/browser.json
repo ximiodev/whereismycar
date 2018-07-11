@@ -1021,6 +1021,14 @@
             "id": "cordova-plugin-apprate.storage",
             "pluginId": "cordova-plugin-apprate",
             "runs": true
+        },
+        {
+            "file": "plugins/com-admob-plugin/www/admob.js",
+            "id": "com-admob-plugin.admob",
+            "pluginId": "com-admob-plugin",
+            "clobbers": [
+                "window.admob"
+            ]
         }
     ],
     "plugin_metadata": {
