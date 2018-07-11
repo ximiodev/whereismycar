@@ -22,26 +22,10 @@ var connectionStatus = false;
 
 var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
 
-
-function preload(arrayOfImages) {
-	for(var i=0;i<arrayOfImages.lenght;i++){
-		(new Image()).src = arrayOfImages[i];
-		// Alternatively you could use:
-		// (new Image()).src = this;
-	}
-}
-
-// Usage:
-
-preload([
-	'images/splashHome.png'
-]);
-
 cosasacargar['doc_ready'] = new Array(false,'doc_ready');
 cosasacargar['onDeviceReady'] = new Array(false,'onDeviceReady');
 cosasacargar['cargaIdioma'] = new Array(false,'cargaIdioma');
 cosasacargar['cargaFaqs'] = new Array(false,'cargaFaqs');
-cosasacargar['cargaImgs'] = new Array(false,'cargaImgs');
 if (app) {
 	document.addEventListener("deviceready",onDeviceReady,false);
 } else {
@@ -84,6 +68,7 @@ function onDeviceReady() {
 	
 	if(window.localStorage.getItem('config')!='' && window.localStorage.getItem('config')!=null) {
 		confArr = JSON.parse(window.localStorage.getItem('config'));
+		console.log(window.localStorage.getItem('launchCount'));
 	}
 	
 	if(window.localStorage.getItem('ultimoest')!='' && window.localStorage.getItem('ultimoest')!=null) {
@@ -412,7 +397,6 @@ function backMenu() {
 function estConcon () {
 	$('.modalVent').css({'min-height':$(window).height()}); 
 	ponerModalsB("modalNuevoEstaCo");
-	lastPosition = {};
 
 	$('.fotoExtraCo').addClass('hidden');
 	$('#osbervacionesC').parent().removeClass('conFoto');
@@ -625,16 +609,16 @@ function onSacaFotoCo(img) {
 /* validacion de gps*/
 
 function checkAvailability(){
-    //~ cordova.plugins.diagnostic.isGpsLocationAvailable(function(available){
-        //~ alerta("GPS location is " + (available ? "available" : "not available"));
-        //~ if(!available){
-           //~ checkAuthorization();
-        //~ }else{
-            //~ console.log("GPS location is ready to use");
-        //~ }
-    //~ }, function(error){
-        //~ console.error("The following error occurred: "+error);
-    //~ });
+    cordova.plugins.diagnostic.isGpsLocationAvailable(function(available){
+        alerta("GPS location is " + (available ? "available" : "not available"));
+        if(!available){
+           checkAuthorization();
+        }else{
+            console.log("GPS location is ready to use");
+        }
+    }, function(error){
+        console.error("The following error occurred: "+error);
+    });
 }
 
 function checkAuthorization(){
@@ -772,78 +756,8 @@ function ponerPreguntarRes(pr,re,nu) {
 	return blohtml;
 }
 $(document).ready(function() {
-	cosasacargar['doc_ready'][0] = true;
+	cosasacargar['cargaFaqs'][0] = true;
 	verficarEstadoCargaC();
-	"use strict"
-	//indexOf is not supported by IE9>.
-	if (!Array.prototype.indexOf){
-	  Array.prototype.indexOf = function(elt /*, from*/){
-	    var len = this.length >>> 0;
-
-	    var from = Number(arguments[1]) || 0;
-	    from = (from < 0)
-	         ? Math.ceil(from)
-	         : Math.floor(from);
-	    if (from < 0)
-	      from += len;
-
-	    for (; from < len; from++){
-	      if (from in this &&
-	          this[from] === elt)
-	        return from;
-	    }
-	    return -1;
-	  };
-	}
-
-    var bgImg = [], img = [], count=0, percentage = 0;
-
-    //Creating loader overlay
-    //Searching all elemnts in the page for image
-    $('*').filter(function() {
-
-	    var val = $(this).css('background-image').replace(/url\(/g,'').replace(/\)/,'').replace(/"/g,'');
-	    var imgVal = $(this).not('script').attr('src');
-
-	    if(val !== 'none' && val !== '' && !/linear-gradient/g.test(val) && bgImg.indexOf(val) === -1){
-	    	bgImg.push(val)
-	    }
-
-	    if(imgVal !== undefined && imgVal !== '' && img.indexOf(imgVal) === -1 && (imgVal.substring(0, 4)!='http')){
-	    	img.push(imgVal)
-	    }
-
- 	});
-
-    var imgArray = bgImg.concat(img);
-
-    $.each(imgArray, function(i,val){ //Adding load and error event
-		$("<img />").attr("src", val).bind("load", function () {
-            completeImageLoading();
-        });
-
-        $("<img />").attr("src", val).bind("error", function () {
-            imgError(this);
-        });
-    });
-
-    function completeImageLoading(){
-    	count++;
-    	percentage = Math.floor(count / imgArray.length * 100);
-    	if(percentage === 100){
-			iniciar();
-    	}
-    }
-
-    //Error handling
-    function imgError (arg) {
-		iniciar();
-    }
-	
-    function iniciar() {
-		cosasacargar['cargaImgs'][0] = true;
-		verficarEstadoCargaC();
-	}
 });
 
 
@@ -851,16 +765,16 @@ function verficarEstadoCargaC() {
 	if(!cargotodo) {
 		var catCar = 0;
 		for (var item in cosasacargar) {
-			if(cosasacargar[item][0]==true) {
+			if(item['cargad']==true) {
 				catCar++;
 			}
 		}
-		if(catCar>=5) {
+		if(cosasacargar.lenght>=catCar) {
 			cargotodo = true;
-			$('.splashInicial').remove();
+			alert("termino");
 		} else {
 			cargotodo = false;
-			console.log(catCar);
+			console.log(cosasacargar.lenght);
 		}
 	}
 }

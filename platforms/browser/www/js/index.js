@@ -12,13 +12,36 @@ var pictureSource;   // picture source
 var geocoder;
 var vhei = window.innerHeight-150;
 var directionsService;
+var cargotodo=false;
+var cosasacargar = new Array();
 var yamostrodir=false;
+var rateapp_co=false;
 var directionsDisplay;
 var destinationType; // sets the format of returned value 
 var connectionStatus = false;
 
 var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
 
+
+function preload(arrayOfImages) {
+	for(var i=0;i<arrayOfImages.lenght;i++){
+		(new Image()).src = arrayOfImages[i];
+		// Alternatively you could use:
+		// (new Image()).src = this;
+	}
+}
+
+// Usage:
+
+preload([
+	'images/splashHome.png'
+]);
+
+cosasacargar['doc_ready'] = new Array(false,'doc_ready');
+cosasacargar['onDeviceReady'] = new Array(false,'onDeviceReady');
+cosasacargar['cargaIdioma'] = new Array(false,'cargaIdioma');
+cosasacargar['cargaFaqs'] = new Array(false,'cargaFaqs');
+cosasacargar['cargaImgs'] = new Array(false,'cargaImgs');
 if (app) {
 	document.addEventListener("deviceready",onDeviceReady,false);
 } else {
@@ -27,11 +50,13 @@ if (app) {
 
 
 function onDeviceReady() {
+	cosasacargar['onDeviceReady'][0] = true;
+	verficarEstadoCargaC();
 	try {
 		pictureSource=navigator.camera.PictureSourceType;
 		destinationType=navigator.camera.DestinationType;
 	} catch(e) {
-		alerta(e);
+		//~ alert(e);
 	}
 	try {
 		admob.initAdmob("ca-app-pub-4910383278905451/9199602365","ca-app-pub-4910383278905451/5078872411");
@@ -50,12 +75,13 @@ function onDeviceReady() {
 	}
 
     var applaunchCount = 0;
-	if(window.localStorage.getItem('launchCount')!='' && window.localStorage.getItem('launchCount')!=null) {
+	if(window.localStorage.getItem('launchCount')!='' && window.localStorage.getItem('launchCount')!=0 && window.localStorage.getItem('launchCount')!=null) {
 		applaunchCount = window.localStorage.getItem('launchCount');
 	} else{
 		window.localStorage.setItem('launchCount',1); 
 		window.localStorage.setItem('config', '{"lang": "'+defLang+'","notif": "true","sounds": "true"}');
 	}
+	
 	if(window.localStorage.getItem('config')!='' && window.localStorage.getItem('config')!=null) {
 		confArr = JSON.parse(window.localStorage.getItem('config'));
 	}
@@ -63,8 +89,13 @@ function onDeviceReady() {
 	if(window.localStorage.getItem('ultimoest')!='' && window.localStorage.getItem('ultimoest')!=null) {
 		lastPosition = JSON.parse(window.localStorage.getItem('ultimoest'));
 	}
+	
 	if(window.localStorage.getItem('historial')!='' && window.localStorage.getItem('historial')!=null) {
 		historial = JSON.parse(window.localStorage.getItem('historial'));
+	}
+	
+	if(window.localStorage.getItem('rateapp_co')!='' && window.localStorage.getItem('rateapp_co')!=null) {
+		rateapp_co = window.localStorage.getItem('rateapp_co');
 	}
 	
 	var path = window.location.href.replace('index.html', '');
@@ -76,6 +107,9 @@ function onDeviceReady() {
 		dataType   : 'json',
 		success    : function(response) {
 			langArr = response;
+			cosasacargar['cargaIdioma'][0] = true;
+			console.log(confArr['lang']);
+			verficarEstadoCargaC();
 			cambiarIdioma();
 		},
 		error      : function(xhr, ajaxOptions, thrownError) {
@@ -88,6 +122,8 @@ function onDeviceReady() {
 		dataType   : 'json',
 		success    : function(response) {
 			faqArr = response;
+			verficarEstadoCargaC();
+			cosasacargar['cargaFaqs'][0] = true;
 		},
 		error      : function(xhr, ajaxOptions, thrownError) {
 			//~ console.log(thrownError);
@@ -136,7 +172,7 @@ function onDeviceReady() {
 	try {
 		checkAvailability(); // start the check
 	} catch(e) {
-		alerta(e);
+		alert(e);
 	}
 }
 
@@ -376,6 +412,7 @@ function backMenu() {
 function estConcon () {
 	$('.modalVent').css({'min-height':$(window).height()}); 
 	ponerModalsB("modalNuevoEstaCo");
+	lastPosition = {};
 
 	$('.fotoExtraCo').addClass('hidden');
 	$('#osbervacionesC').parent().removeClass('conFoto');
@@ -472,6 +509,7 @@ function encConcon() {
 					try {
 						
 						directionsDisplay.setDirections(response);
+						setTimeout(mostrarPuntuarApp, 25000);
 					} catch(e) {
 						alerta(e.message);
 					}
@@ -587,16 +625,16 @@ function onSacaFotoCo(img) {
 /* validacion de gps*/
 
 function checkAvailability(){
-    cordova.plugins.diagnostic.isGpsLocationAvailable(function(available){
-        alerta("GPS location is " + (available ? "available" : "not available"));
-        if(!available){
-           checkAuthorization();
-        }else{
-            console.log("GPS location is ready to use");
-        }
-    }, function(error){
-        console.error("The following error occurred: "+error);
-    });
+    //~ cordova.plugins.diagnostic.isGpsLocationAvailable(function(available){
+        //~ alerta("GPS location is " + (available ? "available" : "not available"));
+        //~ if(!available){
+           //~ checkAuthorization();
+        //~ }else{
+            //~ console.log("GPS location is ready to use");
+        //~ }
+    //~ }, function(error){
+        //~ console.error("The following error occurred: "+error);
+    //~ });
 }
 
 function checkAuthorization(){
@@ -685,7 +723,16 @@ function ponerTutorial() {
 }
 
 function puntuarApp() {
-	
+	var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
+	if (deviceType!="Android") {
+		cordova.plugins.market.open('id1332669884');
+	} else if (deviceType=="Android") {
+		cordova.plugins.market.open('com.ar.granhotelverona');
+	}
+}
+
+function mostrarPuntuarApp() {
+	if (rateapp_co === 10) {
 		navigator.notification.confirm(
 		getLangByKey("t30"),
 		function(button) {
@@ -697,13 +744,15 @@ function puntuarApp() {
 				} else if (deviceType=="Android") {
 					cordova.plugins.market.open('com.ar.granhotelverona');
 				}
+				rateapp_co = false;
 			} else if (button == '2') { // Later
-				this.core.rate_app_counter = 0;
+				rateapp_co = 0;
 			} else if (button == '3') { // No
-				this.core.rate_app = false;
+				rateapp_co = false;
 			}
+			window.localStorage.setItem('rateapp_co',rateapp_co); 
 		}, getLangByKey("t31"), [getLangByKey("t31"), getLangByKey("t32"), getLangByKey("t33")]);
-
+	}
 }
 
 
@@ -723,5 +772,95 @@ function ponerPreguntarRes(pr,re,nu) {
 	return blohtml;
 }
 $(document).ready(function() {
+	cosasacargar['doc_ready'][0] = true;
+	verficarEstadoCargaC();
+	"use strict"
+	//indexOf is not supported by IE9>.
+	if (!Array.prototype.indexOf){
+	  Array.prototype.indexOf = function(elt /*, from*/){
+	    var len = this.length >>> 0;
+
+	    var from = Number(arguments[1]) || 0;
+	    from = (from < 0)
+	         ? Math.ceil(from)
+	         : Math.floor(from);
+	    if (from < 0)
+	      from += len;
+
+	    for (; from < len; from++){
+	      if (from in this &&
+	          this[from] === elt)
+	        return from;
+	    }
+	    return -1;
+	  };
+	}
+
+    var bgImg = [], img = [], count=0, percentage = 0;
+
+    //Creating loader overlay
+    //Searching all elemnts in the page for image
+    $('*').filter(function() {
+
+	    var val = $(this).css('background-image').replace(/url\(/g,'').replace(/\)/,'').replace(/"/g,'');
+	    var imgVal = $(this).not('script').attr('src');
+
+	    if(val !== 'none' && val !== '' && !/linear-gradient/g.test(val) && bgImg.indexOf(val) === -1){
+	    	bgImg.push(val)
+	    }
+
+	    if(imgVal !== undefined && imgVal !== '' && img.indexOf(imgVal) === -1 && (imgVal.substring(0, 4)!='http')){
+	    	img.push(imgVal)
+	    }
+
+ 	});
+
+    var imgArray = bgImg.concat(img);
+
+    $.each(imgArray, function(i,val){ //Adding load and error event
+		$("<img />").attr("src", val).bind("load", function () {
+            completeImageLoading();
+        });
+
+        $("<img />").attr("src", val).bind("error", function () {
+            imgError(this);
+        });
+    });
+
+    function completeImageLoading(){
+    	count++;
+    	percentage = Math.floor(count / imgArray.length * 100);
+    	if(percentage === 100){
+			iniciar();
+    	}
+    }
+
+    //Error handling
+    function imgError (arg) {
+		iniciar();
+    }
 	
+    function iniciar() {
+		cosasacargar['cargaImgs'][0] = true;
+		verficarEstadoCargaC();
+	}
 });
+
+
+function verficarEstadoCargaC() {
+	if(!cargotodo) {
+		var catCar = 0;
+		for (var item in cosasacargar) {
+			if(cosasacargar[item][0]==true) {
+				catCar++;
+			}
+		}
+		if(catCar>=5) {
+			cargotodo = true;
+			$('.splashInicial').remove();
+		} else {
+			cargotodo = false;
+			console.log(catCar);
+		}
+	}
+}

@@ -1,32 +1,56 @@
 {
 "en": {
-"preg1":{
-"pr": "How do I save a new parking?",
-"re": "From the beginning press the \"Mark\"button.If you have the GPS activated and you have an internet connection, the application will mark the place where you are on the map, even if possible, the street. It is not the one you want, you can mark the place you prefer on the map, in any case you can write the name of the street yourself or any other note that you can use to locate your car. you parked. "
+"preg1": {
+"pr": "How do I save the location of my car?",
+"re": "With two simple clicks, from the beginning press the \"Mark\"button and the application will automatically mark on the map the exact place you are and the name of the street. car to know where and in what conditions you left it. "
 },
-"preg2":{
-"pr": "How do I find a saved parking?",
-"re": "From the beginning press the \"Search\"button. A screen will be displayed where it will show you the saved notes, the photo that you have saved and if you have an internet connection, the route that you should do from where Be where your car is. "
+"preg2": {
+"pr": "How do I find my car?",
+"re": "From the beginning press the \"Search\"button, a screen will be displayed where you will be shown on the map the exact place where you left the car and the route you must take to reach it, with the reference photo and the saved notes. "
+},
+"preg3": {
+"pr": "Where can I use the application?",
+"re": "This App can be used anywhere in the world, just simply activate your GPS and go!"
+},
+"preg4": {
+"pr": "Can you have a saved history?",
+"re": "Yes, and this information that you can also delete, will help you to have a record of your locations and photographs that will be useful if you need them, as before any fact, of sinister, carry or infractions."
 }
 },
 "es": {
 "preg1":{
-"pr": "¿Como guardo un nuevo estacionamiento?",
-"re": "Desde el inicio presiona el botón \"Marcar\". Si tienes el GPS activado y posees conección a internet, la aplicación marcará en el mapa el lugar donde estés, inclusive si es posible, la calle. Si la ubicación no es la que deseas puedes marcar en el mapa el lugar que tú prefieras. En calquier caso podrás escribir tú mismo el nombre de la calle o cualquier otra nota que te sirva para ubicar tu auto. Puedes tomar una foto como tener más información sobre donde estacionaste."
+"pr": "¿Cómo guardo la ubicación de mi auto?",
+"re": "Con dos simples clicks. Desde el inicio presiona el botón \"Marcar\" y la aplicación marcará automáticamente en el mapa el lugar exacto que te encuentras y nombre de la calle. También podrás obtener una foto del lugar o del auto para saber donde y en que condiciones lo dejaste."
 },
 "preg2":{
-"pr": "¿Como encuentro uun estacionamiento guardado?",
-"re": "Desde el inicio presiona el botón \"Buscar\". Se edesplegará una pantalla donde te mostrará las notas guardadas, la foto que has guardado y si tienes conección ainternet se mostrará en el mapa el recorrido que debes hacer desde donde estés hasta donde está tu auto."
+"pr": "¿Cómo encuentro mi auto?",
+"re": "Desde el inicio presiona el botón \"Buscar\". Se desplegará una pantalla donde te mostrará en el mapa el lugar exacto donde dejaste el auto y el recorrido que debes hacer para llegar hasta él, con la foto de referencia y las notas guardadas."
+},
+"preg3":{
+"pr": "¿Dónde puedo usar la aplicación?",
+"re": "Esta App puede ser utilizada en cualquier lugar del mundo, solo basta con que actives tu GPS y listo!"
+},
+"preg4":{
+"pr": "¿Puedes tener un historial guardado?",
+"re": "Si, y esta información que puedes también eliminar, te servirá para tener un registro de tus ubicaciones y fotografía que te serán útiles en caso de necesitarlas, como prueba antes cualquier hecho, de siniestro, acarreo o de infracciones."
 }
 },
 "pt": {
-"preg1":{
-"pr": "Como faço para salvar um novo estacionamento?",
-"re": "Desde o início, pressione o botão \"Marcar\". Se você tiver o GPS ativado e tiver uma conexão com a Internet, o aplicativo marcará o local onde você está no mapa, mesmo que possível, na rua. Não é o que você quer, você pode marcar o lugar que você preferir no mapa, em qualquer caso, você pode escrever o nome da rua mesmo ou qualquer outra nota que você pode usar para localizar seu carro. você estacionou. "
+"preg1": {
+"pr": "Como faço para salvar a localização do meu carro?",
+"Re": "Com dois cliques simples desde o início pressionando o botão \"Marcar\" e o aplicativo automaticamente irá marcar no mapa o local exato que você é eo nome da rua também pode obter uma imagem do lugar ou. carro para saber onde e em que condições você deixou. "
 },
-"preg2":{
-"pr": "Como encontro um estacionamento salvo?",
-"re": "Desde o início, pressione o botão \"Pesquisar\". Uma tela será exibida onde você mostrará as notas salvas, a foto que você salvou e se você tiver uma conexão à Internet, a rota que você deve fazer de onde Seja onde seu carro está. "
+"preg2": {
+"pr": "Como encontro meu carro?",
+"Re": "Desde o início pressionando o \"Pesquisar\" uma tela irá mostrar no mapa o local exato onde você saiu do carro e a rota que você tem que fazer para alcançá-lo com a foto de referência é exibido e as notas salvas."
+},
+"preg3": {
+"pr": "Onde posso usar o aplicativo?",
+"Re": "Este aplicativo pode ser usado em qualquer lugar do mundo, apenas o suficiente para ativar o seu GPS e ir!"
+},
+"preg4": {
+"pr": "Você pode ter um histórico salvo?",
+"Re": "Se, e esta informação você também pode remover, vai ajudá-lo a manter o controle de seus locais e fotografia que será útil em caso de necessidade como prova antes de qualquer evento, sinistro, puxar ou ofensas"
 }
 }
 }
