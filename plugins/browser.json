@@ -99,10 +99,6 @@
         },
         "cordova-plugin-apprate": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
-        },
-        "phonegap-plugin-push": {
-            "SENDER_ID": "856158633092",
-            "PACKAGE_NAME": "com.sof.whereismycar"
         }
     },
     "dependent_plugins": {
