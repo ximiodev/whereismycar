@@ -194,7 +194,16 @@ function onDeviceReady() {
 	try {
 		var user_platform = device.platform;
 		var push = PushNotification.init({ 
-			"android": { "senderID": "856158633092"}
+			"android": { "senderID": "856158633092"},
+			browser: {
+				pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+			},
+			ios: {
+				alert: "true",
+				badge: "true",
+				sound: "true"
+			},
+			windows: {}
 		});
 		push.on('registration', function(data) {
 			var datos = {
