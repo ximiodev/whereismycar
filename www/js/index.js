@@ -18,6 +18,7 @@ var directionsService;
 var cargotodo=false;
 var cosasacargar = new Array();
 var yamostrodir=false;
+var baseURL = 'http://www.ximiodev.com/whereismycar/apiContenidos.php';
 var rateapp_co=2;
 var directionsDisplay;
 var destinationType; // sets the format of returned value 
@@ -108,9 +109,9 @@ function onDeviceReady() {
 	
 	var path = window.location.href.replace('index.html', '');
 	var jsonURL = path+"conf/langs.json";
-	elsonido = path+"res/raw/sonar.mp3";
+	elsonido = path+"sounds/sonar.mp3";
 	
-	media = new Media(elsonido, null, function (e) {});
+	media = new Media(elsonido, alert('cargosonido'), function (e) {alert(e)});
 	
 	$.ajax({
 		url        : jsonURL,
@@ -185,6 +186,54 @@ function onDeviceReady() {
 	} catch(e) {
 		alert(e);
 	}
+	
+	var push = PushNotification.init({ 
+		"android": { "senderID": "856158633092"}
+	});
+	push.on('registration', function(data) {
+		var datos = {
+			'accion':'registrarDev',
+			'user_platform': user_platform,
+			'registrationId': data.registrationId
+		}
+		 
+		push.setApplicationIconBadgeNumber(() => {
+			console.log('success');
+		}, () => {
+			console.log('error');
+		}, 0);
+		 $.ajax({
+			type: 'POST',
+			data: datos,
+			dataType: 'json',
+			url: baseURL,
+			success: function (data) {
+				if(data.res) {
+					console.log(data.res);
+				}
+			},
+			error      : function(xhr, ajaxOptions, thrownError) {
+				console.log("error 216");
+			}
+		  });
+	});
+
+	push.on('notification', function(data) {
+		//~ console.log(data.title+" Message: " +data.message);
+		try {
+			navigator.notification.alert(
+				data.message,         // message
+				null,                 // callback
+				data.title,           // title
+				'Ok'                  // buttonName
+			);
+		} catch(e) {
+		}
+	});
+
+	push.on('error', function(e) {
+		//~ document.getElementById("gcm_id").innerHTML = e;
+	});
 }
 
 var imageIconna = {
@@ -365,7 +414,7 @@ function ponerTexto(texto) {
 /* Sin coneccion*/
 
 function borrarHistorial() {
-	if(confirm("¿Desea Borrar el historial?")) {
+	if(confirm(getLangByKey("t19"))) {
 		$('#historialCont').html('');
 		var historial = new Array();
 		window.localStorage.setItem('historial', JSON.stringify(historial));
@@ -376,6 +425,7 @@ function verHist() {
 	ponerModalsB('modalHist');
 	secTipo = 1;
 	var conthist = '<ul class="listcomun">';
+	historial.sort(ordenarhist);
 	historial.forEach(function(element) {
 		//~ historialCont
 		
@@ -759,7 +809,7 @@ function puntuarApp() {
 }
 
 function mostrarPuntuarApp() {
-	if (rateapp_co === 10) {
+	if (rateapp_co==1 || rateapp_co==2) {
 		navigator.notification.confirm(
 		getLangByKey("t30"),
 		function(button) {
@@ -773,14 +823,14 @@ function mostrarPuntuarApp() {
 				}
 				rateapp_co = false;
 			} else if (button == '2') { // Later
-				rateapp_co = 0;
+				rateapp_co = 1;
 			} else if (button == '3') { // No
 				rateapp_co = false;
 			}
 			window.localStorage.setItem('rateapp_co',rateapp_co); 
 		}, getLangByKey("t31"), [getLangByKey("t31"), getLangByKey("t32"), getLangByKey("t33")]);
 	} else {
-		alert(rateapp_co);
+		//~ alert(rateapp_co);
 	}
 }
 
@@ -915,3 +965,11 @@ document.addEventListener("backbutton", function(e){
 		alert(e);
 	}
 }, false);
+
+function ordenarhist(a,b) {
+  if (a.fecha < b.fecha)
+    return 1;
+  if (a.fecha > b.fecha)
+    return -1;
+  return 0;
+}

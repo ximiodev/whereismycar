@@ -130,6 +130,10 @@
         },
         "cordova-plugin-apprate": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "856158633092",
+            "PACKAGE_NAME": "com.sof.whereismycar"
         }
     },
     "dependent_plugins": {},
@@ -1029,6 +1033,22 @@
             "clobbers": [
                 "window.admob"
             ]
+        },
+        {
+            "file": "plugins/phonegap-plugin-push/www/push.js",
+            "id": "phonegap-plugin-push.PushNotification",
+            "pluginId": "phonegap-plugin-push",
+            "clobbers": [
+                "PushNotification"
+            ]
+        },
+        {
+            "file": "plugins/phonegap-plugin-push/www/browser/push.js",
+            "id": "phonegap-plugin-push.BrowserPush",
+            "pluginId": "phonegap-plugin-push",
+            "clobbers": [
+                "PushNotification"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -1066,6 +1086,7 @@
         "cordova-plugin-x-socialsharing": "5.4.1",
         "cordova-plugin-market": "1.2.0",
         "cordova-plugin-nativestorage": "2.3.1",
-        "cordova-plugin-apprate": "1.4.0"
+        "cordova-plugin-apprate": "1.4.0",
+        "phonegap-plugin-push": "1.8.4"
     }
 }

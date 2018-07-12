@@ -887,6 +887,30 @@ module.exports = [
         "id": "cordova-plugin-apprate.storage",
         "pluginId": "cordova-plugin-apprate",
         "runs": true
+    },
+    {
+        "file": "plugins/com-admob-plugin/www/admob.js",
+        "id": "com-admob-plugin.admob",
+        "pluginId": "com-admob-plugin",
+        "clobbers": [
+            "window.admob"
+        ]
+    },
+    {
+        "file": "plugins/phonegap-plugin-push/www/push.js",
+        "id": "phonegap-plugin-push.PushNotification",
+        "pluginId": "phonegap-plugin-push",
+        "clobbers": [
+            "PushNotification"
+        ]
+    },
+    {
+        "file": "plugins/phonegap-plugin-push/www/browser/push.js",
+        "id": "phonegap-plugin-push.BrowserPush",
+        "pluginId": "phonegap-plugin-push",
+        "clobbers": [
+            "PushNotification"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -926,7 +950,8 @@ module.exports.metadata =
     "cordova-plugin-x-socialsharing": "5.4.1",
     "cordova-plugin-market": "1.2.0",
     "cordova-plugin-nativestorage": "2.3.1",
-    "cordova-plugin-apprate": "1.4.0"
+    "cordova-plugin-apprate": "1.4.0",
+    "phonegap-plugin-push": "1.8.4"
 }
 // BOTTOM OF METADATA
 });
