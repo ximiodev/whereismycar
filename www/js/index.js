@@ -243,18 +243,19 @@ function onDeviceReady() {
 	} catch(e) {
 		alert(e);
 	}
+	
+	var imageIconna = {
+		url: 'images/pinNar_32.png',
+		size: new google.maps.Size(32, 32),
+		origin: new google.maps.Point(0, 0),
+		anchor: new google.maps.Point(0, 32)
+	};
+	var shape = {
+		coords: [1, 1, 1, 20, 18, 20, 18, 1],
+		type: 'poly'
+	};
 }
 
-var imageIconna = {
-    url: 'images/pinNar_32.png',
-    size: new google.maps.Size(32, 32),
-    origin: new google.maps.Point(0, 0),
-    anchor: new google.maps.Point(0, 32)
-};
-var shape = {
-	coords: [1, 1, 1, 20, 18, 20, 18, 1],
-	type: 'poly'
-};
 
 var noPoi = [
 {

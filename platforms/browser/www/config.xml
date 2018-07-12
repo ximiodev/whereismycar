@@ -32,6 +32,5 @@
     <preference name="StatusBarBackgroundColor" value="#50a3f4" />
     <preference name="android-build-tool" value="gradle" />
     <preference name="orientation" value="portrait" />
-    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     <preference name="cordova.plugins.diagnostic.modules" value="LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" />
 </widget>
