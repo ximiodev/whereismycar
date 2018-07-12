@@ -39,7 +39,7 @@
     <plugin name="cordova.plugins.diagnostic" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" />
     <plugin name="com-admob-plugin" source="npm"/>
-    <plugin name="phonegap-plugin-push" source="npm" spec="~1.0.0" >
+    <plugin name="phonegap-plugin-push" source="npm" spec="1.8.0" >
 		<variable name="SENDER_ID" value="856158633092" />
 	</plugin>
     <preference name="cordova.plugins.diagnostic.modules" value="LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" />
