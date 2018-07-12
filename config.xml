@@ -38,7 +38,8 @@
     <plugin name="cordova-plugin-whitelist" source="npm"  />
     <plugin name="cordova.plugins.diagnostic" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" />
-    <plugin name="phonegap-plugin-push" source="npm" >
+    <plugin name="phonegap-plugin-push" source="npm"  spec="~2.2.0">
+		<variable name="FCM_VERSION" value="15.0.0" />
 		<variable name="SENDER_ID" value="856158633092" />
 	</plugin>
     <plugin name="com-admob-plugin" source="npm"/>
@@ -92,7 +93,7 @@
         <splash height="1024" platform="ios" src="www/res/screen/ios/Default-Portrait~ipad.png" width="768" />
         <splash height="960" platform="ios" src="www/res/screen/ios/Default@2x~iphone.png" width="640" />
         <splash height="480" platform="ios" src="www/res/screen/ios/Default~iphone.png" width="320" />
-		<resource-file src="GoogleService-Info.plist" target="www/GoogleService-Info.plist" />
+		<resource-file src="GoogleService-Info.plist" />
 		<resource-file src="ringo.mp3" target="www/sonidos/ringo.mp3" />
     </platform>
     <platform name="wp8">
