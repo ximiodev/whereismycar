@@ -35,10 +35,10 @@
     <plugin name="cordova-plugin-x-socialsharing" source="npm" />
     <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2" />
     <plugin name="cordova-plugin-vibration" source="npm" />
-    <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
+    <plugin name="cordova-plugin-whitelist" source="npm"  />
     <plugin name="cordova.plugins.diagnostic" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" />
-    <plugin name="phonegap-plugin-push" source="npm" spec="~1.8.0">
+    <plugin name="phonegap-plugin-push" source="npm" >
 		<variable name="SENDER_ID" value="856158633092" />
 	</plugin>
     <plugin name="com-admob-plugin" source="npm"/>
@@ -63,11 +63,9 @@
         <splash density="port-xhdpi" src="www/res/screen/android/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="www/res/screen/android/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
+		<resource-file src="google-services.json" target="www/google-services.json" />
+		<resource-file src="ringo.mp3" target="www/sonidos/ringo.mp3" />
     </platform>
-    <platform name="android">
-	  <resource-file src="google-services.json" target="www/google-services.json" />
-	  <resource-file src="sonar.mp3" target="www/sounds/sonar.mp3" />
-	</platform>
     <platform name="ios">
         <icon height="57" platform="ios" src="www/res/icon/ios/icon.png" width="57" />
         <icon height="114" platform="ios" src="www/res/icon/ios/icon@2x.png" width="114" />
@@ -95,6 +93,8 @@
         <splash height="1024" platform="ios" src="www/res/screen/ios/Default-Portrait~ipad.png" width="768" />
         <splash height="960" platform="ios" src="www/res/screen/ios/Default@2x~iphone.png" width="640" />
         <splash height="480" platform="ios" src="www/res/screen/ios/Default~iphone.png" width="320" />
+		<resource-file src="GoogleService-Info.plist" target="www/GoogleService-Info.plist" />
+		<resource-file src="ringo.mp3" target="www/sonidos/ringo.mp3" />
     </platform>
     <platform name="wp8">
         <icon height="99" platform="wp8" src="www/res/icon/wp8/ApplicationIcon.png" width="99" />
