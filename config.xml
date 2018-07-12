@@ -8,8 +8,9 @@
         SOF
     </author>
     <content src="index.html" />
+	<preference name="phonegap-version" value="cli-7.1.0" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="24" />
+    <preference name="android-minSdkVersion" value="15" />
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#50a3f4" />
     <preference name="android-build-tool" value="gradle" />
@@ -39,7 +40,7 @@
     <plugin name="cordova.plugins.diagnostic" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" />
     <plugin name="com-admob-plugin" source="npm"/>
-    <plugin name="phonegap-plugin-push" source="npm">
+    <plugin name="phonegap-plugin-push" source="npm" >
 		<variable name="SENDER_ID" value="856158633092" />
 	</plugin>
     <preference name="cordova.plugins.diagnostic.modules" value="LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" />
