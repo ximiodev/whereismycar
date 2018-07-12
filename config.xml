@@ -18,6 +18,7 @@
     <plugin name="phonegap-plugin-push" source="npm" >
 		<variable name="SENDER_ID" value="856158633092" />
 	</plugin>
+    <plugin name="cordova-plugin-whitelist" source="npm" />
     <plugin name="cordova-plugin-media" source="npm" spec="~2.2.0" />
     <plugin name="cordova-plugin-market" source="npm" spec="1.2.0" />
     <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />
