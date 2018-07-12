@@ -111,7 +111,11 @@ function onDeviceReady() {
 	var jsonURL = path+"conf/langs.json";
 	elsonido = path+"sounds/sonar.mp3";
 	
-	media = new Media(elsonido, alert('cargosonido'), function (e) {alert(e)});
+	try {
+		media = new Media(elsonido, null, function (e) {null});
+	} catch(e) {
+		//~ alert(e);
+	}
 	
 	$.ajax({
 		url        : jsonURL,
@@ -187,53 +191,58 @@ function onDeviceReady() {
 		alert(e);
 	}
 	
-	var push = PushNotification.init({ 
-		"android": { "senderID": "856158633092"}
-	});
-	push.on('registration', function(data) {
-		var datos = {
-			'accion':'registrarDev',
-			'user_platform': user_platform,
-			'registrationId': data.registrationId
-		}
-		 
-		push.setApplicationIconBadgeNumber(() => {
-			console.log('success');
-		}, () => {
-			console.log('error');
-		}, 0);
-		 $.ajax({
-			type: 'POST',
-			data: datos,
-			dataType: 'json',
-			url: baseURL,
-			success: function (data) {
-				if(data.res) {
-					console.log(data.res);
-				}
-			},
-			error      : function(xhr, ajaxOptions, thrownError) {
-				console.log("error 216");
+	try {
+		var user_platform = device.platform;
+		var push = PushNotification.init({ 
+			"android": { "senderID": "856158633092"}
+		});
+		push.on('registration', function(data) {
+			var datos = {
+				'accion':'registrarDev',
+				'user_platform': user_platform,
+				'registrationId': data.registrationId
 			}
-		  });
-	});
+			 
+			push.setApplicationIconBadgeNumber(() => {
+				console.log('success');
+			}, () => {
+				console.log('error');
+			}, 0);
+			 $.ajax({
+				type: 'POST',
+				data: datos,
+				dataType: 'json',
+				url: baseURL,
+				success: function (data) {
+					if(data.res) {
+						alert(data.res);
+					}
+				},
+				error      : function(xhr, ajaxOptions, thrownError) {
+					alert("error 216");
+				}
+			  });
+		});
 
-	push.on('notification', function(data) {
-		//~ console.log(data.title+" Message: " +data.message);
-		try {
-			navigator.notification.alert(
-				data.message,         // message
-				null,                 // callback
-				data.title,           // title
-				'Ok'                  // buttonName
-			);
-		} catch(e) {
-		}
-	});
+		push.on('notification', function(data) {
+			//~ console.log(data.title+" Message: " +data.message);
+			try {
+				navigator.notification.alert(
+					data.message,         // message
+					null,                 // callback
+					data.title,           // title
+					'Ok'                  // buttonName
+				);
+			} catch(e) {
+			}
+		});
 
-	push.on('error', function(e) {
-		//~ document.getElementById("gcm_id").innerHTML = e;
-	});
+		push.on('error', function(e) {
+			//~ document.getElementById("gcm_id").innerHTML = e;
+		});
+	} catch(e) {
+		alert(e);
+	}
 }
 
 var imageIconna = {
