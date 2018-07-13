@@ -14,9 +14,6 @@
     <preference name="StatusBarBackgroundColor" value="#50a3f4" />
     <preference name="orientation" value="portrait" />
     <icon src="res/icon/ios/icon-small@2x.png" />
-    <platform name="android">
-		<resource-file src="sonar.mp3" target="/www/sonidos/sonar.mp3" />
-    </platform>
     <plugin name="cordova-plugin-whitelist" source="npm" />
     <plugin name="cordova-plugin-media" source="npm" spec="~2.2.0" />
     <plugin name="cordova-plugin-market" source="npm" spec="1.2.0" />
@@ -40,6 +37,9 @@
     <plugin name="cordova.plugins.diagnostic" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" />
     <plugin name="com-admob-plugin" source="npm" />
+    <plugin name="phonegap-plugin-push" source="npm" spec="~1.8.0">
+		<variable name="SENDER_ID" value="898486557686" />
+	</plugin>
     <preference name="cordova.plugins.diagnostic.modules" value="LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" />
     <platform name="android">
         <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
@@ -60,6 +60,10 @@
         <splash density="port-xhdpi" src="www/res/screen/android/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="www/res/screen/android/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
+    </platform>
+    <platform name="android">
+		<resource-file src="google-services.json" target="www/google-services.json" />
+		<resource-file src="sonar.mp3" target="/www/sonidos/sonar.mp3" />
     </platform>
     <platform name="ios">
         <icon height="57" platform="ios" src="www/res/icon/ios/icon.png" width="57" />
