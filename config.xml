@@ -36,8 +36,12 @@
     <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2" />
     <plugin name="cordova.plugins.diagnostic" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" />
-    <plugin name="com-admob-plugin" source="npm"/>
-    <plugin name="phonegap-plugin-push-nn"  />
+    <plugin name="cordova-admob-sdk" spec="~0.13.1">
+		<variable name="PLAY_SERVICES_VERSION" value="11.6.2" />
+	</plugin>
+	<plugin name="phonegap-plugin-push" spec="2.1.1">
+	   <variable name="FCM_VERSION" default="11.6.2"/>
+	</plugin>
     <preference name="cordova.plugins.diagnostic.modules" value="LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" />
     <platform name="android">
         <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
