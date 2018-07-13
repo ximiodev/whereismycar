@@ -184,53 +184,57 @@ function onDeviceReady() {
 	
 	try {
 		if(deviceType!="Android") {
-			window.FirebasePlugin.grantPermission();
-		}
-		var user_platform = device.platform;
-		window.FirebasePlugin.getToken(function(token) {
-			// save this server-side and use it to push notifications to this device
-			console.log(token);
-			var datos = {
-				'accion':'registrarDev',
-				'user_platform': user_platform,
-				'registrationId': token
-			}
-			 
-			window.FirebasePlugin.setBadgeNumber(0);
-			 $.ajax({
-				type: 'POST',
-				data: datos,
-				dataType: 'json',
-				url: baseURL,
-				success: function (data) {
-					if(data.res) {
-						alert(data.res);
-					}
-				},
-				error      : function(xhr, ajaxOptions, thrownError) {
-					alert("error 216");
+			var push = PushNotification.init({
+				ios: {
+					alert: "true",
+					badge: "true",
+					sound: "true"
 				}
-			  });
-		}, function(error) {
-			console.error(error);
-		});
+			});
 
-		window.FirebasePlugin.onNotificationOpen(function(data) {
-			//~ console.log(data.title+" Message: " +data.message);
-			try {
-				navigator.notification.alert(
-					data.message,         // message
-					null,                 // callback
-					data.title,           // title
-					'Ok'                  // buttonName
-				);
-			} catch(e) {
-			}
-		});
+			push.on('registration', (data) => {
+				registroToken(data.registrationId);
+			});
+			push.setApplicationIconBadgeNumber(() => {
+				console.log('success');
+			}, () => {
+				console.log('error');
+			}, 0);
+		} else {
+			cordova.plugins.firebase.messaging.setBadge(0);
+			cordova.plugins.firebase.messaging.getToken().then(function(token) {
+				registroToken(token);
+			});
+		}
 	} catch(e) {
 		alert(e);
 	}
 }
+
+function registroToken(token) {
+	var user_platform = device.platform;
+	var datos = {
+		'accion':'registrarDev',
+		'user_platform': user_platform,
+		'registrationId': token
+	}
+	 
+	window.FirebasePlugin.setBadgeNumber(0);
+	 $.ajax({
+		type: 'POST',
+		data: datos,
+		dataType: 'json',
+		url: baseURL,
+		success: function (data) {
+			if(data.res) {
+				alert(data.res);
+			}
+		},
+		error      : function(xhr, ajaxOptions, thrownError) {
+			alert("error 216");
+		}
+	  });
+  }
 
 var imageIconna = {
     url: 'images/pinNar_32.png',
