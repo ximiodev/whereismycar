@@ -179,62 +179,9 @@ function onDeviceReady() {
 	try {
 		//~ checkAvailability(); // start the check
 	} catch(e) {
-		alert(e);
-	}
-	
-	try {
-		if(deviceType!="Android") {
-			var push = PushNotification.init({
-				ios: {
-					alert: "true",
-					badge: "true",
-					sound: "true"
-				}
-			});
-
-			push.on('registration', (data) => {
-				registroToken(data.registrationId);
-			});
-			push.setApplicationIconBadgeNumber(() => {
-				console.log('success');
-			}, () => {
-				console.log('error');
-			}, 0);
-		} else {
-			//~ cordova.plugins.firebase.messaging.setBadge(0);
-			cordova.plugins.firebase.auth.getIdToken().then(function(token) {
-				registroToken(token);
-			});
-		}
-	} catch(e) {
-		alert(e);
+		alerta(e);
 	}
 }
-
-function registroToken(token) {
-	var user_platform = device.platform;
-	var datos = {
-		'accion':'registrarDev',
-		'user_platform': user_platform,
-		'registrationId': token
-	}
-	 
-	window.FirebasePlugin.setBadgeNumber(0);
-	 $.ajax({
-		type: 'POST',
-		data: datos,
-		dataType: 'json',
-		url: baseURL,
-		success: function (data) {
-			if(data.res) {
-				alert(data.res);
-			}
-		},
-		error      : function(xhr, ajaxOptions, thrownError) {
-			alert("error 216");
-		}
-	  });
-  }
 
 var imageIconna = {
     url: 'images/pinNar_32.png',
@@ -402,7 +349,7 @@ function onErrorPos(error) {
 
 
 function onFail(message) {
-  alert('Failed because: ' + message);
+  alerta('Failed because: ' + message);
 }
 
 
@@ -579,7 +526,7 @@ function encConcon() {
 					directionsDisplay.setDirections(response);
 					setTimeout(mostrarPuntuarApp, 15000);
 				  } else {
-					alert('Directions request failed due to ' + status);
+					alerta('Directions request failed due to ' + status);
 				  }
 				});
 			});
@@ -605,14 +552,14 @@ function hayinfoGuard() {
 }
 
 function onFailSincoFo(message) {
-  alert('FError: ' + message);
+  alerta('FError: ' + message);
 }
 
 function sacarFotoCo() {
 	try {
 		navigator.camera.getPicture(onSacaFotoCo, onFailSincoFo, { quality: 50, destinationType: Camera.DestinationType.FILE_URI,correctOrientation: true });
 	} catch(e) {
-		alert(e);
+		alerta(e);
 	}
 }
 
@@ -673,13 +620,13 @@ function onSacaFotoCo(img) {
 						$('#osbervacionesC').parent().addClass('conFoto');
 						$('.fotoExtraCo').css({'background-image': 'url('+lastPosition['img']+')'});
 					} catch(e) {
-						alert(e.message);
+						alerta(e.message);
 					}
 				});
 			}, onFail);
 		},
 		function(e) {
-		alert('Unexpected error obtaining image file.');
+		alerta('Unexpected error obtaining image file.');
 		onFail(e);
 	});
 }
@@ -951,7 +898,7 @@ document.addEventListener("backbutton", function(e){
 			backMenu();
 		}
 	} catch(e) {
-		alert(e);
+		alerta(e);
 	}
 }, false);
 
