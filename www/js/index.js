@@ -11,8 +11,6 @@ var faqArr = new Array();
 var confArr = new Array();
 var pictureSource;   // picture source
 var geocoder;
-var elsonido;
-var media;
 var vhei = window.innerHeight-150;
 var directionsService;
 var cargotodo=false;
@@ -109,14 +107,7 @@ function onDeviceReady() {
 	
 	var path = window.location.href.replace('index.html', '');
 	var jsonURL = path+"conf/langs.json";
-	elsonido = path+"sounds/sonar.mp3";
-	
-	try {
-		media = new Media(elsonido, null, function (e) {null});
-	} catch(e) {
-		//~ alert(e);
-	}
-	
+		
 	$.ajax({
 		url        : jsonURL,
 		dataType   : 'json',
@@ -191,67 +182,6 @@ function onDeviceReady() {
 		alert(e);
 	}
 	
-	try {
-		var user_platform = device.platform;
-		var push = PushNotification.init({ 
-			"android": { "senderID": "856158633092"},
-			browser: {
-				pushServiceURL: 'http://push.api.phonegap.com/v1/push'
-			},
-			ios: {
-				alert: "true",
-				badge: "true",
-				sound: "true"
-			},
-			windows: {}
-		});
-		push.on('registration', function(data) {
-			var datos = {
-				'accion':'registrarDev',
-				'user_platform': user_platform,
-				'registrationId': data.registrationId
-			}
-			 
-			push.setApplicationIconBadgeNumber(() => {
-				console.log('success');
-			}, () => {
-				console.log('error');
-			}, 0);
-			 $.ajax({
-				type: 'POST',
-				data: datos,
-				dataType: 'json',
-				url: baseURL,
-				success: function (data) {
-					if(data.res) {
-						alert(data.res);
-					}
-				},
-				error      : function(xhr, ajaxOptions, thrownError) {
-					alert("error 216");
-				}
-			  });
-		});
-
-		push.on('notification', function(data) {
-			//~ console.log(data.title+" Message: " +data.message);
-			try {
-				navigator.notification.alert(
-					data.message,         // message
-					null,                 // callback
-					data.title,           // title
-					'Ok'                  // buttonName
-				);
-			} catch(e) {
-			}
-		});
-
-		push.on('error', function(e) {
-			//~ document.getElementById("gcm_id").innerHTML = e;
-		});
-	} catch(e) {
-		alert(e);
-	}
 }
 
 var imageIconna = {
@@ -594,17 +524,6 @@ function encConcon() {
 				}, function(response, status) {
 					yamostrodir = true;
 				  if (status === 'OK') {
-					 
-					try {
-						navigator.vibrate(700);
-					} catch(e) {
-						alert(e.message);
-					}
-					try {
-						media.play();
-					} catch(e) {
-						alert(e.message);
-					}
 					directionsDisplay.setDirections(response);
 					setTimeout(mostrarPuntuarApp, 15000);
 				  } else {

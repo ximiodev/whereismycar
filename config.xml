@@ -35,13 +35,9 @@
     <plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0" />
     <plugin name="cordova-plugin-x-socialsharing" source="npm" />
     <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2" />
-    <plugin name="cordova-plugin-vibration" source="npm" />
     <plugin name="cordova.plugins.diagnostic" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" />
     <plugin name="com-admob-plugin" source="npm"/>
-    <plugin name="phonegap-plugin-push" source="npm" >
-		<variable name="SENDER_ID" value="856158633092" />
-	</plugin>
     <preference name="cordova.plugins.diagnostic.modules" value="LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" />
     <platform name="android">
         <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
