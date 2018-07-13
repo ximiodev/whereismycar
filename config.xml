@@ -9,13 +9,14 @@
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="19" />
+    <preference name="android-minSdkVersion" value="15" />
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#50a3f4" />
-    <preference name="orientation" value="portrait" />
     <preference name="android-build-tool" value="gradle" />
+    <preference name="orientation" value="portrait" />
     <icon src="res/icon/ios/icon-small@2x.png" />
     <plugin name="cordova-plugin-whitelist" source="npm" />
+    <plugin name="cordova-plugin-media" source="npm" spec="~2.2.0" />
     <plugin name="cordova-plugin-market" source="npm" spec="1.2.0" />
     <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />
     <plugin name="cordova-plugin-camera" source="npm" spec="~2.4.1" />
@@ -36,11 +37,9 @@
     <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2" />
     <plugin name="cordova.plugins.diagnostic" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" />
-    <plugin name="com-admob-plugin" source="npm">
-		<variable name="PLAY_SERVICES_VERSION" value="11.6.2" />
-	</plugin>
-	<plugin name="phonegap-plugin-push" spec="2.1.1">
-	   <variable name="FCM_VERSION" default="11.6.2"/>
+    <plugin name="com-admob-plugin" source="npm"/>
+    <plugin name="phonegap-plugin-push" source="npm" spec="~1.0.0" >
+		<variable name="SENDER_ID" value="856158633092" />
 	</plugin>
     <preference name="cordova.plugins.diagnostic.modules" value="LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" />
     <platform name="android">
@@ -65,7 +64,7 @@
     </platform>
     <platform name="android">
 		<resource-file src="google-services.json" target="www/google-services.json" />
-		<resource-file src="sonar.mp3" target="www/sonidos/sonar.mp3" />
+		<resource-file src="ringo.mp3" target="www/sonidos/ringo.mp3" />
     </platform>
     <platform name="ios">
         <icon height="57" platform="ios" src="www/res/icon/ios/icon.png" width="57" />
@@ -97,7 +96,7 @@
     </platform>
     <platform name="ios">
 		<resource-file src="GoogleService-Info.plist" />
-		<resource-file src="sonar.mp3" target="www/sonidos/sonar.mp3" />
+		<resource-file src="ringo.mp3" target="www/sonidos/ringo.mp3" />
     </platform>
     <platform name="wp8">
         <icon height="99" platform="wp8" src="www/res/icon/wp8/ApplicationIcon.png" width="99" />
