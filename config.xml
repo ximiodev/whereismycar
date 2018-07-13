@@ -40,7 +40,7 @@
     <plugin name="cordova.plugins.diagnostic" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" />
     <plugin name="com-admob-plugin" source="npm" />
-	<plugin name="cordova-plugin-firebase-messaging" source="npm" />
+	<plugin name="phonegap-plugin-push" source="npm"  spec="1.6.0"/>
     <preference name="cordova.plugins.diagnostic.modules" value="LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" />
     <platform name="android">
         <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
@@ -63,7 +63,6 @@
         <splash density="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
     </platform>
     <platform name="ios">
-		<plugin name="phonegap-plugin-push" source="npm" />
         <icon height="57" platform="ios" src="www/res/icon/ios/icon.png" width="57" />
         <icon height="114" platform="ios" src="www/res/icon/ios/icon@2x.png" width="114" />
         <icon height="40" platform="ios" src="www/res/icon/ios/icon-40.png" width="40" />
