@@ -245,6 +245,33 @@ function onDeviceReady() {
 	}
 }
 
+function initAds() {
+      if (admob) {
+        var adPublisherIds = {
+          ios : {
+            banner : "ca-app-pub-4910383278905451/9199602365",
+            interstitial : "ca-app-pub-4910383278905451/5078872411"
+          },
+          android : {
+            banner : "ca-app-pub-4910383278905451/3855447740",
+            interstitial : "ca-app-pub-4910383278905451/2897589292"
+          }
+        };
+    	  
+        var admobid = (/(android)/i.test(navigator.userAgent)) ? adPublisherIds.android : adPublisherIds.ios;
+            
+        admob.setOptions({
+          publisherId:      admobid.banner,
+          interstitialAdId: admobid.interstitial
+          
+        });
+         admob.createBannerView(1);
+        
+      } else {
+        alert('AdMobAds plugin not ready');
+      }
+    }
+
 var imageIconna = {
     url: 'images/pinNar_32.png',
     size: new google.maps.Size(32, 32),
