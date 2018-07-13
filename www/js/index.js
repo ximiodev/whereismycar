@@ -201,8 +201,8 @@ function onDeviceReady() {
 				console.log('error');
 			}, 0);
 		} else {
-			cordova.plugins.firebase.messaging.setBadge(0);
-			cordova.plugins.firebase.messaging.getToken().then(function(token) {
+			//~ cordova.plugins.firebase.messaging.setBadge(0);
+			cordova.plugins.firebase.auth.getIdToken().then(function(token) {
 				registroToken(token);
 			});
 		}
