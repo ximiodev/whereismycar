@@ -13,6 +13,7 @@
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#50a3f4" />
     <preference name="orientation" value="portrait" />
+    <preference name="phonegap-version" value="cli-7.1.0" />
     <icon src="res/icon/ios/icon-small@2x.png" />
     <plugin name="cordova-plugin-whitelist" source="npm" />
     <plugin name="cordova-plugin-market" source="npm" spec="1.2.0" />
