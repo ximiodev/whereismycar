@@ -61,13 +61,33 @@ function onDeviceReady() {
 	}
 	try {
 		
-		if (deviceType!="Android") {
-			admob.initAdmob("ca-app-pub-4910383278905451/3855447740","ca-app-pub-4910383278905451/2897589292");
-		} else if (deviceType=="Android") {
-			admob.initAdmob("ca-app-pub-4910383278905451/9199602365","ca-app-pub-4910383278905451/5078872411");
+		var admobid = {}
+		if (/(android)/i.test(navigator.userAgent)) {  // for android & amazon-fireos
+			admobid = {
+				banner: 'ca-app-pub-4910383278905451/9199602365',
+				interstitial: 'ca-app-pub-4910383278905451/5078872411',
+			}
+		} else if (/(ipod|iphone|ipad)/i.test(navigator.userAgent)) {  // for ios
+			admobid = {
+				banner: 'ca-app-pub-4910383278905451/3855447740',
+				interstitial: 'ca-app-pub-4910383278905451/2897589292',
+			}
 		}
+
+		admob.banner.config({
+			id: admobid.banner,
+			bannerAtTop: true,
+			autoShow: true,
+		})
+		admob.banner.prepare()
+
+		admob.interstitial.config({
+			id: admobid.interstitial,
+			autoShow: false,
+		})
+		admob.interstitial.prepare();
+		admob.interstitial.show();
 		
-		admob.showBanner(admob.BannerSize.BANNER,admob.Position.TOP_APP);
 	} catch(e) {
 		//~ alert(e);
 	}
