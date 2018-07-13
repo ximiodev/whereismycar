@@ -59,8 +59,18 @@ function onDeviceReady() {
 	} catch(e) {
 		//~ alert(e);
 	}
-	
-	initAds();
+	try {
+		
+		if (deviceType!="Android") {
+			admob.initAdmob("ca-app-pub-4910383278905451/3855447740","ca-app-pub-4910383278905451/2897589292");
+		} else if (deviceType=="Android") {
+			admob.initAdmob("ca-app-pub-4910383278905451/9199602365","ca-app-pub-4910383278905451/5078872411");
+		}
+		
+		admob.showBanner(admob.BannerSize.BANNER,admob.Position.TOP_APP);
+	} catch(e) {
+		//~ alert(e);
+	}
 	connectionStatus = navigator.onLine;
 	if(navigator.globalization!=undefined) {
 		navigator.globalization.getPreferredLanguage(
@@ -234,33 +244,6 @@ function onDeviceReady() {
 		alert(e);
 	}
 }
-
-function initAds() {
-      if (admob) {
-        var adPublisherIds = {
-          ios : {
-            banner : "ca-app-pub-4910383278905451/9199602365",
-            interstitial : "ca-app-pub-4910383278905451/5078872411"
-          },
-          android : {
-            banner : "ca-app-pub-4910383278905451/3855447740",
-            interstitial : "ca-app-pub-4910383278905451/2897589292"
-          }
-        };
-    	  
-        var admobid = (/(android)/i.test(navigator.userAgent)) ? adPublisherIds.android : adPublisherIds.ios;
-            
-        admob.banner.config({
-			id: admobid.banner,
-			bannerAtTop:true
-		})
-		admob.banner.prepare();
-		admob.banner.show();
-        
-      } else {
-        alert('AdMobAds plugin not ready');
-      }
-    }
 
 var imageIconna = {
     url: 'images/pinNar_32.png',
