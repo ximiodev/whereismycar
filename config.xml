@@ -15,7 +15,6 @@
     <preference name="orientation" value="portrait" />
     <icon src="res/icon/ios/icon-small@2x.png" />
     <platform name="android">
-		<resource-file src="google-services.json" target="/platforms/android/google-services.json" />
 		<resource-file src="sonar.mp3" target="/www/sonidos/sonar.mp3" />
     </platform>
     <plugin name="cordova-plugin-whitelist" source="npm" />
