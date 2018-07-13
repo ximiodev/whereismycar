@@ -39,7 +39,7 @@
     <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2" />
     <plugin name="cordova.plugins.diagnostic" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" />
-	<plugin name="cordova-plugin-firebase" spec="^1.0.0" />
+	<plugin name="cordova-plugin-firebase-authentication" source="npm" spec="^1.0.0" />
     <plugin name="com-admob-plugin" source="npm" />
     <preference name="cordova.plugins.diagnostic.modules" value="LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" />
     <platform name="android">
