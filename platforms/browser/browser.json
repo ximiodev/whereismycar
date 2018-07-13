@@ -134,6 +134,18 @@
         "phonegap-plugin-push": {
             "SENDER_ID": "856158633092",
             "PACKAGE_NAME": "com.sof.whereismycar"
+        },
+        "cordova-promise-polyfill": {
+            "PACKAGE_NAME": "com.sof.whereismycar"
+        },
+        "cordova-admob-sdk": {
+            "PACKAGE_NAME": "com.sof.whereismycar"
+        },
+        "cordova-plugin-admob-free": {
+            "PACKAGE_NAME": "com.sof.whereismycar"
+        },
+        "cordova-plugin-firebase": {
+            "PACKAGE_NAME": "com.sof.whereismycar"
         }
     },
     "dependent_plugins": {},
@@ -1049,6 +1061,35 @@
             "clobbers": [
                 "PushNotification"
             ]
+        },
+        {
+            "file": "plugins/cordova-promise-polyfill/www/Promise.js",
+            "id": "cordova-promise-polyfill.Promise",
+            "pluginId": "cordova-promise-polyfill",
+            "runs": true
+        },
+        {
+            "file": "plugins/cordova-promise-polyfill/www/promise.min.js",
+            "id": "cordova-promise-polyfill.promise.min",
+            "pluginId": "cordova-promise-polyfill"
+        },
+        {
+            "file": "plugins/cordova-plugin-admob-free/www/admob.js",
+            "id": "cordova-plugin-admob-free.AdMob",
+            "pluginId": "cordova-plugin-admob-free",
+            "clobbers": [
+                "admob",
+                "AdMob",
+                "plugins.AdMob"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-firebase/www/firebase-browser.js",
+            "id": "cordova-plugin-firebase.FirebasePlugin",
+            "pluginId": "cordova-plugin-firebase",
+            "clobbers": [
+                "FirebasePlugin"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -1087,6 +1128,10 @@
         "cordova-plugin-market": "1.2.0",
         "cordova-plugin-nativestorage": "2.3.1",
         "cordova-plugin-apprate": "1.4.0",
-        "phonegap-plugin-push": "1.8.4"
+        "phonegap-plugin-push": "1.8.4",
+        "cordova-promise-polyfill": "0.0.2",
+        "cordova-admob-sdk": "0.17.0",
+        "cordova-plugin-admob-free": "0.12.1",
+        "cordova-plugin-firebase": "1.0.5"
     }
 }

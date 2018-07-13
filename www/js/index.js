@@ -61,33 +61,13 @@ function onDeviceReady() {
 	}
 	try {
 		
-		var admobid = {}
-		if (/(android)/i.test(navigator.userAgent)) {  // for android & amazon-fireos
-			admobid = {
-				banner: 'ca-app-pub-4910383278905451/9199602365',
-				interstitial: 'ca-app-pub-4910383278905451/5078872411',
-			}
-		} else if (/(ipod|iphone|ipad)/i.test(navigator.userAgent)) {  // for ios
-			admobid = {
-				banner: 'ca-app-pub-4910383278905451/3855447740',
-				interstitial: 'ca-app-pub-4910383278905451/2897589292',
-			}
+		if (deviceType!="Android") {
+			admob.initAdmob("ca-app-pub-4910383278905451/3855447740","ca-app-pub-4910383278905451/2897589292");
+		} else if (deviceType=="Android") {
+			admob.initAdmob("ca-app-pub-4910383278905451/9199602365","ca-app-pub-4910383278905451/5078872411");
 		}
-
-		admob.banner.config({
-			id: admobid.banner,
-			bannerAtTop: true,
-			autoShow: true,
-		})
-		admob.banner.prepare()
-
-		admob.interstitial.config({
-			id: admobid.interstitial,
-			autoShow: false,
-		})
-		admob.interstitial.prepare();
-		admob.interstitial.show();
 		
+		admob.showBanner(admob.BannerSize.BANNER,admob.Position.TOP_APP);
 	} catch(e) {
 		//~ alert(e);
 	}
@@ -203,31 +183,20 @@ function onDeviceReady() {
 	}
 	
 	try {
+		if(deviceType!="Android") {
+			window.FirebasePlugin.grantPermission();
+		}
 		var user_platform = device.platform;
-		var push = PushNotification.init({ 
-			"android": { "senderID": "856158633092"},
-			browser: {
-				pushServiceURL: 'http://push.api.phonegap.com/v1/push'
-			},
-			ios: {
-				alert: "true",
-				badge: "true",
-				sound: "true"
-			},
-			windows: {}
-		});
-		push.on('registration', function(data) {
+		window.FirebasePlugin.getToken(function(token) {
+			// save this server-side and use it to push notifications to this device
+			console.log(token);
 			var datos = {
 				'accion':'registrarDev',
 				'user_platform': user_platform,
-				'registrationId': data.registrationId
+				'registrationId': token
 			}
 			 
-			push.setApplicationIconBadgeNumber(() => {
-				console.log('success');
-			}, () => {
-				console.log('error');
-			}, 0);
+			window.FirebasePlugin.setBadgeNumber(0);
 			 $.ajax({
 				type: 'POST',
 				data: datos,
@@ -242,9 +211,11 @@ function onDeviceReady() {
 					alert("error 216");
 				}
 			  });
+		}, function(error) {
+			console.error(error);
 		});
 
-		push.on('notification', function(data) {
+		window.FirebasePlugin.onNotificationOpen(function(data) {
 			//~ console.log(data.title+" Message: " +data.message);
 			try {
 				navigator.notification.alert(
@@ -255,10 +226,6 @@ function onDeviceReady() {
 				);
 			} catch(e) {
 			}
-		});
-
-		push.on('error', function(e) {
-			//~ document.getElementById("gcm_id").innerHTML = e;
 		});
 	} catch(e) {
 		alert(e);

@@ -288,5 +288,37 @@
         "variables": {
             "SENDER_ID": "856158633092"
         }
+    },
+    "cordova-plugin-admob-free": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-admob-free@~0.12.0"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-promise-polyfill": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-promise-polyfill"
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "cordova-admob-sdk": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-admob-sdk"
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "cordova-plugin-firebase": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-firebase@^1.0.0"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

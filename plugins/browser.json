@@ -99,6 +99,12 @@
         },
         "cordova-plugin-apprate": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "cordova-plugin-admob-free": {
+            "PACKAGE_NAME": "com.sof.whereismycar"
+        },
+        "cordova-plugin-firebase": {
+            "PACKAGE_NAME": "com.sof.whereismycar"
         }
     },
     "dependent_plugins": {
@@ -113,6 +119,12 @@
         },
         "cordova-plugin-nativestorage": {
             "PACKAGE_NAME": "com.whereismycar"
+        },
+        "cordova-promise-polyfill": {
+            "PACKAGE_NAME": "com.sof.whereismycar"
+        },
+        "cordova-admob-sdk": {
+            "PACKAGE_NAME": "com.sof.whereismycar"
         }
     }
 }
