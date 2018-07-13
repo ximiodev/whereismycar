@@ -16,9 +16,9 @@
     <preference name="orientation" value="portrait" />
     <icon src="res/icon/ios/icon-small@2x.png" />
     <plugin name="cordova-plugin-whitelist" source="npm" />
-    <plugin name="phonegap-plugin-push" source="npm" spec="1.8.0" >
+    <plugin name="com-admob-plugin" source="npm"/>
+    <plugin name="phonegap-plugin-push" source="npm">
 		<variable name="SENDER_ID" value="856158633092" />
-		<variable name="PLAY_SERVICES_VERSION" value="10.2.0" />
 	</plugin>
     <plugin name="cordova-plugin-market" source="npm" />
     <plugin name="cordova-plugin-camera" source="npm" spec="~2.4.1" />
