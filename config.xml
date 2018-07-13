@@ -8,11 +8,11 @@
         SOF
     </author>
     <content src="index.html" />
+    <preference name="phonegap-version" value="cli-8.0.0" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="15" />
+    <preference name="android-minSdkVersion" value="14" />
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#50a3f4" />
-    <preference name="android-build-tool" value="gradle" />
     <preference name="orientation" value="portrait" />
     <icon src="res/icon/ios/icon-small@2x.png" />
     <plugin name="cordova-plugin-whitelist" source="npm" />
@@ -61,7 +61,7 @@
     </platform>
     <platform name="android">
 		<resource-file src="google-services.json" target="www/google-services.json" />
-		<resource-file src="ringo.mp3" target="www/sonidos/ringo.mp3" />
+		<resource-file src="sonar.mp3" target="/www/sonidos/sonar.mp3" />
     </platform>
     <platform name="ios">
         <icon height="57" platform="ios" src="www/res/icon/ios/icon.png" width="57" />
@@ -93,7 +93,7 @@
     </platform>
     <platform name="ios">
 		<resource-file src="GoogleService-Info.plist" />
-		<resource-file src="ringo.mp3" target="www/sonidos/ringo.mp3" />
+		<resource-file src="sonar.mp3" target="www/sonidos/sonar.mp3" />
     </platform>
     <platform name="wp8">
         <icon height="99" platform="wp8" src="www/res/icon/wp8/ApplicationIcon.png" width="99" />

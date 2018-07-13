@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "856158633092",
+    "firebase_url": "https://where-is-my-car-863d9.firebaseio.com",
+    "project_id": "where-is-my-car-863d9",
+    "storage_bucket": "where-is-my-car-863d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:856158633092:android:65993629958df579",
+        "android_client_info": {
+          "package_name": "com.sof.whereismycar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "856158633092-vacr7k55ccbifnal21g2s4mr31g1rlej.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChdTf1-16pqWaXoRITRrNvbxPtrbvA8O0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

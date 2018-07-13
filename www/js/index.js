@@ -57,7 +57,7 @@ function onDeviceReady() {
 		pictureSource=navigator.camera.PictureSourceType;
 		destinationType=navigator.camera.DestinationType;
 	} catch(e) {
-		//~ alert(e);
+		//~ alerta(e);
 	}
 	try {
 		
@@ -69,7 +69,7 @@ function onDeviceReady() {
 		
 		admob.showBanner(admob.BannerSize.BANNER,admob.Position.TOP_APP);
 	} catch(e) {
-		//~ alert(e);
+		//~ alerta(e);
 	}
 	connectionStatus = navigator.onLine;
 	if(navigator.globalization!=undefined) {
@@ -179,7 +179,7 @@ function onDeviceReady() {
 	try {
 		//~ checkAvailability(); // start the check
 	} catch(e) {
-		alert(e);
+		alerta(e);
 	}
 	
 }
@@ -343,14 +343,14 @@ function cerrarModal(quien) {
 // onError Callback receives a PositionError object
 //
 function onErrorPos(error) {
-    //~ alert('La  geolocalizacion no funciona. code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
+    //~ alerta('La  geolocalizacion no funciona. code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
 	$('.minimapa').addClass('hidden');
 	$('.modalNuevoEstaCo .tituloModal').html('SIN GPS');
 }
 
 
 function onFail(message) {
-  alert('Failed because: ' + message);
+  alerta('Failed because: ' + message);
 }
 
 
@@ -527,7 +527,7 @@ function encConcon() {
 					directionsDisplay.setDirections(response);
 					setTimeout(mostrarPuntuarApp, 15000);
 				  } else {
-					alert('Directions request failed due to ' + status);
+					alerta('Directions request failed due to ' + status);
 				  }
 				});
 			});
@@ -553,14 +553,14 @@ function hayinfoGuard() {
 }
 
 function onFailSincoFo(message) {
-  alert('FError: ' + message);
+  alerta('FError: ' + message);
 }
 
 function sacarFotoCo() {
 	try {
 		navigator.camera.getPicture(onSacaFotoCo, onFailSincoFo, { quality: 50, destinationType: Camera.DestinationType.FILE_URI,correctOrientation: true });
 	} catch(e) {
-		alert(e);
+		alerta(e);
 	}
 }
 
@@ -621,13 +621,13 @@ function onSacaFotoCo(img) {
 						$('#osbervacionesC').parent().addClass('conFoto');
 						$('.fotoExtraCo').css({'background-image': 'url('+lastPosition['img']+')'});
 					} catch(e) {
-						alert(e.message);
+						alerta(e.message);
 					}
 				});
 			}, onFail);
 		},
 		function(e) {
-		alert('Unexpected error obtaining image file.');
+		alerta('Unexpected error obtaining image file.');
 		onFail(e);
 	});
 }
@@ -767,7 +767,7 @@ function mostrarPuntuarApp() {
 			window.localStorage.setItem('rateapp_co',rateapp_co); 
 		}, getLangByKey("t31"), [getLangByKey("t31"), getLangByKey("t32"), getLangByKey("t33")]);
 	} else {
-		//~ alert(rateapp_co);
+		//~ alerta(rateapp_co);
 	}
 }
 
@@ -899,7 +899,7 @@ document.addEventListener("backbutton", function(e){
 			backMenu();
 		}
 	} catch(e) {
-		alert(e);
+		alerta(e);
 	}
 }, false);
 
