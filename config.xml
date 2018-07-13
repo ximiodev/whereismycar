@@ -61,7 +61,7 @@
     </platform>
     <platform name="android">
 		<resource-file src="google-services.json" target="www/google-services.json" />
-		<resource-file src="ringo.mp3" target="www/sonidos/ringo.mp3" />
+		<resource-file src="sonar.mp3" target="www/sonidos/sonar.mp3" />
     </platform>
     <platform name="ios">
         <icon height="57" platform="ios" src="www/res/icon/ios/icon.png" width="57" />
@@ -93,7 +93,7 @@
     </platform>
     <platform name="ios">
 		<resource-file src="GoogleService-Info.plist" />
-		<resource-file src="ringo.mp3" target="www/sonidos/ringo.mp3" />
+		<resource-file src="sonar.mp3" target="www/sonidos/sonar.mp3" />
     </platform>
     <platform name="wp8">
         <icon height="99" platform="wp8" src="www/res/icon/wp8/ApplicationIcon.png" width="99" />
