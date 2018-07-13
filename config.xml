@@ -8,7 +8,6 @@
         SOF
     </author>
     <content src="index.html" />
-    <preference name="phonegap-version" value="cli-7.0.1" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="StatusBarOverlaysWebView" value="false" />
@@ -16,7 +15,7 @@
     <preference name="orientation" value="portrait" />
     <icon src="res/icon/ios/icon-small@2x.png" />
     <platform name="android">
-		<resource-file src="google-services.json" target="/app/google-services.json" />
+		<resource-file src="google-services.json" target="/www/google-services.json" />
 		<resource-file src="sonar.mp3" target="/www/sonidos/sonar.mp3" />
     </platform>
     <plugin name="cordova-plugin-whitelist" source="npm" />
