@@ -59,18 +59,8 @@ function onDeviceReady() {
 	} catch(e) {
 		//~ alert(e);
 	}
-	try {
-		
-		if (deviceType!="Android") {
-			admob.initAdmob("ca-app-pub-4910383278905451/3855447740","ca-app-pub-4910383278905451/2897589292");
-		} else if (deviceType=="Android") {
-			admob.initAdmob("ca-app-pub-4910383278905451/9199602365","ca-app-pub-4910383278905451/5078872411");
-		}
-		
-		admob.showBanner(admob.BannerSize.BANNER,admob.Position.TOP_APP);
-	} catch(e) {
-		//~ alert(e);
-	}
+	
+	initAds();
 	connectionStatus = navigator.onLine;
 	if(navigator.globalization!=undefined) {
 		navigator.globalization.getPreferredLanguage(
@@ -260,12 +250,12 @@ function initAds() {
     	  
         var admobid = (/(android)/i.test(navigator.userAgent)) ? adPublisherIds.android : adPublisherIds.ios;
             
-        admob.setOptions({
-          publisherId:      admobid.banner,
-          interstitialAdId: admobid.interstitial
-          
-        });
-         admob.createBannerView(1);
+        admob.banner.config({
+			id: admobid.banner,
+			bannerAtTop:true
+		})
+		admob.banner.prepare();
+		admob.banner.show();
         
       } else {
         alert('AdMobAds plugin not ready');

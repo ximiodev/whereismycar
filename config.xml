@@ -16,10 +16,15 @@
     <preference name="orientation" value="portrait" />
     <icon src="res/icon/ios/icon-small@2x.png" />
     <plugin name="cordova-plugin-whitelist" source="npm" />
-    <plugin name="phonegap-plugin-push" source="npm">
+	<plugin name="cordova-plugin-admobpro-firebase" source="npm" />
+	<plugin name="cordova-plugin-firebase" source="npm" />
+	<plugin name="cordova-plugin-admob-free" source="npm">
+		<variable name="PLAY_SERVICES_VERSION" value="11.6.2" />
+	</plugin>
+	<plugin name="phonegap-plugin-push" spec="2.1.1" source="npm">
+		<variable name="FCM_VERSION" default="11.6.2" />
 		<variable name="SENDER_ID" value="856158633092" />
 	</plugin>
-    <plugin name="phonegap-admob" source="npm" spec="~4.2.9"/>
     <plugin name="cordova-plugin-market" source="npm" />
     <plugin name="cordova-plugin-camera" source="npm"  spec="~2.4.1" />
     <plugin name="cordova-plugin-media-capture" source="npm" spec="~1.2.0" />
