@@ -11,8 +11,6 @@ var faqArr = new Array();
 var confArr = new Array();
 var pictureSource;   // picture source
 var geocoder;
-var elsonido;
-var media;
 var vhei = window.innerHeight-150;
 var directionsService;
 var cargotodo=false;
@@ -109,14 +107,7 @@ function onDeviceReady() {
 	
 	var path = window.location.href.replace('index.html', '');
 	var jsonURL = path+"conf/langs.json";
-	elsonido = path+"sounds/sonar.mp3";
-	
-	try {
-		media = new Media(elsonido, null, function (e) {null});
-	} catch(e) {
-		//~ alert(e);
-	}
-	
+		
 	$.ajax({
 		url        : jsonURL,
 		dataType   : 'json',
@@ -594,17 +585,6 @@ function encConcon() {
 				}, function(response, status) {
 					yamostrodir = true;
 				  if (status === 'OK') {
-					 
-					try {
-						navigator.vibrate(700);
-					} catch(e) {
-						alert(e.message);
-					}
-					try {
-						media.play();
-					} catch(e) {
-						alert(e.message);
-					}
 					directionsDisplay.setDirections(response);
 					setTimeout(mostrarPuntuarApp, 15000);
 				  } else {
