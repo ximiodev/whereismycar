@@ -39,7 +39,7 @@
     <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2" />
     <plugin name="cordova.plugins.diagnostic" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" />
-	<plugin name="phonegap-plugin-push" source="npm"  spec="1.6.0">
+	<plugin name="phonegap-plugin-push" source="npm">
 		<variable name="SENDER_ID" value="856158633092" />
 	</plugin>
     <plugin name="cordova-plugin-admob-free version" source="npm" />
