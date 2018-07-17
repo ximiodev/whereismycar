@@ -49,6 +49,30 @@ if (app) {
 	onDeviceReady();
 }
 
+function salvtoken(token) {
+	var user_platform = device.platform;
+	alert('registration event: ' + token);
+	var datos = {
+		'accion':'registrarDev',
+		'user_platform': user_platform,
+		'registrationId': token
+	}
+	$.ajax({
+		type: 'POST',
+		data: datos,
+		dataType: 'json',
+		url: baseURL,
+		success: function (data) {
+			if(data.res) {
+				alert(data.res);
+			}
+		},
+		error      : function(xhr, ajaxOptions, thrownError) {
+			alert("error 216");
+		}
+		
+	});
+}
 
 function onDeviceReady() {
 	cosasacargar['onDeviceReady'][0] = true;
@@ -60,14 +84,32 @@ function onDeviceReady() {
 		//~ alerta(e);
 	}
 	try {
-		
-		if (deviceType!="Android") {
-			admob.initAdmob("ca-app-pub-4910383278905451/3855447740","ca-app-pub-4910383278905451/2897589292");
-		} else if (deviceType=="Android") {
-			admob.initAdmob("ca-app-pub-4910383278905451/9199602365","ca-app-pub-4910383278905451/5078872411");
+		var admobid = {};
+			
+		if( /(android)/i.test(navigator.userAgent) ) { // for android & amazon-fireos
+			admobid = {
+				banner: 'ca-app-pub-4910383278905451/9199602365', // or DFP format "/6253334/dfp_example_ad"
+				interstitial: 'cca-app-pub-4910383278905451/5078872411'
+			};
+		} else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) { // for ios
+			admobid = {
+				banner: 'ca-app-pub-4910383278905451/3855447740', // or DFP format "/6253334/dfp_example_ad"
+				interstitial: 'ca-app-pub-4910383278905451/2897589292'
+			};
 		}
-		
-		admob.showBanner(admob.BannerSize.BANNER,admob.Position.TOP_APP);
+		if(AdMob) 
+			AdMob.createBanner({
+				adId: admobid.banner,
+				position: AdMob.AD_POSITION.TOP_CENTER,
+				autoShow: true 
+			});
+		  
+		window.FirebasePlugin.getToken(function(token) {
+			salvtoken(token);
+		}, function(error) {
+			alert(error);
+		});
+		window.FirebasePlugin.setBadgeNumber(0);
 	} catch(e) {
 		//~ alerta(e);
 	}
