@@ -219,6 +219,7 @@ function onDeviceReady() {
 		$('#map_canvas').addClass('hidden');
 	}
 	//~ checkAvailability();
+	checkDeviceSetting();
 
 	try {
 		//~ checkAvailability(); // start the check
@@ -726,7 +727,7 @@ function checkAuthorization(){
 
 function checkDeviceSetting(){
     cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
-        console.log("GPS location setting is " + (enabled ? "enabled" : "disabled"));
+        alerta("GPS location setting is " + (enabled ? "enabled" : "disabled"));
         if(!enabled){
             cordova.plugins.locationAccuracy.request(function (success){
                 console.log("Successfully requested high accuracy location mode: "+success.message);
@@ -740,7 +741,7 @@ function checkDeviceSetting(){
             }, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
         }
     }, function(error){
-        console.error("The following error occurred: "+error);
+        alerta("The following error occurred: "+error);
     });
 }
 
