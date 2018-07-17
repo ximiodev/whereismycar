@@ -90,7 +90,6 @@
         <splash height="1024" platform="ios" src="www/res/screen/ios/Default-Portrait~ipad.png" width="768" />
         <splash height="960" platform="ios" src="www/res/screen/ios/Default@2x~iphone.png" width="640" />
         <splash height="480" platform="ios" src="www/res/screen/ios/Default~iphone.png" width="320" />
-		<resource-file src="GoogleService-Info.plist" />
 		<resource-file src="sonar.mp3" target="www/sonidos/sonar.mp3" />
     </platform>
     <platform name="wp8">
