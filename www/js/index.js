@@ -74,6 +74,15 @@ function salvtoken(token) {
 	});
 }
 
+function regitrartoken() {
+	window.FirebasePlugin.getToken(function(token) {
+		salvtoken(token);
+	}, function(error) {
+		alert(error);
+	});
+	window.FirebasePlugin.setBadgeNumber(0);
+}
+
 function onDeviceReady() {
 	cosasacargar['onDeviceReady'][0] = true;
 	verficarEstadoCargaC();
@@ -103,13 +112,7 @@ function onDeviceReady() {
 				position: AdMob.AD_POSITION.TOP_CENTER,
 				autoShow: true 
 			});
-		  
-		window.FirebasePlugin.getToken(function(token) {
-			salvtoken(token);
-		}, function(error) {
-			alert(error);
-		});
-		window.FirebasePlugin.setBadgeNumber(0);
+		  setTimeout(regitrartoken, 3000);
 	} catch(e) {
 		//~ alerta(e);
 	}
