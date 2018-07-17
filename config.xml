@@ -14,7 +14,6 @@
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#50a3f4" />
     <preference name="orientation" value="portrait" />
-    <icon src="res/icon/ios/icon-small@2x.png" />
     <plugin spec="https://github.com/ximiodev/cordova-plugin-firebase-ximiodev.git" source="git" />
     <plugin name="cordova-plugin-admobpro-firebase" spec="2.31.6" />
     <plugin name="cordova-plugin-whitelist" source="npm" />
@@ -40,6 +39,7 @@
     <plugin name="cordova.plugins.diagnostic" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" />
     <preference name="cordova.plugins.diagnostic.modules" value="LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" />
+	<icon src="www/res/icon/ios/icon-small@2x.png" />
     <platform name="android">
         <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="www/res/icon/android/drawable-mdpi-icon.png" />
@@ -60,9 +60,10 @@
         <splash density="port-xxhdpi" src="www/res/screen/android/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
 		<resource-file src="google-services.json" target="www/google-services.json" />
-		<resource-file src="sonar.mp3" target="/www/sonidos/sonar.mp3" />
+		<resource-file src="sonar.mp3" target="www/sonidos/sonar.mp3" />
     </platform>
     <platform name="ios">
+		<preference name="phonegap-version" value="cli-8.0.0" />
         <icon height="57" platform="ios" src="www/res/icon/ios/icon.png" width="57" />
         <icon height="114" platform="ios" src="www/res/icon/ios/icon@2x.png" width="114" />
         <icon height="40" platform="ios" src="www/res/icon/ios/icon-40.png" width="40" />
@@ -89,8 +90,6 @@
         <splash height="1024" platform="ios" src="www/res/screen/ios/Default-Portrait~ipad.png" width="768" />
         <splash height="960" platform="ios" src="www/res/screen/ios/Default@2x~iphone.png" width="640" />
         <splash height="480" platform="ios" src="www/res/screen/ios/Default~iphone.png" width="320" />
-    </platform>
-    <platform name="ios">
 		<resource-file src="GoogleService-Info.plist" />
 		<resource-file src="sonar.mp3" target="www/sonidos/sonar.mp3" />
     </platform>

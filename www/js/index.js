@@ -51,7 +51,6 @@ if (app) {
 
 function salvtoken(token) {
 	var user_platform = device.platform;
-	alert('registration event: ' + token);
 	var datos = {
 		'accion':'registrarDev',
 		'user_platform': user_platform,
@@ -64,11 +63,10 @@ function salvtoken(token) {
 		url: baseURL,
 		success: function (data) {
 			if(data.res) {
-				alert(data.res);
 			}
 		},
 		error      : function(xhr, ajaxOptions, thrownError) {
-			alert("error 216");
+			//~ alert("error 216");
 		}
 		
 	});
@@ -78,7 +76,7 @@ function regitrartoken() {
 	window.FirebasePlugin.getToken(function(token) {
 		salvtoken(token);
 	}, function(error) {
-		alert(error);
+		//~ alert(error);
 	});
 	window.FirebasePlugin.setBadgeNumber(0);
 }
@@ -120,6 +118,7 @@ function onDeviceReady() {
 	if(navigator.globalization!=undefined) {
 		navigator.globalization.getPreferredLanguage(
 			function (language) {
+				alert(language);
 				defLang = language.value.substring(0, 2);
 			},
 			function () {}
