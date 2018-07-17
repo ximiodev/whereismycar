@@ -118,7 +118,7 @@ function onDeviceReady() {
 	if(navigator.globalization!=undefined) {
 		navigator.globalization.getPreferredLanguage(
 			function (language) {
-				alert(language);
+				alert(language.value);
 				defLang = language.value.substring(0, 2);
 			},
 			function () {}
@@ -219,10 +219,11 @@ function onDeviceReady() {
 		$('#map_canvas').addClass('hidden');
 	}
 	//~ checkAvailability();
-	checkDeviceSetting();
+	//~ checkDeviceSetting();
 
 	try {
 		//~ checkAvailability(); // start the check
+		checkDeviceSetting();
 	} catch(e) {
 		alerta(e);
 	}
