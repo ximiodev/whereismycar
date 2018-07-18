@@ -78,6 +78,17 @@ function regitrartoken() {
 	}, function(error) {
 		//~ alert(error);
 	});
+	window.FirebasePlugin.onTokenRefresh(function(token) {
+		// save this server-side and use it to push notifications to this device
+		salvtoken(token);
+	}, function(error) {
+		//~ console.error(error);
+	});
+	window.FirebasePlugin.onNotificationOpen(function(notification) {
+		alerta(notification);
+	}, function(error) {
+		alerta(error);
+	});
 	window.FirebasePlugin.setBadgeNumber(0);
 }
 
