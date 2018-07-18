@@ -85,7 +85,7 @@ function regitrartoken() {
 		//~ console.error(error);
 	});
 	window.FirebasePlugin.onNotificationOpen(function(notification) {
-		alerta(notification);
+		alerta(notification.body,notification.title);
 	}, function(error) {
 		alerta(error);
 	});
@@ -126,22 +126,24 @@ function onDeviceReady() {
 		//~ alerta(e);
 	}
 	connectionStatus = navigator.onLine;
-	if(navigator.globalization!=undefined) {
-		navigator.globalization.getPreferredLanguage(
-			function (language) {
-				alert(language.value);
-				defLang = language.value.substring(0, 2);
-			},
-			function () {}
-		);
-	}
 	
     var applaunchCount = 0;
 	if(window.localStorage.getItem('launchCount')!='' && window.localStorage.getItem('launchCount')!=0 && window.localStorage.getItem('launchCount')!=null) {
 		applaunchCount = window.localStorage.getItem('launchCount');
 	} else{
 		window.localStorage.setItem('launchCount',1); 
-		window.localStorage.setItem('config', '{"lang": "'+defLang+'","notif": "true","sounds": "true"}');
+		
+		if(navigator.globalization!=undefined) {
+			navigator.globalization.getPreferredLanguage(
+				function (language) {
+					//~ alert(language.value);
+					defLang = language.value.substring(0, 2);
+					window.localStorage.setItem('config', '{"lang": "'+defLang+'","notif": "true","sounds": "true"}');
+					cambiarIdioma();
+				},
+				function () {}
+			);
+		}
 	}
 	
 	if(window.localStorage.getItem('config')!='' && window.localStorage.getItem('config')!=null) {
