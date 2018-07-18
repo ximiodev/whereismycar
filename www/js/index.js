@@ -139,10 +139,8 @@ function onDeviceReady() {
 		if(navigator.globalization!=undefined) {
 			navigator.globalization.getPreferredLanguage(
 				function (language) {
-					alert(language.value.substring(0, 2));
 					defLang = language.value.substring(0, 2);
 					window.localStorage.setItem('config', '{"lang": "'+defLang+'","notif": "true","sounds": "true"}');
-					cambiarIdioma();
 				},
 				function () {}
 			);
