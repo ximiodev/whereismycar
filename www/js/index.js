@@ -73,6 +73,9 @@ function salvtoken(token) {
 }
 
 function regitrartoken() {
+	if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) { 
+		window.FirebasePlugin.grantPermission();
+	}
 	window.FirebasePlugin.getToken(function(token) {
 		salvtoken(token);
 	}, function(error) {
@@ -556,6 +559,7 @@ function mostrarFoto() {
 
 function encConcon() {
 	if(hayinfoGuard()) {
+		window.FirebasePlugin.logEvent("select_content", {content_type: "click", item_id: "Buscar estacionamiento"});
 		secTipo = 4;
 		ponerPantalla("pantallaConMapa");
 		$('.fotoExtraSinco_c').addClass('hidden');
@@ -642,6 +646,11 @@ Date.prototype.getDateFormatted = function() {
 }
 
 function guardarCo() {
+	try {
+		window.FirebasePlugin.logEvent("select_content", {content_type: "click", item_id: "guardar estacionamiento"});
+	} catch(e) {
+		alerta(e);
+	}
 	lastPosition['tipo'] = 'C';
 	var d = new Date();
 	var datestring = d.getDateFormatted()  + "/" + d.getMonthFormatted()+ "/" + d.getFullYear() + " " +	d.getHours() + ":" + d.getMinutes();
@@ -679,6 +688,7 @@ function onSacaFotoCo(img) {
 						$('.fotoExtraCo').removeClass('hidden');
 						$('#osbervacionesC').parent().addClass('conFoto');
 						$('.fotoExtraCo').css({'background-image': 'url('+lastPosition['img']+')'});
+						window.FirebasePlugin.logEvent("select_content", {content_type: "opciones", item_id: "Saco foto"});
 					} catch(e) {
 						alerta(e.message);
 					}
