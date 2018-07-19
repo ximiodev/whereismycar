@@ -18,6 +18,7 @@ var cosasacargar = new Array();
 var yamostrodir=false;
 var baseURL = 'http://www.ximiodev.com/whereismycar/apiContenidos.php';
 var rateapp_co=2;
+var devuuid;
 var directionsDisplay;
 var destinationType; // sets the format of returned value 
 var connectionStatus = false;
@@ -54,7 +55,8 @@ function salvtoken(token) {
 	var datos = {
 		'accion':'registrarDev',
 		'user_platform': user_platform,
-		'registrationId': token
+		'registrationId': token,
+		'devuuid': devuuid,
 	}
 	$.ajax({
 		type: 'POST',
@@ -92,7 +94,7 @@ function regitrartoken() {
 	}, function(error) {
 		alerta(error);
 	});
-	window.FirebasePlugin.setBadgeNumber(0);
+	//~ window.FirebasePlugin.setBadgeNumber(0);
 }
 
 function onDeviceReady() {
@@ -104,6 +106,7 @@ function onDeviceReady() {
 	} catch(e) {
 		//~ alerta(e);
 	}
+	devuuid = device.uuid;
 	try {
 		var admobid = {};
 			
