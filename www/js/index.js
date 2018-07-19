@@ -356,7 +356,8 @@ function getLangByKey(key) {
 	try {
 		return langArr[confArr['lang']][key];
 	} catch(e) {
-		return '';
+		alert(key);
+		//~ return langArr[confArr['lang']][key];
 	}
 }
 
@@ -622,14 +623,14 @@ function hayinfoGuard() {
 }
 
 function onFailSincoFo(message) {
-  alerta('FError: ' + message);
+  //~ alerta('FError: ' + message);
 }
 
 function sacarFotoCo() {
 	try {
 		navigator.camera.getPicture(onSacaFotoCo, onFailSincoFo, { quality: 50, destinationType: Camera.DestinationType.FILE_URI,correctOrientation: true });
 	} catch(e) {
-		alerta(e);
+		//~ alerta(e);
 	}
 }
 
