@@ -241,7 +241,7 @@ function onDeviceReady() {
 
 	try {
 		//~ checkAvailability(); // start the check
-		checkDeviceSetting();
+		//~ checkDeviceSetting();
 	} catch(e) {
 		alerta(e);
 	}

@@ -8,7 +8,7 @@
         SOF
     </author>
     <content src="index.html" />
-    <preference name="phonegap-version" value="cli-7.1.0" />
+    <preference name="phonegap-version" value="cli-8.0.0" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="StatusBarOverlaysWebView" value="false" />
