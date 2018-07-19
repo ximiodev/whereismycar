@@ -557,7 +557,7 @@ function mostrarFoto() {
 
 function encConcon() {
 	if(hayinfoGuard()) {
-		window.FirebasePlugin.logEvent("select_content", {content_type: "click", item_id: "Buscar estacionamiento"});
+		window.FirebasePlugin.logEvent("select_content", {content_type: "page_view", item_id: "Buscar estacionamiento"});
 		secTipo = 4;
 		ponerPantalla("pantallaConMapa");
 		$('.fotoExtraSinco_c').addClass('hidden');
@@ -645,7 +645,7 @@ Date.prototype.getDateFormatted = function() {
 
 function guardarCo() {
 	try {
-		window.FirebasePlugin.logEvent("select_content", {content_type: "click", item_id: "guardar estacionamiento"});
+		window.FirebasePlugin.logEvent("select_content", {content_type: "page_view", item_id: "guardar estacionamiento"});
 	} catch(e) {
 		alerta(e);
 	}
@@ -686,7 +686,7 @@ function onSacaFotoCo(img) {
 						$('.fotoExtraCo').removeClass('hidden');
 						$('#osbervacionesC').parent().addClass('conFoto');
 						$('.fotoExtraCo').css({'background-image': 'url('+lastPosition['img']+')'});
-						window.FirebasePlugin.logEvent("select_content", {content_type: "opciones", item_id: "Saco foto"});
+						window.FirebasePlugin.logEvent("select_content", {content_type: "page_view", item_id: "Saco foto"});
 					} catch(e) {
 						alerta(e.message);
 					}
@@ -773,7 +773,7 @@ function compartirApp() {
 	var options = {
 	  message: 'Where is My car', // not supported on some apps (Facebook, Instagram)
 	  subject: 'Where is My car', // fi. for email
-	  url: 'http://www.whereismycar.com/',
+	  url: 'http://www.whereismycar.sofmachine.com/',
 	  chooserTitle: 'Where is My car' // Android only, you can override the default share sheet title
 	}
 	window.plugins.socialsharing.shareWithOptions(options, compSuccess, compError);
