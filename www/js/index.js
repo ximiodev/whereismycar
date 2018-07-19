@@ -679,6 +679,16 @@ function onSacaFotoCo(img) {
 	lastPosition['img'] = img;
 	window.resolveLocalFileSystemURL(img,
 		function(entry) {
+	
+			try {
+				
+				$('.fotoExtraCo').removeClass('hidden');
+				$('#osbervacionesC').parent().addClass('conFoto');
+				$('.fotoExtraCo').css({'background-image': 'url('+lastPosition['img']+')'});
+				window.FirebasePlugin.logEvent("select_content", {content_type: "page_view", item_id: "Saco foto"});
+			} catch(e) {
+				//~ alerta(e.message);
+			}
 			entry.file(function(file) {
 				EXIF.getData(file, function() {
 					var lat = EXIF.getTag(this, "GPSLatitude");
@@ -695,7 +705,7 @@ function onSacaFotoCo(img) {
 						$('.fotoExtraCo').removeClass('hidden');
 						$('#osbervacionesC').parent().addClass('conFoto');
 						$('.fotoExtraCo').css({'background-image': 'url('+lastPosition['img']+')'});
-						window.FirebasePlugin.logEvent("select_content", {content_type: "page_view", item_id: "Saco foto"});
+						//~ window.FirebasePlugin.logEvent("select_content", {content_type: "page_view", item_id: "Saco foto"});
 					} catch(e) {
 						alerta(e.message);
 					}
