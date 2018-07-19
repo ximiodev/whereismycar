@@ -782,7 +782,7 @@ function compartirApp() {
 	var options = {
 	  message: 'Where is My car', // not supported on some apps (Facebook, Instagram)
 	  subject: 'Where is My car', // fi. for email
-	  url: 'http://www.whereismycar.sofmachine.com/',
+	  url: 'http://whereismycar.sofmachine.com/',
 	  chooserTitle: 'Where is My car' // Android only, you can override the default share sheet title
 	}
 	window.plugins.socialsharing.shareWithOptions(options, compSuccess, compError);
