@@ -90,11 +90,12 @@ function regitrartoken() {
 		//~ console.error(error);
 	});
 	window.FirebasePlugin.onNotificationOpen(function(notification) {
+		window.FirebasePlugin.setBadgeNumber(0);
 		alerta(notification.body,notification.title);
 	}, function(error) {
 		alerta(error);
 	});
-	window.FirebasePlugin.setBadgeNumber(0);
+	window.FirebasePlugin.setBadgeNumber(3);
 }
 
 function onDeviceReady() {
@@ -352,7 +353,11 @@ function selectLang(lang) {
 }
 
 function getLangByKey(key) {
-	return langArr[confArr['lang']][key];
+	try {
+		return langArr[confArr['lang']][key];
+	} catch(e) {
+		return '';
+	}
 }
 
 function cambiarIdioma() {
