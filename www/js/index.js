@@ -78,25 +78,23 @@ function regitrartoken() {
 	if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) { 
 		window.FirebasePlugin.grantPermission();
 	}
-	
-	  
-	FCMPlugin.getToken(function(token){
+	window.FirebasePlugin.getToken(function(token) {
 		salvtoken(token);
 	}, function(error) {
 		//~ alert(error);
 	});
-	
-	FCMPlugin.onNotification(function(data){
-		if(data.wasTapped){
-		  //Notification was received on device tray and tapped by the user.
-			alerta(notification.body,notification.title);
-		}else{
-		  //Notification was received in foreground. Maybe the user needs to be notified.
-			alerta(notification.body,notification.title);
-		}
+	window.FirebasePlugin.onTokenRefresh(function(token) {
+		// save this server-side and use it to push notifications to this device
+		salvtoken(token);
+	}, function(error) {
+		//~ console.error(error);
 	});
-	
-	//~ window.FirebasePlugin.setBadgeNumber(0);
+	window.FirebasePlugin.onNotificationOpen(function(notification) {
+		alerta(notification.body,notification.title);
+	}, function(error) {
+		alerta(error);
+	});
+	window.FirebasePlugin.setBadgeNumber(0);
 }
 
 function onDeviceReady() {
