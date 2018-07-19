@@ -60,7 +60,7 @@
         <splash density="port-xxhdpi" src="www/res/screen/android/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
 		<resource-file src="google-services.json" target="www/google-services.json" />
-		<resource-file src="sonar.mp3" target="www/sounds/sonar.mp3" />
+		<resource-file src="www/sounds/sonar.mp3" target="www/sounds/sonar.mp3" />
     </platform>
     <platform name="ios">
 		<preference name="phonegap-version" value="cli-6.5.0" />
