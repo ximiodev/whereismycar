@@ -23,6 +23,20 @@ var directionsDisplay;
 var destinationType; // sets the format of returned value 
 var connectionStatus = false;
 var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
+var icons = {
+  start: new google.maps.MarkerImage(
+   'images/pinCel_32.png',
+   new google.maps.Size( 44, 32 ),
+   new google.maps.Point( 0, 0 ),
+   new google.maps.Point( 22, 32 )
+  ),
+  end: new google.maps.MarkerImage(
+   'images/pinNar_32.png',
+   new google.maps.Size( 44, 32 ),
+   new google.maps.Point( 0, 0 ),
+   new google.maps.Point( 22, 32 )
+  )
+ };
 
 
 function preload(arrayOfImages) {
@@ -577,6 +591,20 @@ function encConcon() {
 			$('.fotoExtraSinco_c').removeClass('hidden');
 			$('#osbervacionesSC_c').addClass('conFoto');
 			$('.fotoExtraSinco_c').css({'background-image': 'url('+lastPosition['img']+')'});
+			icons = {
+			  start: new google.maps.MarkerImage(
+			   'images/pinCel_32.png',
+			   new google.maps.Size( 44, 32 ),
+			   new google.maps.Point( 0, 0 ),
+			   new google.maps.Point( 22, 32 )
+			  ),
+			  end: new google.maps.MarkerImage(
+			   lastPosition['img'],
+			   new google.maps.Size( 44, 32 ),
+			   new google.maps.Point( 0, 0 ),
+			   new google.maps.Point( 22, 32 )
+			  )
+			 };
 		}
 		
 		if(connectionStatus) {
