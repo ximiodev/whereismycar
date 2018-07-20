@@ -142,7 +142,6 @@ function onDeviceReady() {
 				position: AdMob.AD_POSITION.TOP_CENTER,
 				autoShow: true 
 			});
-		  setTimeout(regitrartoken, 3000);
 	} catch(e) {
 		//~ alerta(e);
 	}
@@ -212,6 +211,19 @@ function onDeviceReady() {
 		}
 	});
 	
+	//~ checkAvailability();
+	//~ checkDeviceSetting();
+
+	try {
+		//~ checkAvailability(); // start the check
+		//~ checkDeviceSetting();
+	} catch(e) {
+		alerta(e);
+	}
+	
+}
+
+function comenzarUbic() {
 	if(connectionStatus) {
 		if(hayinfoGuard()) {
 			//~ $('.btnMarcar').addClass('hidden');
@@ -250,16 +262,7 @@ function onDeviceReady() {
 		$('.minimapa').addClass('hidden');
 		$('#map_canvas').addClass('hidden');
 	}
-	//~ checkAvailability();
-	//~ checkDeviceSetting();
-
-	try {
-		//~ checkAvailability(); // start the check
-		//~ checkDeviceSetting();
-	} catch(e) {
-		alerta(e);
-	}
-	
+	setTimeout(regitrartoken, 3000);
 }
 
 var imageIconna = {
@@ -865,7 +868,7 @@ function puntuarApp() {
 function makeMarker( position, icon, title ) {
  new google.maps.Marker({
   position: position,
-  map: map,
+  map: mapmini,
   icon: icon,
   title: title
  });
@@ -999,6 +1002,7 @@ function verficarEstadoCargaC() {
 		}
 		if(catCar>=5) {
 			cargotodo = true;
+			comenzarUbic();
 			$('.splashInicial').remove();
 		} else {
 			cargotodo = false;
