@@ -109,7 +109,7 @@ function regitrartoken() {
 	}, function(error) {
 		alerta(error);
 	});
-	window.FirebasePlugin.setBadgeNumber(3);
+	window.FirebasePlugin.setBadgeNumber(0);
 }
 
 function onDeviceReady() {
