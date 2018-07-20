@@ -623,6 +623,9 @@ function encConcon() {
 					yamostrodir = true;
 				  if (status === 'OK') {
 					directionsDisplay.setDirections(response);
+					var leg = response.routes[ 0 ].legs[ 0 ];
+					  makeMarker( leg.start_location, icons.start, "1" );
+					  makeMarker( leg.end_location, icons.end, '2' );
 					setTimeout(mostrarPuntuarApp, 15000);
 				  } else {
 					alerta('Directions request failed due to ' + status);
@@ -859,6 +862,15 @@ function puntuarApp() {
 	}
 }
 
+function makeMarker( position, icon, title ) {
+ new google.maps.Marker({
+  position: position,
+  map: map,
+  icon: icon,
+  title: title
+ });
+}
+
 function mostrarPuntuarApp() {
 	if (rateapp_co==1 || rateapp_co==2) {
 		navigator.notification.confirm(
@@ -870,7 +882,7 @@ function mostrarPuntuarApp() {
 				if (deviceType!="Android") {
 					cordova.plugins.market.open('id1332669884');
 				} else if (deviceType=="Android") {
-					cordova.plugins.market.open('com.ar.granhotelverona');
+					cordova.plugins.market.open('com.sof.whereismycar');
 				}
 				rateapp_co = false;
 			} else if (button == '2') { // Later

@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>856158633092-58ejhakvtvl1v7hvn68ft9tea4b62483.apps.googleusercontent.com</string>
+	<string>555883684453-di53lbtv65uedpli0tefprej4pfvu4d2.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.856158633092-58ejhakvtvl1v7hvn68ft9tea4b62483</string>
+	<string>com.googleusercontent.apps.555883684453-di53lbtv65uedpli0tefprej4pfvu4d2</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAmXy_qN-tV4pW7U8U7YzsEpv07L8EUJ44</string>
+	<string>AIzaSyC3a_OqoMBcF0RN-0J84NUlReJmuSRY9RI</string>
 	<key>GCM_SENDER_ID</key>
-	<string>856158633092</string>
+	<string>555883684453</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.sof.whereismycar</string>
 	<key>PROJECT_ID</key>
-	<string>where-is-my-car-863d9</string>
+	<string>whereismycar2-c5324</string>
 	<key>STORAGE_BUCKET</key>
-	<string>where-is-my-car-863d9.appspot.com</string>
+	<string>whereismycar2-c5324.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:856158633092:ios:65993629958df579</string>
+	<string>1:555883684453:ios:65993629958df579</string>
 	<key>DATABASE_URL</key>
-	<string>https://where-is-my-car-863d9.firebaseio.com</string>
+	<string>https://whereismycar2-c5324.firebaseio.com</string>
 </dict>
 </plist>
