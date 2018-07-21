@@ -585,6 +585,8 @@ function encConcon() {
 	if(hayinfoGuard()) {
 		window.FirebasePlugin.logEvent("select_content", {content_type: "page_view", item_id: "Buscar estacionamiento"});
 		secTipo = 4;
+		elicon1.setMap(null);
+		elicon2.setMap(null);
 		ponerPantalla("pantallaConMapa");
 		$('.fotoExtraSinco_c').addClass('hidden');
 		$('#osbervacionesSC_').removeClass('conFoto');
@@ -627,8 +629,8 @@ function encConcon() {
 				  if (status === 'OK') {
 					directionsDisplay.setDirections(response);
 					var leg = response.routes[ 0 ].legs[ 0 ];
-					  makeMarker( leg.start_location, icons.start, "1" );
-					  makeMarker( leg.end_location, icons.end, '2' );
+					  makeMarker1( leg.start_location, icons.start, "1" );
+					  makeMarker2( leg.end_location, icons.end, '2' );
 					setTimeout(mostrarPuntuarApp, 15000);
 				  } else {
 					alerta('Directions request failed due to ' + status);
@@ -865,13 +867,25 @@ function puntuarApp() {
 	}
 }
 
-function makeMarker( position, icon, title ) {
- new google.maps.Marker({
-  position: position,
-  map: mapmini,
-  icon: icon,
-  title: title
- });
+var elicon1;
+var elicon2;
+
+function makeMarker1( position, icon, title ) {
+	elicon1 = new google.maps.Marker({
+		position: position,
+		map: mapmini,
+		icon: icon,
+		title: title
+	});
+}
+
+function makeMarker2( position, icon, title ) {
+	elicon2 = new google.maps.Marker({
+		position: position,
+		map: mapmini,
+		icon: icon,
+		title: title
+	});
 }
 
 function mostrarPuntuarApp() {
