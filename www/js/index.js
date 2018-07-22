@@ -18,8 +18,11 @@ var cosasacargar = new Array();
 var yamostrodir=false;
 var baseURL = 'http://www.ximiodev.com/whereismycar/apiContenidos.php';
 var rateapp_co=2;
+var cargarIdioma=true;
 var devuuid;
 var directionsDisplay;
+var elicon1;
+var elicon2;
 var destinationType; // sets the format of returned value 
 var connectionStatus = false;
 var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
@@ -111,6 +114,7 @@ function regitrartoken() {
 	});
 	window.FirebasePlugin.setBadgeNumber(0);
 }
+
 
 function onDeviceReady() {
 	cosasacargar['onDeviceReady'][0] = true;
@@ -371,9 +375,12 @@ function selectLang(lang) {
 
 function getLangByKey(key) {
 	try {
+		cargarIdioma = true;
 		return langArr[confArr['lang']][key];
 	} catch(e) {
-		alert(key);
+		cargarIdioma = false;
+		setTimeout(cambiarIdioma, 2000);
+		//~ alert(key);
 		//~ return langArr[confArr['lang']][key];
 	}
 }
@@ -382,7 +389,7 @@ function cambiarIdioma() {
 	var lkey;
 	$('[data-textlang!=""]').each(function( index ) {
 		lkey = $(this).data('textlang');
-		if(lkey!=undefined) {
+		if(lkey!=undefined && cargarIdioma) {
 			$(this).html(getLangByKey(lkey));
 		}
 	});
@@ -585,8 +592,8 @@ function encConcon() {
 	if(hayinfoGuard()) {
 		window.FirebasePlugin.logEvent("select_content", {content_type: "page_view", item_id: "Buscar estacionamiento"});
 		secTipo = 4;
-		elicon1.setMap(null);
-		elicon2.setMap(null);
+		if(elicon1) elicon1.setMap(null);
+		if(elicon2) elicon2.setMap(null);
 		ponerPantalla("pantallaConMapa");
 		$('.fotoExtraSinco_c').addClass('hidden');
 		$('#osbervacionesSC_').removeClass('conFoto');
@@ -866,9 +873,6 @@ function puntuarApp() {
 		cordova.plugins.market.open('com.sof.whereismycar');
 	}
 }
-
-var elicon1;
-var elicon2;
 
 function makeMarker1( position, icon, title ) {
 	elicon1 = new google.maps.Marker({
