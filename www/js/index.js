@@ -811,7 +811,7 @@ function ponerTutorial() {
 function puntuarApp() {
 	
 	if (deviceType!="Android") {
-		cordova.plugins.market.open('id1332669884');
+		cordova.plugins.market.open('id1415131786');
 	} else if (deviceType=="Android") {
 		cordova.plugins.market.open('com.sof.whereismycar');
 	}
@@ -844,7 +844,7 @@ function mostrarPuntuarApp() {
 			var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
 			if (button == '1') {    // Rate Now
 				if (deviceType!="Android") {
-					cordova.plugins.market.open('id1332669884');
+					cordova.plugins.market.open('id1415131786');
 				} else if (deviceType=="Android") {
 					cordova.plugins.market.open('com.sof.whereismycar');
 				}
