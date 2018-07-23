@@ -295,7 +295,6 @@ var onSuccessPos = function(position) {
 	var myLatLng = {lat: position.coords.latitude, lng: position.coords.longitude};
 	lastPosition['lat'] = position.coords.latitude;
 	lastPosition['lng'] = position.coords.longitude;
-	recargarIdioma();
 };
 
 function placeMarker(location, ty) {
@@ -415,6 +414,8 @@ function cambiarIdioma() {
 			$(this).html(getLangByKey(lkey));
 		}
 	});
+	
+	comenzarUbic();
 	
 	$('.btnLang').removeClass('activo');
 	$('.btnLang .lang_'+confArr['lang']).addClass('activo');
@@ -1042,7 +1043,6 @@ function verficarEstadoCargaC() {
 		}
 		if(catCar>=5) {
 			cargotodo = true;
-			comenzarUbic();
 			$('.splashInicial').remove();
 		} else {
 			cargotodo = false;
