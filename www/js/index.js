@@ -384,7 +384,7 @@ function recargarIdioma() {
 		dataType   : 'json',
 		success    : function(response) {
 			langArr = response;
-			alert("Cambio iodoma");
+			if(interidio) clearInterval(interidio);
 			cambiarIdioma();
 		},
 		error      : function(xhr, ajaxOptions, thrownError) {
