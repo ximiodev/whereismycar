@@ -157,7 +157,6 @@ function onDeviceReady() {
 		applaunchCount = window.localStorage.getItem('launchCount');
 	} else{
 		window.localStorage.setItem('launchCount',1); 
-		alert("corre 1");
 		
 		if(navigator.globalization!=undefined) {
 			navigator.globalization.getPreferredLanguage(
@@ -364,6 +363,9 @@ function recargarIdioma() {
 		dataType   : 'json',
 		success    : function(response) {
 			langArr = response;
+			langArr = response;
+			cosasacargar['cargaIdioma'][0] = true;
+			verficarEstadoCargaC();
 			if(interidio) clearInterval(interidio);
 			cambiarIdioma();
 		},
