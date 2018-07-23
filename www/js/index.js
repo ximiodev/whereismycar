@@ -624,6 +624,7 @@ function encConcon() {
 			   new google.maps.Point( 22, 32 )
 			  ),
 			  end: new google.maps.MarkerImage(
+			  scaledSize: new google.maps.Size(50, 50), // scaled size
 			   lastPosition['img'],
 			   new google.maps.Size( 44, 32 ),
 			   new google.maps.Point( 0, 0 ),
