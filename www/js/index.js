@@ -198,7 +198,7 @@ function onDeviceReady() {
 			cambiarIdioma();
 		},
 		error      : function(xhr, ajaxOptions, thrownError) {
-			console.log("error 119");
+			alert("error 119");
 		}
 	});
 	var jsonURL = path+"conf/faqs.json";
@@ -233,34 +233,35 @@ function comenzarUbic() {
 		if(hayinfoGuard()) {
 			//~ $('.btnMarcar').addClass('hidden');
 			//~ $('.btnBuscar').removeClass('hidden');
-		}
-		geocoder = new google.maps.Geocoder;
-		directionsService = new google.maps.DirectionsService;
-		directionsDisplay = new google.maps.DirectionsRenderer({
-			polylineOptions: {
-				strokeColor: "#50a3f4"
-			}
-		});
-		try {
-			navigator.geolocation.getCurrentPosition(onSuccessPos, onErrorPos);
-		} catch(e) {
-			console.log(e);
-			$('.minimapa').addClass('hidden');
-			$('#map_canvas').addClass('hidden');
-		}
-		try {
-			mapmini = new google.maps.Map(document.getElementById('map_canvas'), {
-			  mapTypeControl: false,
-			  streetViewControl: false,
-			  zoomControl: false,
-			  fullscreenControl: false,
-			  zoom: 16
+		} else {
+			borrarEstacionamiento();
+			geocoder = new google.maps.Geocoder;
+			directionsService = new google.maps.DirectionsService;
+			directionsDisplay = new google.maps.DirectionsRenderer({
+				polylineOptions: {
+					strokeColor: "#50a3f4"
+				}
 			});
-		} catch(e) {
-			$('.minimapa').addClass('hidden');
-			$('#map_canvas').addClass('hidden');
+			try {
+				navigator.geolocation.getCurrentPosition(onSuccessPos, onErrorPos);
+			} catch(e) {
+				console.log(e);
+				$('.minimapa').addClass('hidden');
+				$('#map_canvas').addClass('hidden');
+			}
+			try {
+				mapmini = new google.maps.Map(document.getElementById('map_canvas'), {
+				  mapTypeControl: false,
+				  streetViewControl: false,
+				  zoomControl: false,
+				  fullscreenControl: false,
+				  zoom: 16
+				});
+			} catch(e) {
+				$('.minimapa').addClass('hidden');
+				$('#map_canvas').addClass('hidden');
+			}
 		}
-		
 	} else {
 		if(hayinfoGuard()) {
 		}
@@ -383,12 +384,11 @@ function recargarIdioma() {
 		dataType   : 'json',
 		success    : function(response) {
 			langArr = response;
-			cosasacargar['cargaIdioma'][0] = true;
-			verficarEstadoCargaC();
+			alert("Cambio iodoma");
 			cambiarIdioma();
 		},
 		error      : function(xhr, ajaxOptions, thrownError) {
-			console.log("error 119");
+			alert("error 389");
 		}
 	});
 }
@@ -401,7 +401,7 @@ function getLangByKey(key) {
 	} catch(e) {
 		cargarIdioma = false;
 		interidio = setInterval(recargarIdioma, 2000);
-		//~ alert(key);
+		alert(e);
 		//~ return langArr[confArr['lang']][key];
 	}
 }
