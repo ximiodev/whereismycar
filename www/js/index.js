@@ -19,6 +19,7 @@ var yamostrodir=false;
 var baseURL = 'http://www.ximiodev.com/whereismycar/apiContenidos.php';
 var rateapp_co=2;
 var cargarIdioma=true;
+var interidio;
 var devuuid;
 var directionsDisplay;
 var elicon1;
@@ -373,13 +374,33 @@ function selectLang(lang) {
 	return false;
 }
 
+function recargarIdioma() {
+	var path = window.location.href.replace('index.html', '');
+	var jsonURL = path+"conf/langs.json";
+		
+	$.ajax({
+		url        : jsonURL,
+		dataType   : 'json',
+		success    : function(response) {
+			langArr = response;
+			cosasacargar['cargaIdioma'][0] = true;
+			verficarEstadoCargaC();
+			cambiarIdioma();
+		},
+		error      : function(xhr, ajaxOptions, thrownError) {
+			console.log("error 119");
+		}
+	});
+}
+
 function getLangByKey(key) {
 	try {
+		clearinterval(interidio);
 		cargarIdioma = true;
 		return langArr[confArr['lang']][key];
 	} catch(e) {
 		cargarIdioma = false;
-		setTimeout(cambiarIdioma, 2000);
+		interidio = setInterval(recargarIdioma, 2000);
 		//~ alert(key);
 		//~ return langArr[confArr['lang']][key];
 	}
