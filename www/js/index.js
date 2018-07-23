@@ -352,7 +352,7 @@ function volverAConf() {
 function selectLang(lang) {
 	confArr['lang']=lang;
 	window.localStorage.setItem('config', JSON.stringify(confArr));
-	cambiarIdioma();
+	cambiarIdioma(true);
 	return false;
 }
 
@@ -385,12 +385,12 @@ function getLangByKey(key) {
 	} catch(e) {
 		cargarIdioma = false;
 		interidio = setInterval(recargarIdioma, 2000);
-		//~ alert(e);
+		alert(e);
 		//~ return langArr[confArr['lang']][key];
 	}
 }
 
-function cambiarIdioma() {
+function cambiarIdioma(tulo) {
 	var lkey;
 	$('[data-textlang!=""]').each(function( index ) {
 		lkey = $(this).data('textlang');
@@ -399,7 +399,7 @@ function cambiarIdioma() {
 		}
 	});
 	
-	comenzarUbic();
+	if(!tulo) comenzarUbic();
 	
 	$('.btnLang').removeClass('activo');
 	$('.btnLang .lang_'+confArr['lang']).addClass('activo');
