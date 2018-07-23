@@ -395,7 +395,7 @@ function recargarIdioma() {
 
 function getLangByKey(key) {
 	try {
-		clearinterval(interidio);
+		if(interidio) clearInterval(interidio);
 		cargarIdioma = true;
 		return langArr[confArr['lang']][key];
 	} catch(e) {
