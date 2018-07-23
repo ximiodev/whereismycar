@@ -157,12 +157,14 @@ function onDeviceReady() {
 		applaunchCount = window.localStorage.getItem('launchCount');
 	} else{
 		window.localStorage.setItem('launchCount',1); 
+		alert("corre 1");
 		
 		if(navigator.globalization!=undefined) {
 			navigator.globalization.getPreferredLanguage(
 				function (language) {
 					defLang = language.value.substring(0, 2);
 					window.localStorage.setItem('config', '{"lang": "'+defLang+'","notif": "true","sounds": "true"}');
+					recargarIdioma();
 				},
 				function () {}
 			);
@@ -171,10 +173,14 @@ function onDeviceReady() {
 	
 	if(window.localStorage.getItem('config')!='' && window.localStorage.getItem('config')!=null) {
 		confArr = JSON.parse(window.localStorage.getItem('config'));
+		recargarIdioma();
 	}
 	
 	if(window.localStorage.getItem('ultimoest')!='' && window.localStorage.getItem('ultimoest')!=null) {
 		lastPosition = JSON.parse(window.localStorage.getItem('ultimoest'));
+		alert("hay algo");
+	} else {
+		borrarEstacionamientodatos();
 	}
 	
 	if(window.localStorage.getItem('historial')!='' && window.localStorage.getItem('historial')!=null) {
@@ -186,22 +192,6 @@ function onDeviceReady() {
 	}
 	
 	var path = window.location.href.replace('index.html', '');
-	var jsonURL = path+"conf/langs.json";
-		
-	$.ajax({
-		url        : jsonURL,
-		dataType   : 'json',
-		success    : function(response) {
-			langArr = response;
-			cosasacargar['cargaIdioma'][0] = true;
-			verficarEstadoCargaC();
-			cambiarIdioma();
-			alert("cargo");
-		},
-		error      : function(xhr, ajaxOptions, thrownError) {
-			//~ alert("error 119");
-		}
-	});
 	var jsonURL = path+"conf/faqs.json";
 	
 	$.ajax({
@@ -216,17 +206,6 @@ function onDeviceReady() {
 			console.log("error 133");
 		}
 	});
-	
-	//~ checkAvailability();
-	//~ checkDeviceSetting();
-
-	try {
-		//~ checkAvailability(); // start the check
-		//~ checkDeviceSetting();
-	} catch(e) {
-		alerta(e);
-	}
-	
 }
 
 function comenzarUbic() {
@@ -512,7 +491,7 @@ function verConfig() {
 	secTipo = 2;
 }
 
-function borrarEstacionamiento() {
+function borrarEstacionamientodatos() {
 	lastPosition = {};
 	window.localStorage.setItem('ultimoest', JSON.stringify(lastPosition));
 	if (directionsDisplay != null) {
@@ -524,6 +503,10 @@ function borrarEstacionamiento() {
 			}
 		});
 	}
+}
+
+function borrarEstacionamiento() {
+	borrarEstacionamientodatos();
 	ponerPantalla("pantallaP");
 }
 
@@ -599,12 +582,14 @@ function mostrarFoto() {
 		if(!mostraFoto) {
 			$('.ventanaFoto').css({'background-image':'url('+lastPosition['img']+')'});
 			$('.ventanaFoto').removeClass('hidden');
+			secTipo = 5;
 			$('.ventanaFoto').animate( {opacity: "1"},300, function() {
 				mostraFoto = true;
 			});
 		} else {
 			$('.ventanaFoto').animate( {opacity: "0"},300, function() {
 				mostraFoto = false;
+				secTipo = 4;
 				$('.ventanaFoto').addClass('hidden');
 				$('.ventanaFoto').css({'background-image':'none'});
 			});
@@ -723,7 +708,7 @@ function guardarCo() {
 	try {
 		window.FirebasePlugin.logEvent("select_content", {content_type: "page_view", item_id: "guardar estacionamiento"});
 	} catch(e) {
-		alerta(e);
+		//~ alerta(e);
 	}
 	lastPosition['tipo'] = 'C';
 	var d = new Date();
@@ -786,72 +771,6 @@ function onSacaFotoCo(img) {
 }
 
 /* */
-
-
-/* validacion de gps*/
-
-function checkAvailability(){
-    //~ cordova.plugins.diagnostic.isGpsLocationAvailable(function(available){
-        //~ alerta("GPS location is " + (available ? "available" : "not available"));
-        //~ if(!available){
-           //~ checkAuthorization();
-        //~ }else{
-            //~ console.log("GPS location is ready to use");
-        //~ }
-    //~ }, function(error){
-        //~ console.error("The following error occurred: "+error);
-    //~ });
-}
-
-function checkAuthorization(){
-    cordova.plugins.diagnostic.isLocationAuthorized(function(authorized){
-        console.log("Location is " + (authorized ? "authorized" : "unauthorized"));
-        if(authorized){
-            checkDeviceSetting();
-        }else{
-            cordova.plugins.diagnostic.requestLocationAuthorization(function(status){
-                switch(status){
-                    case cordova.plugins.diagnostic.permissionStatus.GRANTED:
-                        console.log("Permission granted");
-                        checkDeviceSetting();
-                        break;
-                    case cordova.plugins.diagnostic.permissionStatus.DENIED:
-                        console.log("Permission denied");
-                        // User denied permission
-                        break;
-                    case cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS:
-                        console.log("Permission permanently denied");
-                        // User denied permission permanently
-                        break;
-                }
-            }, function(error){
-                console.error(error);
-            });
-        }
-    }, function(error){
-        console.error("The following error occurred: "+error);
-    });
-}
-
-function checkDeviceSetting(){
-    cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
-        alerta("GPS location setting is " + (enabled ? "enabled" : "disabled"));
-        if(!enabled){
-            cordova.plugins.locationAccuracy.request(function (success){
-                console.log("Successfully requested high accuracy location mode: "+success.message);
-            }, function onRequestFailure(error){
-                console.error("Accuracy request failed: error code="+error.code+"; error message="+error.message);
-                if(error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED){
-                    if(confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")){
-                        cordova.plugins.diagnostic.switchToLocationSettings();
-                    }
-                }
-            }, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
-        }
-    }, function(error){
-        alerta("The following error occurred: "+error);
-    });
-}
 
 
 
@@ -1068,6 +987,9 @@ document.addEventListener("backbutton", function(e){
 		}
 		if(secTipo==4) {
 			backMenu();
+		}
+		if(secTipo==5) {
+			mostrarFoto();
 		}
 	} catch(e) {
 		alerta(e);
