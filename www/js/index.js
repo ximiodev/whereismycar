@@ -295,6 +295,7 @@ var onSuccessPos = function(position) {
 	var myLatLng = {lat: position.coords.latitude, lng: position.coords.longitude};
 	lastPosition['lat'] = position.coords.latitude;
 	lastPosition['lng'] = position.coords.longitude;
+	recargarIdioma();
 };
 
 function placeMarker(location, ty) {
