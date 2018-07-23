@@ -196,9 +196,10 @@ function onDeviceReady() {
 			cosasacargar['cargaIdioma'][0] = true;
 			verficarEstadoCargaC();
 			cambiarIdioma();
+			alert("cargo");
 		},
 		error      : function(xhr, ajaxOptions, thrownError) {
-			alert("error 119");
+			//~ alert("error 119");
 		}
 	});
 	var jsonURL = path+"conf/faqs.json";
@@ -388,7 +389,7 @@ function recargarIdioma() {
 			cambiarIdioma();
 		},
 		error      : function(xhr, ajaxOptions, thrownError) {
-			alert("error 389");
+			//~ alert("error 389");
 		}
 	});
 }
@@ -401,7 +402,7 @@ function getLangByKey(key) {
 	} catch(e) {
 		cargarIdioma = false;
 		interidio = setInterval(recargarIdioma, 2000);
-		alert(e);
+		//~ alert(e);
 		//~ return langArr[confArr['lang']][key];
 	}
 }
