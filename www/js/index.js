@@ -221,13 +221,15 @@ function comenzarUbic() {
 					strokeColor: "#50a3f4"
 				}
 			});
-			try {
-				navigator.geolocation.getCurrentPosition(onSuccessPos, onErrorPos);
-			} catch(e) {
-				console.log(e);
-				$('.minimapa').addClass('hidden');
-				$('#map_canvas').addClass('hidden');
-			}
+			
+			//~ try {
+				//~ navigator.geolocation.getCurrentPosition(onSuccessPos, onErrorPos);
+			//~ } catch(e) {
+				//~ console.log(e);
+				//~ $('.minimapa').addClass('hidden');
+				//~ $('#map_canvas').addClass('hidden');
+			//~ }
+			
 			try {
 				mapmini = new google.maps.Map(document.getElementById('map_canvas'), {
 				  mapTypeControl: false,
@@ -694,6 +696,7 @@ function iniciarConFotoCo() {
 }
 
 function cancelarSinco() {
+	borrarEstacionamientodatos();
 	sacarModalVent();
 }
 
