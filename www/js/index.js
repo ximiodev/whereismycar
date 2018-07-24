@@ -179,7 +179,7 @@ function onDeviceReady() {
 	
 	if(window.localStorage.getItem('ultimoest')!='' && window.localStorage.getItem('ultimoest')!=null) {
 		lastPosition = JSON.parse(window.localStorage.getItem('ultimoest'));
-		alert(JSON.parse(window.localStorage.getItem('ultimoest')));
+		//~ alert((window.localStorage.getItem('ultimoest')));
 	} else {
 		borrarEstacionamientodatos();
 	}
@@ -216,34 +216,34 @@ function comenzarUbic() {
 			//~ $('.btnBuscar').removeClass('hidden');
 		} else {
 			borrarEstacionamiento();
-			geocoder = new google.maps.Geocoder;
-			directionsService = new google.maps.DirectionsService;
-			directionsDisplay = new google.maps.DirectionsRenderer({
-				polylineOptions: {
-					strokeColor: "#50a3f4"
-				}
-			});
-			
-			//~ try {
-				//~ navigator.geolocation.getCurrentPosition(onSuccessPos, onErrorPos);
-			//~ } catch(e) {
-				//~ console.log(e);
-				//~ $('.minimapa').addClass('hidden');
-				//~ $('#map_canvas').addClass('hidden');
-			//~ }
-			
-			try {
-				mapmini = new google.maps.Map(document.getElementById('map_canvas'), {
-				  mapTypeControl: false,
-				  streetViewControl: false,
-				  zoomControl: false,
-				  fullscreenControl: false,
-				  zoom: 16
-				});
-			} catch(e) {
-				$('.minimapa').addClass('hidden');
-				$('#map_canvas').addClass('hidden');
+		}
+		geocoder = new google.maps.Geocoder;
+		directionsService = new google.maps.DirectionsService;
+		directionsDisplay = new google.maps.DirectionsRenderer({
+			polylineOptions: {
+				strokeColor: "#50a3f4"
 			}
+		});
+		
+		//~ try {
+			//~ navigator.geolocation.getCurrentPosition(onSuccessPos, onErrorPos);
+		//~ } catch(e) {
+			//~ console.log(e);
+			//~ $('.minimapa').addClass('hidden');
+			//~ $('#map_canvas').addClass('hidden');
+		//~ }
+		
+		try {
+			mapmini = new google.maps.Map(document.getElementById('map_canvas'), {
+			  mapTypeControl: false,
+			  streetViewControl: false,
+			  zoomControl: false,
+			  fullscreenControl: false,
+			  zoom: 16
+			});
+		} catch(e) {
+			$('.minimapa').addClass('hidden');
+			$('#map_canvas').addClass('hidden');
 		}
 	} else {
 		if(hayinfoGuard()) {
