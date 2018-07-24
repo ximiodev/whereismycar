@@ -164,6 +164,8 @@ function onDeviceReady() {
 			navigator.globalization.getPreferredLanguage(
 				function (language) {
 					defLang = language.value.substring(0, 2);
+					alert(language.value);
+					alert(defLang);
 					window.localStorage.setItem('config', '{"lang": "'+defLang+'","notif": "true","sounds": "true"}');
 					recargarIdioma();
 				},
@@ -630,7 +632,7 @@ function encConcon() {
 			   new google.maps.Size( 44, 32 ),
 			   new google.maps.Point( 0, 0 ),
 			   new google.maps.Point( 22, 32 ),
-			   new google.maps.Size(25, 25)
+			   new google.maps.Size(36, 36)
 			  )
 			 };
 		}

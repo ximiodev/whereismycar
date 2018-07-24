@@ -607,10 +607,14 @@ div#osbervacionesSC_c.conFoto {
 	z-index: 99999;
 }
 
+.elCampo.delafoto {
+    position: relative;
+}
+
 .fotoExtraCo {
     width: 30%;
     position: absolute;
-    height: 100%;
+    height: 125px;
     right: 0;
     top: 0;
     background: no-repeat center center;
