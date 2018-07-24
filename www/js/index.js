@@ -155,18 +155,16 @@ function onDeviceReady() {
     var applaunchCount = 0;
 	if(window.localStorage.getItem('launchCount')!='' && window.localStorage.getItem('launchCount')!=0 && window.localStorage.getItem('launchCount')!=null) {
 		applaunchCount = window.localStorage.getItem('launchCount');
-		recargarIdioma();
 	} else{
 		window.localStorage.setItem('launchCount',1); 
-		window.localStorage.setItem('config', '{"lang": "en","notif": "true","sounds": "true"}');
+		window.localStorage.setItem('config', '{"lang": "es","notif": "true","sounds": "true"}');
 		
 		if(navigator.globalization!=undefined) {
 			navigator.globalization.getPreferredLanguage(
 				function (language) {
 					defLang = language.value.substring(0, 2);
-					alert(language.value);
-					alert(defLang);
-					window.localStorage.setItem('config', '{"lang": "'+defLang+'","notif": "true","sounds": "true"}');
+					confArr['lang']=defLang;
+					window.localStorage.setItem('config', JSON.stringify(confArr));
 					recargarIdioma();
 				},
 				function () {}
