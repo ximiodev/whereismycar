@@ -447,7 +447,7 @@ function cerrarModal(quien) {
 function onErrorPos(error) {
     //~ alerta('La  geolocalizacion no funciona. code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
 	$('.minimapa').addClass('hidden');
-	$('.modalNuevoEstaCo .tituloModal').html('SIN GPS');
+	$('.modalNuevoEstaCo .tituloModal').html(getLangByKey("t17"));
 }
 
 
@@ -542,7 +542,7 @@ function estConcon () {
 	$('#osbervacionesC').parent().removeClass('conFoto');
 	$('.fotoExtraCo').css({'background-image': 'none'});
 	if(connectionStatus) {
-		$('.modalNuevoEstaCo .tituloModal').html('ESTACIONAR');
+		$('.modalNuevoEstaCo .tituloModal').html(getLangByKey("t5"));
 		$('.minimapa').removeClass('hidden');
 		try {
 			var lat = lastPosition['lat'];
@@ -574,11 +574,11 @@ function estConcon () {
 				
 		} catch(e) {
 			$('.minimapa').addClass('hidden');
-			$('.modalNuevoEstaCo .tituloModal').html('SIN GPS');
+			$('.modalNuevoEstaCo .tituloModal').html(getLangByKey("t17"));
 		}
 	} else {
 		$('.minimapa').addClass('hidden');
-		$('.modalNuevoEstaCo .tituloModal').html('SIN CONEXIÓN');
+		$('.modalNuevoEstaCo .tituloModal').html(getLangByKey("t18"));
 	}
 }
 
