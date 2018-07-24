@@ -155,6 +155,7 @@ function onDeviceReady() {
     var applaunchCount = 0;
 	if(window.localStorage.getItem('launchCount')!='' && window.localStorage.getItem('launchCount')!=0 && window.localStorage.getItem('launchCount')!=null) {
 		applaunchCount = window.localStorage.getItem('launchCount');
+		recargarIdioma();
 	} else{
 		window.localStorage.setItem('launchCount',1); 
 		
@@ -177,7 +178,7 @@ function onDeviceReady() {
 	
 	if(window.localStorage.getItem('ultimoest')!='' && window.localStorage.getItem('ultimoest')!=null) {
 		lastPosition = JSON.parse(window.localStorage.getItem('ultimoest'));
-		alert("hay algo");
+		alert(JSON.parse(window.localStorage.getItem('ultimoest')));
 	} else {
 		borrarEstacionamientodatos();
 	}
