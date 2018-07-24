@@ -158,6 +158,7 @@ function onDeviceReady() {
 		recargarIdioma();
 	} else{
 		window.localStorage.setItem('launchCount',1); 
+		window.localStorage.setItem('config', '{"lang": "en","notif": "true","sounds": "true"}');
 		
 		if(navigator.globalization!=undefined) {
 			navigator.globalization.getPreferredLanguage(
@@ -385,8 +386,8 @@ function getLangByKey(key) {
 		return langArr[confArr['lang']][key];
 	} catch(e) {
 		cargarIdioma = false;
-		interidio = setInterval(recargarIdioma, 2000);
-		alert(e);
+		interidio = setInterval(recargarIdioma, 100);
+		//~ alert(e);
 		//~ return langArr[confArr['lang']][key];
 	}
 }
@@ -395,7 +396,7 @@ function cambiarIdioma(tulo) {
 	var lkey;
 	$('[data-textlang!=""]').each(function( index ) {
 		lkey = $(this).data('textlang');
-		if(lkey!=undefined && cargarIdioma) {
+		if(lkey!=undefined) {
 			$(this).html(getLangByKey(lkey));
 		}
 	});
