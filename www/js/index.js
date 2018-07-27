@@ -119,6 +119,7 @@ function regitrartoken() {
 
 
 function onDeviceReady() {
+	alerta("DEVREAD");
 	cosasacargar['onDeviceReady'][0] = true;
 	verficarEstadoCargaC();
 	try {
@@ -582,7 +583,7 @@ function estConcon () {
 				map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
 				placeMarker(myLatLng, true);
 				//~ $('#osbervacionesC').focus();
-			}, onErrorPos,{ timeout: 4000, enableHighAccuracy: true });
+			}, onErrorPos,{ timeout: timeoutmin, enableHighAccuracy: true });
 				
 		} catch(e) {
 			$('.minimapa').addClass('hidden');
@@ -670,7 +671,7 @@ function encConcon() {
 				  } else {
 					alerta('Directions request failed due to ' + status);
 				  }
-				},onErrorPos,{ timeout: 4000, enableHighAccuracy: true });
+				},onErrorPos,{ timeout: timeoutmin, enableHighAccuracy: true });
 			});
 		} else {
 		}
