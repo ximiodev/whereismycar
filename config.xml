@@ -90,6 +90,9 @@
 		<edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
 			<string>Get better information of your parking place.</string>
 		</edit-config>
+		<edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+		<string>Need location access to find you car</string>
+	</edit-config>
     </platform>
     <platform name="wp8">
         <icon height="99" platform="wp8" src="www/res/icon/wp8/ApplicationIcon.png" width="99" />

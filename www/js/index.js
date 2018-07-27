@@ -207,11 +207,6 @@ function onDeviceReady() {
 			console.log("error 133");
 		}
 	});
-	CheckGPS.check(function win(){
-	},
-	function fail(){
-		alerta('El GPS no esta activado.');
-	});
 }
 
 function comenzarUbic() {
@@ -450,7 +445,7 @@ function cerrarModal(quien) {
 // onError Callback receives a PositionError object
 //
 function onErrorPos(error) {
-    //~ alerta('La  geolocalizacion no funciona. code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
+    alerta('La  geolocalizacion no funciona. Para obtener la ubicación con mayor exactitud, activa el GPS.');
 	$('.minimapa').addClass('hidden');
 	$('.modalNuevoEstaCo .tituloModal').html(getLangByKey("t17"));
 }
@@ -576,7 +571,7 @@ function estConcon () {
 				map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
 				placeMarker(myLatLng, true);
 				//~ $('#osbervacionesC').focus();
-			}, onErrorPos);
+			}, onErrorPos,{ timeout: 4000, enableHighAccuracy: true });
 				
 		} catch(e) {
 			$('.minimapa').addClass('hidden');
@@ -664,7 +659,7 @@ function encConcon() {
 				  } else {
 					alerta('Directions request failed due to ' + status);
 				  }
-				});
+				},onErrorPos,{ timeout: 4000, enableHighAccuracy: true });
 			});
 		} else {
 		}
