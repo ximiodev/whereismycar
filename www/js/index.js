@@ -447,6 +447,7 @@ function cerrarModal(quien) {
 function onErrorPos(error) {
     alerta('La  geolocalizacion no funciona. Para obtener la ubicación con mayor exactitud, activa el GPS.');
 	$('.minimapa').addClass('hidden');
+	$('#map_canvas').addClass('hidden');
 	$('.modalNuevoEstaCo .tituloModal').html(getLangByKey("t17"));
 }
 
