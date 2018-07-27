@@ -154,6 +154,10 @@ function onDeviceReady() {
 				position: AdMob.AD_POSITION.TOP_CENTER,
 				autoShow: true 
 			});
+			if (deviceType!="Android") {
+				if(AdMob) AdMob.prepareInterstitial( {adId:admobid.interstitial, autoShow:false} );
+				if(AdMob) AdMob.showInterstitial();
+			}
 		} else {
 			alerta("sin ads");
 		}

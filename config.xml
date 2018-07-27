@@ -33,7 +33,7 @@
     <plugin name="cordova-plugin-inappbrowser" source="npm" spec="~1.3.0" />
     <plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0" />
     <plugin name="cordova-plugin-x-socialsharing" source="npm" />
-    <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2" />
+    <plugin name="cordova-plugin-statusbar" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" />
 	<icon src="www/res/icon/ios/icon-small@2x.png" />
     <platform name="android">
