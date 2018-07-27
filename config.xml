@@ -59,7 +59,7 @@
 		<resource-file src="www/sounds/sonar.mp3" target="www/sounds/sonar.mp3" />
     </platform>
     <platform name="ios">
-		<preference name="phonegap-version" value="cli-7.0.1" />
+		<preference name="phonegap-version" value="cli-8.0.0" />
 <!--
 		<preference name="phonegap-version" value="cli-6.5.0" />
 -->
