@@ -479,7 +479,7 @@ function borrarHistorial() {
 }
 function borrarhist() {
 	$('#historialCont').html('');
-	var historial = new Array();
+	historial = new Array();
 	window.localStorage.setItem('historial', JSON.stringify(historial));
 	sacarError();
 }
