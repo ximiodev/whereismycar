@@ -57,11 +57,11 @@ preload([
 	'images/splashHome.png'
 ]);
 
-cosasacargar['doc_ready'] = new Array(false,'doc_ready');
+//~ cosasacargar['doc_ready'] = new Array(false,'doc_ready');
 cosasacargar['onDeviceReady'] = new Array(false,'onDeviceReady');
 cosasacargar['cargaIdioma'] = new Array(false,'cargaIdioma');
-cosasacargar['cargaFaqs'] = new Array(false,'cargaFaqs');
-cosasacargar['cargaImgs'] = new Array(false,'cargaImgs');
+//~ cosasacargar['cargaFaqs'] = new Array(false,'cargaFaqs');
+//~ cosasacargar['cargaImgs'] = new Array(false,'cargaImgs');
 if (app) {
 	document.addEventListener("deviceready",onDeviceReady,false);
 } else {
@@ -373,16 +373,6 @@ function recargarIdioma() {
 			cosasacargar['cargaIdioma'][0] = true;
 			verficarEstadoCargaC();
 			if(interidio) clearInterval(interidio);
-					
-			cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
-				//~ console.log("GPS location is " + (enabled ? "enabled" : "disabled"));
-				if(!enabled) {
-					$('.minimapa').addClass('hidden');
-					$('.modalNuevoEstaCo .tituloModal').html(getLangByKey("t17"));
-				}
-			}, function(error){
-				//~ console.error("The following error occurred: "+error);
-			});   
 			cambiarIdioma();
 		},
 		error      : function(xhr, ajaxOptions, thrownError) {
@@ -426,7 +416,7 @@ function ponerPantalla(pantid) {
 }
 
 function setCalle(latlng, callback) {
-	geocoder.geocode({'location': latlng}, function(results, status) {
+	geocoder.geocode({'location': latlng}, function(results, status) {//err ios
 	  if (status === 'OK') {
 		if (results[1]) {
 		  callback(results[0].formatted_address);
@@ -652,7 +642,7 @@ function encConcon() {
 			if(yamostrodir) directionsDisplay.setMap(null);
 			if(marker) marker.setMap(null);
 			//~ directionsDisplay.setMap(map);
-			directionsDisplay.setMap(mapmini);
+			directionsDisplay.setMap(mapmini);//err ios
 			navigator.geolocation.getCurrentPosition(function (position) {
 				if(marker) marker.setMap(null);
 				directionsService.route({
@@ -986,7 +976,7 @@ function verficarEstadoCargaC() {
 				catCar++;
 			}
 		}
-		if(catCar>=5) {
+		if(catCar>=1) {
 			cargotodo = true;
 			$('.splashInicial').remove();
 		} else {
