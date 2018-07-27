@@ -58,7 +58,10 @@
 		<resource-file src="www/sounds/sonar.mp3" target="www/sounds/sonar.mp3" />
     </platform>
     <platform name="ios">
+<!--
 		<preference name="phonegap-version" value="cli-7.0.1" />
+-->
+		<preference name="phonegap-version" value="cli-6.5.0" />
         <icon height="57" platform="ios" src="www/res/icon/ios/icon.png" width="57" />
         <icon height="114" platform="ios" src="www/res/icon/ios/icon@2x.png" width="114" />
         <icon height="40" platform="ios" src="www/res/icon/ios/icon-40.png" width="40" />
@@ -91,6 +94,9 @@
 		<edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
 			<string>Need location access to find you car</string>
 		</edit-config>
+		<feature name="Geolocation">
+			<param name="ios-package" value="CDVLocation" />
+		</feature>
     </platform>
     <platform name="wp8">
         <icon height="99" platform="wp8" src="www/res/icon/wp8/ApplicationIcon.png" width="99" />
