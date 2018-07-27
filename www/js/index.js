@@ -475,11 +475,12 @@ function ponerTexto(texto) {
 /* Sin coneccion*/
 
 function borrarHistorial() {
-	if(confirm(getLangByKey("t19"))) {
-		$('#historialCont').html('');
-		var historial = new Array();
-		window.localStorage.setItem('historial', JSON.stringify(historial));
-	}
+	alerta(getLangByKey("t19"), getLangByKey("t39"),'borrarhist();sacarError();');
+}
+function borrarhist() {
+	$('#historialCont').html('');
+	var historial = new Array();
+	window.localStorage.setItem('historial', JSON.stringify(historial));
 }
 
 function verHist() {
@@ -544,7 +545,11 @@ function backMenu() {
 /* con coneccion*/
 
 function estConcon () {
-	$('.modalVent').css({'min-height':$(window).height()}); 
+	if (deviceType=="Android") {
+		$('.modalVent').css({'min-height':$(window).height()}); 
+	} else {
+		$('.modalVent').css({'padding-top':'50px'}); 
+	}
 	ponerModalsB("modalNuevoEstaCo");
 	lastPosition = {};
 	secTipo = 3;
