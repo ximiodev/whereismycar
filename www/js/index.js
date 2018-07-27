@@ -148,7 +148,7 @@ function onDeviceReady() {
 				autoShow: true 
 			});
 	} catch(e) {
-		//~ alerta(e);
+		alerta(e);
 	}
 	connectionStatus = navigator.onLine;
 	
