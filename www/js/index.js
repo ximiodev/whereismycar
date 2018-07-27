@@ -119,7 +119,6 @@ function regitrartoken() {
 
 
 function onDeviceReady() {
-	alerta("DEVREAD");
 	cosasacargar['onDeviceReady'][0] = true;
 	verficarEstadoCargaC();
 	try {
@@ -266,7 +265,7 @@ function comenzarUbic() {
 		$('.minimapa').addClass('hidden');
 		$('#map_canvas').addClass('hidden');
 	}
-	//~ setTimeout(regitrartoken, 3000);
+	setTimeout(regitrartoken, 3000);
 }
 
 var imageIconna = {
