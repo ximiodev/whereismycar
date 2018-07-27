@@ -57,11 +57,11 @@ preload([
 	'images/splashHome.png'
 ]);
 
-//~ cosasacargar['doc_ready'] = new Array(false,'doc_ready');
+cosasacargar['doc_ready'] = new Array(false,'doc_ready');
 cosasacargar['onDeviceReady'] = new Array(false,'onDeviceReady');
 cosasacargar['cargaIdioma'] = new Array(false,'cargaIdioma');
-//~ cosasacargar['cargaFaqs'] = new Array(false,'cargaFaqs');
-//~ cosasacargar['cargaImgs'] = new Array(false,'cargaImgs');
+cosasacargar['cargaFaqs'] = new Array(false,'cargaFaqs');
+cosasacargar['cargaImgs'] = new Array(false,'cargaImgs');
 if (app) {
 	document.addEventListener("deviceready",onDeviceReady,false);
 } else {
@@ -445,7 +445,7 @@ function cerrarModal(quien) {
 // onError Callback receives a PositionError object
 //
 function onErrorPos(error) {
-    alerta('La  geolocalizacion no funciona. Para obtener la ubicación con mayor exactitud, activa el GPS.');
+    alerta(getLangByKey("t38"));
 	$('.minimapa').addClass('hidden');
 	$('#map_canvas').addClass('hidden');
 	$('.modalNuevoEstaCo .tituloModal').html(getLangByKey("t17"));
@@ -975,7 +975,7 @@ function verficarEstadoCargaC() {
 				catCar++;
 			}
 		}
-		if(catCar>=1) {
+		if(catCar>=5) {
 			cargotodo = true;
 			$('.splashInicial').remove();
 		} else {

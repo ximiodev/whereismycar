@@ -35,7 +35,8 @@
 "t34": "INFORMATION",
 "t35": "Where is my Car, is a simple application that helps users to find their vehicles in an easier way. <br> <br> <br> Created by SOF, a company that develops digital tools. <br> <br><a href=\"http://whereismycar.sofmachine.com/\">whereismycar.sofmachine.com</a>.  <br> <br><a href=\"http://www.sofmachine.com/\">www.sofmachine.com</a>.  <br> <br><a href=\"mailto:info@sofmachine.com\">info@sofmachine.com</a>. <br> <br> V. 1.0 <br> <br> <br> 2018",
 "t36": "Accept",
-"t37": "Attention"
+"t37": "Attention",
+"t38": "Activate GPS to have the exact location of your car."
 },
 "es": {
 "t1": "Estacionamiento guardado",
@@ -73,7 +74,8 @@
 "t34": "INFORMACIÓN",
 "t35": "Where is my Car, es una aplicación simple que ayuda a los usuarios a encontrar sus vehículos de una manera más fácil.<br><br><br>Creado por SOF, una empresa que desarrolla herramientas digitales.<br><br><br><a href=\"http://whereismycar.sofmachine.com/\">whereismycar.sofmachine.com</a>.  <br> <br><a href=\"http://www.sofmachine.com/\">www.sofmachine.com</a>.  <br> <br><a href=\"mailto:info@sofmachine.com\">info@sofmachine.com</a>. <br> <br> V. 1.0<br><br><br>2018",
 "t36": "Aceptar",
-"t37": "Atención"
+"t37": "Atención",
+"t38": "Activa el GPS para tener la ubicación exacta de tu automóvil."
 },
 "pt": {
 "t1": "Estacionamento salvo",
@@ -111,6 +113,7 @@
 "t34": "INFORMAÇÃO",
 "t35": "Where Is My Car, é um aplicativo simples que ajuda os usuários a encontrar seus veículos de forma mais fácil.<br><br><br>Desenvolvido por SOF, uma empresa que desenvolve ferramentas digitais.<br><br><br><a href=\"http://whereismycar.sofmachine.com/\">whereismycar.sofmachine.com</a>.  <br> <br><a href=\"http://www.sofmachine.com/\">www.sofmachine.com</a>.  <br> <br><a href=\"mailto:info@sofmachine.com\">info@sofmachine.com</a>. <br> <br> V. 1.0<br><br><br>2018",
 "t36": "Aceitar",
-"t37": "Atenção"
+"t37": "Atenção",
+"t38": "Ative o GPS para ter a localização exata do seu carro."
 }
 }
