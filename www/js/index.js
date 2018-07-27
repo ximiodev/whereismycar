@@ -475,12 +475,13 @@ function ponerTexto(texto) {
 /* Sin coneccion*/
 
 function borrarHistorial() {
-	alerta(getLangByKey("t19"), getLangByKey("t39"),'borrarhist();sacarError();');
+	alerta(getLangByKey("t19"), getLangByKey("t39"),'borrarhist();');
 }
 function borrarhist() {
 	$('#historialCont').html('');
 	var historial = new Array();
 	window.localStorage.setItem('historial', JSON.stringify(historial));
+	sacarError();
 }
 
 function verHist() {
