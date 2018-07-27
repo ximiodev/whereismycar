@@ -266,7 +266,7 @@ function comenzarUbic() {
 		$('.minimapa').addClass('hidden');
 		$('#map_canvas').addClass('hidden');
 	}
-	setTimeout(regitrartoken, 3000);
+	//~ setTimeout(regitrartoken, 3000);
 }
 
 var imageIconna = {
