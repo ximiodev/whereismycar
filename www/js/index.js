@@ -2,6 +2,7 @@ var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (nav
 var map;
 var mapmini;
 var marker;
+var timeoutmin;
 var markermini;
 var lastPosition = {};
 var historial = new Array();
@@ -126,6 +127,11 @@ function onDeviceReady() {
 	} catch(e) {
 		//~ alerta(e);
 	}
+	if (deviceType!="Android") {
+		timeoutmin = 4000;
+	} else {
+		timeoutmin = 15000;
+	}
 	devuuid = device.uuid;
 	try {
 		var admobid = {};
@@ -141,12 +147,15 @@ function onDeviceReady() {
 				interstitial: 'ca-app-pub-4910383278905451/2897589292'
 			};
 		}
-		if(AdMob) 
+		if(AdMob) {
 			AdMob.createBanner({
 				adId: admobid.banner,
 				position: AdMob.AD_POSITION.TOP_CENTER,
 				autoShow: true 
 			});
+		} else {
+			alerta("sin ads");
+		}
 	} catch(e) {
 		alerta(e);
 	}
