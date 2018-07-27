@@ -129,10 +129,10 @@ function onDeviceReady() {
 		//~ alerta(e);
 	}
 	if (deviceType!="Android") {
-		timeoutmin = 4000;
-	} else {
 		navigator.geolocation.getCurrentPosition(function(){}, function(){});
 		timeoutmin = 15000;
+	} else {
+		timeoutmin = 4000;
 	}
 	devuuid = device.uuid;
 	try {
@@ -155,6 +155,10 @@ function onDeviceReady() {
 				position: AdMob.AD_POSITION.TOP_CENTER,
 				autoShow: true 
 			});
+			if (deviceType!="Android") {
+				if(AdMob) AdMob.prepareInterstitial( {adId:admobid.interstitial, autoShow:false} );
+				if(AdMob) AdMob.showInterstitial();
+			}
 		} else {
 			alerta("sin ads");
 		}
