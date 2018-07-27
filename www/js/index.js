@@ -207,6 +207,8 @@ function onDeviceReady() {
 			console.log("error 133");
 		}
 	});
+	
+	
 }
 
 function comenzarUbic() {
@@ -371,6 +373,16 @@ function recargarIdioma() {
 			cosasacargar['cargaIdioma'][0] = true;
 			verficarEstadoCargaC();
 			if(interidio) clearInterval(interidio);
+					
+			cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
+				//~ console.log("GPS location is " + (enabled ? "enabled" : "disabled"));
+				if(!enabled) {
+					$('.minimapa').addClass('hidden');
+					$('.modalNuevoEstaCo .tituloModal').html(getLangByKey("t17"));
+				}
+			}, function(error){
+				//~ console.error("The following error occurred: "+error);
+			});   
 			cambiarIdioma();
 		},
 		error      : function(xhr, ajaxOptions, thrownError) {
