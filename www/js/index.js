@@ -207,8 +207,11 @@ function onDeviceReady() {
 			console.log("error 133");
 		}
 	});
-	
-	
+	CheckGPS.check(function win(){
+	},
+	function fail(){
+		alerta('El GPS no esta activado.');
+	});
 }
 
 function comenzarUbic() {
