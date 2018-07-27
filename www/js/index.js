@@ -130,6 +130,7 @@ function onDeviceReady() {
 	if (deviceType!="Android") {
 		timeoutmin = 4000;
 	} else {
+		navigator.geolocation.getCurrentPosition(function(){}, function(){});
 		timeoutmin = 15000;
 	}
 	devuuid = device.uuid;
