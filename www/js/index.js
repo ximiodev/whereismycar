@@ -537,7 +537,7 @@ function estConcon () {
 	ponerModalsB("modalNuevoEstaCo");
 	lastPosition = {};
 	secTipo = 3;
-
+	//~ //$('#osbervacionesC').focus();
 	$('.fotoExtraCo').addClass('hidden');
 	$('#osbervacionesC').parent().removeClass('conFoto');
 	$('.fotoExtraCo').css({'background-image': 'none'});
@@ -570,6 +570,7 @@ function estConcon () {
 				lastPosition['lng'] = position.coords.longitude;
 				map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
 				placeMarker(myLatLng, true);
+				//~ $('#osbervacionesC').focus();
 			}, onErrorPos);
 				
 		} catch(e) {
@@ -605,7 +606,7 @@ function mostrarFoto() {
 
 function encConcon() {
 	if(hayinfoGuard()) {
-		window.FirebasePlugin.logEvent("select_content", {content_type: "page_view", item_id: "Buscar estacionamiento"});
+		//~ window.FirebasePlugin.logEvent("select_content", {content_type: "page_view", item_id: "Buscar estacionamiento"});
 		secTipo = 4;
 		if(elicon1) elicon1.setMap(null);
 		if(elicon2) elicon2.setMap(null);
@@ -675,7 +676,11 @@ function hayinfoGuard() {
 		}
 	}
 	if(count>0) {
-		return true;
+		if(lastPosition['tipo'] == 'C') {
+			return true;
+		} else {
+			return false;
+		}
 	} else {
 		return false;
 	}

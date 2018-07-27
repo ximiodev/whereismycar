@@ -177,7 +177,7 @@ button.btnHist {
 	height: 100vh;
 	padding: 0;
 	background: url(../images/splashHome.png) center top no-repeat;
-	background-size: contain;
+	background-size: auto 90%;
 }
 
 .btnMenu {
@@ -691,6 +691,7 @@ div#osbervacionesSC_c.conFoto {
 	margin-left: 0;
 	margin-right: 0;
 	position: absolute;
+	overflow: hidden;
 	width: 100%;
 	bottom: 0;
 	left: 0;
