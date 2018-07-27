@@ -653,6 +653,7 @@ function encConcon() {
 			if(marker) marker.setMap(null);
 			//~ directionsDisplay.setMap(map);
 			directionsDisplay.setMap(mapmini);//err ios
+			directionsDisplay.setOptions( { suppressMarkers: true } );
 			navigator.geolocation.getCurrentPosition(function (position) {
 				if(marker) marker.setMap(null);
 				directionsService.route({
