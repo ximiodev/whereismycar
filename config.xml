@@ -89,7 +89,6 @@
         <splash height="1024" platform="ios" src="www/res/screen/ios/Default-Portrait~ipad.png" width="768" />
         <splash height="960" platform="ios" src="www/res/screen/ios/Default@2x~iphone.png" width="640" />
         <splash height="480" platform="ios" src="www/res/screen/ios/Default~iphone.png" width="320" />
-		<resource-file src="sonar.mp3" target="www/sounds/sonar.mp3" />
 		<edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
 			<string>Get better information of your parking place.</string>
 		</edit-config>
