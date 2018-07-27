@@ -60,8 +60,8 @@ preload([
 cosasacargar['doc_ready'] = new Array(false,'doc_ready');
 cosasacargar['onDeviceReady'] = new Array(false,'onDeviceReady');
 cosasacargar['cargaIdioma'] = new Array(false,'cargaIdioma');
-cosasacargar['cargaFaqs'] = new Array(false,'cargaFaqs');
-cosasacargar['cargaImgs'] = new Array(false,'cargaImgs');
+//~ cosasacargar['cargaFaqs'] = new Array(false,'cargaFaqs');
+//~ cosasacargar['cargaImgs'] = new Array(false,'cargaImgs');
 if (app) {
 	document.addEventListener("deviceready",onDeviceReady,false);
 } else {
@@ -200,7 +200,7 @@ function onDeviceReady() {
 		dataType   : 'json',
 		success    : function(response) {
 			faqArr = response;
-			cosasacargar['cargaFaqs'][0] = true;
+			//~ cosasacargar['cargaFaqs'][0] = true;
 			verficarEstadoCargaC();
 		},
 		error      : function(xhr, ajaxOptions, thrownError) {
@@ -960,7 +960,7 @@ $(document).ready(function() {
     }
 	
     function iniciar() {
-		cosasacargar['cargaImgs'][0] = true;
+		//~ cosasacargar['cargaImgs'][0] = true;
 		verficarEstadoCargaC();
 	}
 });
