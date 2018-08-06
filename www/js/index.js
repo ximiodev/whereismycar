@@ -488,6 +488,7 @@ function verHist() {
 	ponerModalsB('modalHist');
 	secTipo = 1;
 	var conthist = '<ul class="listcomun">';
+	historial = JSON.parse(window.localStorage.getItem('historial'));
 	historial.sort(ordenarhist);
 	historial.forEach(function(element) {
 		//~ historialCont
@@ -742,6 +743,20 @@ function guardarCo() {
 	} catch(e) {
 		//~ alerta(e);
 	}
+	icons = {
+		start: new google.maps.MarkerImage(
+		'images/pinCel_32.png',
+		new google.maps.Size( 44, 32 ),
+		new google.maps.Point( 0, 0 ),
+		new google.maps.Point( 22, 32 )
+	),
+		end: new google.maps.MarkerImage(
+		'images/pinNar_32.png',
+		new google.maps.Size( 44, 32 ),
+		new google.maps.Point( 0, 0 ),
+		new google.maps.Point( 22, 32 )
+	)
+	};
 	lastPosition['tipo'] = 'C';
 	var d = new Date();
 	var datestring = d.getDateFormatted()  + "/" + d.getMonthFormatted()+ "/" + d.getFullYear() + " " +	d.getHours() + ":" + d.getMinutes();
@@ -1028,10 +1043,20 @@ document.addEventListener("backbutton", function(e){
 	}
 }, false);
 
+function toFecha(fechahor) {
+	var res = fechahor.split(" ");
+	var fecha = res[0].split("/");
+	var hora = res[1].split(":");
+	lafecha = new Date(fecha[2], fecha[1] - 1, fecha[2], hora[0], hora[1], '00');
+	return lafecha;
+}
+
 function ordenarhist(a,b) {
-  if (a.fecha < b.fecha)
+	var na = toFecha(a);
+	var nb = toFecha(b);
+  if (na.fecha < nb.fecha)
     return 1;
-  if (a.fecha > b.fecha)
+  if (na.fecha > nb.fecha)
     return -1;
   return 0;
 }
