@@ -489,7 +489,7 @@ function verHist() {
 	secTipo = 1;
 	var conthist = '<ul class="listcomun">';
 	historial = JSON.parse(window.localStorage.getItem('historial'));
-	historial.sort(ordenarhist);
+	historial.reverse();
 	historial.forEach(function(element) {
 		//~ historialCont
 		
@@ -1043,20 +1043,10 @@ document.addEventListener("backbutton", function(e){
 	}
 }, false);
 
-function toFecha(fechahor) {
-	var res = fechahor.split(" ");
-	var fecha = res[0].split("/");
-	var hora = res[1].split(":");
-	lafecha = new Date(fecha[2], fecha[1] - 1, fecha[2], hora[0], hora[1], '00');
-	return lafecha;
-}
-
 function ordenarhist(a,b) {
-	var na = toFecha(a);
-	var nb = toFecha(b);
-  if (na.fecha < nb.fecha)
+  if (a.fecha < b.fecha)
     return 1;
-  if (na.fecha > nb.fecha)
+  if (a.fecha > b.fecha)
     return -1;
   return 0;
 }
