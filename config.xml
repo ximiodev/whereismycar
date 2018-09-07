@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.sof.whereismycar" version="1.0.3" versionCode = "1003"  xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.sof.whereismycar" version="1.0.4" versionCode = "1004"  xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Where is my car</name>
     <description>
         Encontra tu auto
@@ -60,10 +60,7 @@
     </platform>
     <platform name="ios">
 		<preference name="phonegap-version" value="cli-7.0.1" />
-<!--
-		<preference name="phonegap-version" value="cli-6.5.0" />
--->
-		<icon height="1024" width="1024" src="www/res/icon/ios/ItunesArtwork@2x.png" />
+		<icon height="1024" platform="ios" width="1024" src="www/res/icon/ios/ItunesArtwork@2x.png" />
         <icon height="57" platform="ios" src="www/res/icon/ios/icon.png" width="57" />
         <icon height="114" platform="ios" src="www/res/icon/ios/icon@2x.png" width="114" />
         <icon height="40" platform="ios" src="www/res/icon/ios/icon-40.png" width="40" />
